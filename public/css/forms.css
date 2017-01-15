@@ -1,0 +1,566 @@
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+.dropdown-content.select-dropdown::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+	border-radius: 1px;
+}
+
+.dropdown-content.select-dropdown::-webkit-scrollbar
+{
+	width: 3px;
+	background-color: transparent;
+	border-radius: 2px;
+	margin-right: 5px;
+}
+.dropdown-content.select-dropdown::-webkit-scrollbar-thumb
+{
+	background-color: rgba(69,69,69,0.5);
+	border-radius: 2px;
+	height: 10px;
+}
+
+.dropdown-content-container {
+	max-height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.request-form .card-panel {
+	padding-left:0px;
+	padding-right:0px;
+	padding-bottom: 0px;
+}
+
+.request-form .select-wrapper input.select-dropdown {
+	border-bottom: 1px solid #f4f4f4;
+	text-indent: 20px;
+}
+
+.request-form label {
+	margin-left: 20px;
+}
+
+.dropdown-content.select-dropdown {
+	max-height:260px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.request-form .dropdown-content li>a, .dropdown-content li>span {
+	color: #000000;
+	border-bottom: 1px solid #f3f3f4;
+}
+
+.request-form .row {
+	margin-bottom: 0px;
+}
+.input-field {
+	margin-top:0px;
+}
+
+.select-wrapper span.caret {
+	right: 20px;
+}
+
+.switch:not(.default) label .lever, .switch label input[type=checkbox]:checked+.lever {
+	background-color: #b388ff;
+}
+.switch:not(.default) label .lever:after, .switch label input[type=checkbox]:checked+.lever:after {
+	background-color: #651fff;
+}
+
+.switch .left-part {
+	position: absolute;
+	font-size: 1rem;
+	left: 20px;
+}
+
+.switch .right-part {
+	position: absolute;
+	right: 20px;
+	font-size: 1rem;
+	display: inline-block;
+}
+
+.switch:not(.default) label {
+	display:inline-block;
+	width: 100%;
+    text-align: center;
+    margin-left: 0px;
+    position: relative;
+}
+
+.switch.default label {
+	padding-top: 20px;
+	margin-bottom: 20px;
+    color:#212121;
+    position: relative;
+    margin-left: 0px;
+}
+.switch.default .lever {
+	float:	right;
+	margin-right: 20px;
+}
+
+.switch div.selected {
+	color: rgba(0, 0, 0, 0.870588);
+}
+
+.switch {
+	border-bottom: 1px solid #f4f4f4;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+
+.switch.default {
+	height: 50px;
+}
+@media (max-height:600px) {
+	.top { 
+		margin-top: 0px;
+	}
+	.bottom { 
+		margin-bottom: 0px;
+	}
+}
+
+@media (max-height:480px) {
+	.logo img { 
+		width: 50%;
+	}
+	.top {
+		line-height: normal;
+	}
+}
+
+@media (max-width: 1200px) {
+	.container-fluid {
+		display: table-cell;
+	    vertical-align: middle;
+	    height: 100vh;
+	    width: 100vw;
+	}
+}
+
+.select-wrapper {
+	padding-right: 2px;
+}
+
+input.timepicker, input.datepicker {
+	margin-left: 20px;
+}
+
+.picker__weekday-display {
+	background-color: #5e35b1;
+}
+
+.picker__date-display {
+	background-color: #7c4dff;
+}
+
+.picker__day.picker__day--today, .picker__close, .picker__today {
+	color: #aa00ff;
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+	background-color: #651fff;
+}
+
+.clockpicker-button.am-button, .clockpicker-button.pm-button {
+	background-color: #b388ff;
+}
+
+.btn-floating.btn-flat:active, .btn-floating.btn-flat.active {
+	background-color: #9c27b0;
+}
+
+.clockpicker-canvas-bg {
+	fill: rgba(179,136,255,0.5);
+}
+
+.clockpicker-canvas line {
+	stroke:  rgba(179,136,255,0.5);
+}
+
+.clockpicker-canvas-fg.active {
+	fill:  rgba(142,36,170,0.5);
+}
+
+.date i {
+	position: relative;
+	top: 2px;
+}
+
+.input-field.date  label {
+	font-size: 0.8rem;
+}
+
+.carousel.carousel-slider .carousel-item  {
+	min-height: 100px;
+	background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.carousel.carousel-slider {
+	top: -20px;
+}
+
+.carousel.carousel-slider.types {
+	height:215px;
+}
+
+.carousel.carousel-slider .carousel-item:before {
+	width: 100%;
+	height: 100%;
+	background-color: #9c27b0;
+	opacity: 0.2;
+	content: ' ';
+	display: block;
+	position: absolute;
+}
+
+.carousel .indicators .indicator-item {
+	margin: 4px;
+}
+
+.carousel .indicators .indicator-item.active {
+    background-color: #b388ff;
+}
+
+.passengers {
+    position: absolute;
+    font-weight: bold;
+    left: 5px;
+    top: 5px;
+}
+
+.carousel-item .title {
+	display: block;
+    line-height: 215px;
+    font-size: 2rem;
+    z-index: 2;
+    position: relative;
+}
+
+@media (max-width:320px) {
+	.carousel.carousel-slider.types {
+		height: 150px;
+	}
+	.carousel-item .title { 
+		line-height: 150px;
+	}
+	.left-part, .switch:not(.default)-type .right-part{
+		width: 70px;
+	    text-align: center;
+	    top: -15px;
+	}
+}
+
+@media (max-width:375px) {
+	.carousel.carousel-slider.types {
+		height: 165px;
+	}
+	.carousel-item .title { 
+		line-height: 165px;
+	}
+}
+
+@media (max-width:414px) {
+	.carousel.carousel-slider.types {
+		height: 180px;
+	}
+	.carousel-item .title { 
+		line-height: 180px;
+	}
+}
+
+.passengers i {
+	float: left;
+	font-size: 16px;
+    margin-top: 1px;
+}
+
+.passengers span {
+	line-height: 18px;
+}
+
+.row.with-range {
+	padding-left: 10px;
+    padding-right: 10px;
+    height: 50px;
+    border-bottom: 1px solid #f4f4f4;
+    margin:0px;
+} 
+
+.with-range  label {
+	margin-left: 0px;
+	top: -15px;
+	position: relative;
+}
+
+.row.custom-type {
+	top: 20px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid #f4f4f4;
+    margin: 0px;
+    margin-bottom: 30px;
+}
+.custom-type label {
+	margin-left: 0px;
+}
+
+.noUi-target .range-label {
+	background-color: #651fff;
+	box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4);
+	transform: scale(.7) rotate(-45deg);
+	top: -15px;
+	left:0px;
+}
+
+.noUi-connect {
+	background-color: #651fff;
+}
+
+#passengers-value {
+	float: right;
+    margin-top: -12px;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: inherit;
+    box-shadow: 0 1px 0 0 #7b1fa2;
+}
+
+.row.info {
+	margin: 0px;
+	margin-bottom: 20px;
+	border-bottom:1px solid #f4f4f4;
+	background-color: #f4f4f4;
+    padding-top: 20px;
+    margin-top:-20px;
+}
+.row.info .s1 { 
+	margin-top:-5px;
+}
+
+.info-text {
+	text-align: center;
+	color: #9e9e9e;
+	font-size: 0.8rem;
+	margin-bottom: 20px;
+}
+
+.picker__day--disabled, .picker__day--disabled:hover, .picker--focused .picker__day--disabled {
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    color: #dddddd;
+    cursor: default;
+}
+
+.custom-color [type="checkbox"]+label {
+	padding-left: 5px;
+	height:17px;
+}
+
+.custom-color [type="checkbox"]+label:before, .custom-color [type="checkbox"]:checked+label:before{
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    z-index: 0;
+    border: 1px solid #969696;
+    border-radius: 50%;
+    margin-top: 2px;
+    transition: .2s;
+    border-radius: 50%;
+    -webkit-transform: initial;
+    transform: initial;
+}
+
+.custom-color [type="checkbox"]+label:after {
+    border: 2px solid transparent;
+    transition: 0.0002s;
+}
+
+.custom-color [type="checkbox"]:checked+label:after {
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+    z-index: 0;
+    border: 2px solid #f4f4f4;
+    border-radius: 50%;
+    margin-top: 2px;
+    transition: .2s;
+    border-radius: 50%;
+    -webkit-transform: initial;
+    transform: initial;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+
+}
+.custom-color label {
+		color:#212121;
+	font-size: 14px;
+}
+
+.color-red:before {
+	background-color: #f44336;
+}
+.color-black:before {
+	background-color: black;
+}
+.color-green:before {
+	background-color: #4caf50;
+}
+.color-yellow:before {
+	background-color: #ffeb3b;
+}
+.color-blue:before {
+	background-color: #03a9f4;
+}
+
+
+@media (max-width:768px) {
+	.container.container-request {
+		width: 100%;
+	}
+	.container-request .card-panel {
+		margin: 0;
+		min-height:100vh;
+	}
+	.container.container-request .row.main {
+		margin-bottom: 0px;
+	}
+
+}
+
+.container .row.alcohol {
+	padding-top: 10px;
+    border-top: 1px solid #f4f4f4;
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+body {
+	overflow-x: hidden!important;
+	width: 100%;
+	background-image: url(../img/bg.jpg);
+	min-height: 100vh;
+    margin: 0;
+}
+
+.container .row.free-text {
+	padding: 0 10px;
+    border-bottom: 1px solid #f4f4f4;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.container .row.free-text.last {
+	margin-bottom: 0px;
+}
+
+.container .row.free-text label {
+	margin-left:0px;
+}
+
+.container .row.done, .container .row.continue {
+	padding: 0;
+    border-bottom: none;
+    margin: 0;
+    position: relative;
+    overflow: hidden; 
+}
+.container .row.done button {
+	border-radius: 0;
+	height: 70px;
+}
+.container .row.done i {
+	font-size: 2.5rem;
+	line-height: 70px;
+}
+
+.container .row.invalid label {
+	color: #F44336;
+}
+
+
+.error-msg {
+	position: absolute;
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #212121;
+    top: 70px;
+    transition: 0.3s all ease-in-out;
+    z-index:10;
+}
+
+.error-msg.visible {
+	top: 0px;
+}
+
+.error-color {
+	color: #F44336;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+	background-color: initial;
+}
+
+.result-form ul {
+	border: none;
+}
+
+.result-form .title {
+	font-size:16px;
+}
+
+.result-form p {
+	color: #757575;
+}
+.result-form .card-panel {
+	padding: 5px;
+}
+.row.dropoff {
+	margin-top:15px;
+}
+
+.has-error .help-block {
+	font-size: 12px;
+	color: #F44336;
+	margin-top: -14px;
+}
+
+.container .row.continue {
+	margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: -15px;
+    height: 70px;
+    padding: 0px;
+}
+
+.container .row.continue .col {
+	padding:0px;
+}
+
+.container .row.main {
+	margin-bottom: 0px;
+}
