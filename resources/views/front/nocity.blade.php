@@ -10,7 +10,7 @@
               <span class="card-title">Oops!</span>
               <p>
               	We are sorry, but none of providers in {{$city}} have yet signed up for this free service.
-              	But we working on it!<br/><br/>
+              	But we are working on it!<br/><br/>
               	Leave you email and we'll notify you as soon as service will be available in this area.<br/>
               </p>
               <div class="row">
