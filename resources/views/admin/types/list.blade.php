@@ -31,7 +31,15 @@
                 <td>{{$type->name}}</td>
                 <td>{{$type->passengers}}</td>
                 <td>{{$type->active ? 'Active' : 'Disabled'}}</td>
-                <td><a href="{{route('admin.types.edit', ['id'=>$type->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a></td>
+                <td>
+                    <a href="{{route('admin.types.edit', ['id'=>$type->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a>
+                @if($type->sort != $minSort)
+                    <a href="{{route('admin.types.up', ['id'=>$type->id])}}" class='btn btn-xs btn-success'><i class="fa fa-arrow-up"></i></a>
+                @endif
+                @if($type->sort != $maxSort)
+                    <a href="{{route('admin.types.down', ['id'=>$type->id])}}" class='btn btn-xs btn-warning'><i class="fa fa-arrow-down"></i></a>
+                @endif
+                </td>
             </tr>
             @endforeach
             </tbody>

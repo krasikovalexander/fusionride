@@ -198,12 +198,20 @@
                             </div>
                         </div>
 
-                        <div class="row free-text last phone">
+                        <div class="row free-text phone">
                             <div class="input-field col s12">
                                <label for="phone">Phone</label>
                                <input id="phone" name='phone' type="text">
                             </div>
                         </div>
+
+                         <div class="row info last">
+                            <div class="input-field col s12">
+                               By submiting you are agreeing that Fusion Ride is not responsible for any service received or quoted. Transportation Insurance questions should always be checked when you select your company as we have an honor system.
+                            </div>
+                        </div>
+
+                        
 
                         <div class="row done">
                             <button type='submit' class="col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>

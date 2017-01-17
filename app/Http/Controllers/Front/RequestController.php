@@ -69,7 +69,7 @@ class RequestController extends Controller
     		$q->active();
     	})->orderBy('state', 'asc')->get();
 
-    	$types = Type::whereActive(1)->get();
+    	$types = Type::whereActive(1)->orderBy('sort', 'ASC')->get();
     	$state = State::whereCode($request->get("state"))->first();
     	$city = null;
 

@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.', 'prefix' => 'admin'], 
 
 	Route::get('types', ['as' => 'types', 'uses' => 'Admin\TypesController@index']);
 	Route::any('types/{id}', ['as' => 'types.edit', 'uses' => 'Admin\TypesController@edit'])->where('id', '[0-9]+');
+	Route::get('types/{id}/up', ['as' => 'types.up', 'uses' => 'Admin\TypesController@up'])->where('id', '[0-9]+');
+	Route::get('types/{id}/down', ['as' => 'types.down', 'uses' => 'Admin\TypesController@down'])->where('id', '[0-9]+');
 	Route::any('types/create', ['as' => 'types.create', 'uses' => 'Admin\TypesController@create']);
 
 	Route::get('providers', ['as' => 'providers', 'uses' => 'Admin\ProvidersController@index']);
