@@ -1,5 +1,6 @@
 @extends('layouts.mail')
 @section('content')
+
 <p>Hello,</p>
 <p>we've got a new availability request for you:</p>
 <table cellpadding="10" cellspacing="0" border="0">
@@ -24,11 +25,12 @@
 		<td>{{$request->pickup_date}} {{$request->pickup_time}}</td>
 	</tr>
 
-	@if ($request->drive == 1)
+	@if ($request->drive == 0)
 	<tr>
 		<td>Dropoff location type</td>
 		<td>{{ucwords($request->dropoff)}}</td>
 	</tr>
+	@else
 	<tr>
 		<td>Dropoff date/time</td>
 		<td>{{$request->dropoff_date}} {{$request->dropoff_time}}</td>

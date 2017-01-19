@@ -2,7 +2,7 @@
 @section('content')
     <div class='container container-request'>
         <div class='row main'>
-            <form autocomplete='off' method="post" id='form' action="{{route('front.requestForm')}}" novalidate>
+            <form method="post" id='form' action="{{route('front.requestForm')}}" novalidate>
             {{ csrf_field() }}
                 <div class="col s12 m8 offset-m2 l6 offset-l3 request-form">
                     <div class='card-panel z-depth-5'>
