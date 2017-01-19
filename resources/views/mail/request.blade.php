@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<td>Type</td>
-		<td>{{$request->drive ? 'Horly rent' : 'Drive to location'}}</td>
+		<td>{{$request->drive ? 'Hourly rent' : 'Drive to location'}}</td>
 	</tr>
 	<tr>
 		<td>Pickup location type</td>
@@ -24,7 +24,7 @@
 		<td>{{$request->pickup_date}} {{$request->pickup_time}}</td>
 	</tr>
 
-	@if ($request->drive == 0)
+	@if ($request->drive == 1)
 	<tr>
 		<td>Dropoff location type</td>
 		<td>{{ucwords($request->dropoff)}}</td>
@@ -56,6 +56,7 @@
 	</tr>
 	@endif
 
+	<!--
 	<tr>
 		<td>Preferred colors</td>
 		<td>
@@ -67,7 +68,8 @@
 			{{$request->blue ? 'blue' : ''}}
 		</td>
 	</tr>
-
+	-->
+	
 	<tr>
 		<td>Alcohol</td>
 		<td>
