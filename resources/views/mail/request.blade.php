@@ -29,7 +29,6 @@
 		<td>Dropoff location type</td>
 		<td>{{ucwords($request->dropoff)}}</td>
 	</tr>
-	@else
 	<tr>
 		<td>Dropoff date/time</td>
 		<td>{{$request->dropoff_date}} {{$request->dropoff_time}}</td>
@@ -69,7 +68,7 @@
 		</td>
 	</tr>
 	-->
-	
+
 	<tr>
 		<td>Alcohol</td>
 		<td>
