@@ -264,16 +264,6 @@
                 }
             });
 
-            $("body").on('change', "#drive", function(){
-                if($(this).is(':checked')) {
-                    $('.for-drive').hide();
-                    $('.for-rent').fadeIn();
-                } else {
-                    $('.for-rent').hide();
-                    $('.for-drive').fadeIn();
-                }
-            });
-
             $("body").on('change', "#type", function(){
                 if($(this).is(':checked')) {
                     $('.for-conventional').hide();
@@ -284,6 +274,8 @@
                 }
             });
 
+            $("#type").change();
+
             $("body").on('change', "#drive", function(){
                 if($(this).is(':checked')) {
                     $('.for-drive').hide();
@@ -293,6 +285,7 @@
                     $('.for-drive').fadeIn();
                 }
             });
+            $("#drive").change();
 
             $("body").on('change', "#event", function(){
                 if($(this).val() == 'other') {
@@ -301,6 +294,7 @@
                     $('.for-other').hide();
                 }
             });
+            $("#event").change();
 
             $("#phone").mask("(999) 999-9999");
 
