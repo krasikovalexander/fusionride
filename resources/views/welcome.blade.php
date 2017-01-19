@@ -79,7 +79,7 @@
         </div>
         <div class='row bottom'>
             <div class='card-panel hoverable col l6 offset-l3 s12 z-depth-1  animated fadeInUp'>
-            <form role="form" id="form" novalidate method="GET" action="{{route('front.requestForm')}}">
+            <form autocomplete='off' role="form" id="form" novalidate method="GET" action="{{route('front.requestForm')}}">
             <div class="row state">
               <div class="input-field col s12">
                 <select name='state' id='state' required>
