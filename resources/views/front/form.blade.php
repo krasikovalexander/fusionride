@@ -239,7 +239,7 @@
     </div>
 
 
-    <div id="modal1" class="custom-modal modal animated bounceInDown">
+    <div id="modal1" class="custom-modal modal">
                 
         <div class="modal-content">
           <h5><i class="material-icons grey-text">mode_edit</i> Pick up address</h5>
@@ -325,7 +325,7 @@
 
     </div>
 
-    <div id="modal2" class="custom-modal modal animated bounceInDown">
+    <div id="modal2" class="custom-modal modal">
                 
         <div class="modal-content">
           <h5><i class="material-icons grey-text">mode_edit</i> Drop off address</h5>
@@ -495,10 +495,12 @@
 
             $("body").on('focus', "#pickup_address", function(){
                 $('#modal1').modal('open');
+                $("#pickup_address").blur();
             });
 
             $("body").on('focus', "#dropoff_address", function(){
                 $('#modal2').modal('open');
+                 $("#dropoff_address").blur();
             });
             
             $("body").on('change', ".switch input[type=checkbox]", function(){
