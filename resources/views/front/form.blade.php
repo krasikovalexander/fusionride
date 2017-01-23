@@ -593,6 +593,7 @@
 
                         if (!$("#pickup-time").val()) {
                             this.close();
+                            $('#pickup-date').change();
                             $("#pickup-time").click();
                         }
                     }
@@ -613,6 +614,7 @@
 
                         if (!$("#dropoff-time").val()) {
                             this.close();
+                            $('#dropoff-date').change();
                             $("#dropoff-time").click();
                         }
                     }
