@@ -4,7 +4,7 @@
         <div class='row main'>
             <form method="post" id='form' action="{{route('front.requestForm')}}" novalidate>
             {{ csrf_field() }}
-                <div class="col s12 m8 offset-m2 l6 offset-l3 request-form">
+                <div class="col s12 m10 offset-m1 l6 offset-l3 request-form">
                     <div class='card-panel z-depth-5'>
                         <div class="row state">
                             <div class="input-field col s12">
@@ -43,7 +43,7 @@
                         <div class="row pickup">
                             <div class="input-field col s12">
                                 <select name='pickup' id='pickup'>
-                                    <option value="" disabled selected>Choose pickup location</option>
+                                    <option value="" disabled selected>Choose pick up location type</option>
                                     <option value="airport">Airport</option>
                                     <option value="business">Business</option>
                                     <option value="home">Home</option>
@@ -53,14 +53,21 @@
                             </div>
                         </div>
 
+                        <div class="row free-text pickup_address">
+                            <div class="input-field col s12">
+                               <label for="pickup_address">Pick up address</label>
+                               <input id="pickup_address" name='pickup_address' type="text" readonly>
+                            </div>
+                        </div>
+
 
                         <div class="row with-date pickup-date pickup-time">
                             <div class="input-field col s6 date ">
-                               <label for="pickup-date"><i class="tiny material-icons grey-text text-lighten-2">today</i> Pickup Date</label>
+                               <label for="pickup-date"><i class="tiny material-icons grey-text text-lighten-2">today</i> Pick up Date</label>
                                <input id="pickup-date" name='pickup_date' class="datepicker" type="date">
                             </div>
                             <div class="input-field col s5 date">
-                               <label for="pickup-time"><i class="tiny material-icons grey-text text-lighten-2">query_builder</i> Pickup Time</label>
+                               <label for="pickup-time"><i class="tiny material-icons grey-text text-lighten-2">query_builder</i> Pick up Time</label>
                                <input id="pickup-time" name='pickup_time' class="timepicker" type="time">
                            </div>
                         </div>
@@ -68,7 +75,7 @@
                         <div class="row for-drive dropoff">
                             <div class="input-field col s12">
                                 <select name='dropoff' id='dropoff'>
-                                    <option value="" disabled selected>Choose drop-off location</option>
+                                    <option value="" disabled selected>Choose drop off location type</option>
                                     <option value="airport">Airport</option>
                                     <option value="business">Business</option>
                                     <option value="home">Home</option>
@@ -78,13 +85,20 @@
                             </div>
                         </div>
 
+                        <div class="row free-text for-drive dropoff_address">
+                            <div class="input-field col s12">
+                               <label for="dropoff_address">Drop off address</label>
+                               <input id="dropoff_address" name='dropoff_address' type="text" readonly>
+                            </div>
+                        </div>
+
                         <div class="row for-rent with-date dropoff-date dropoff-time" style='display:none'>
                             <div class="input-field col s6 date">
-                               <label for="dropoff-date"><i class="tiny material-icons grey-text text-lighten-2">today</i> Drop-off Date</label>
+                               <label for="dropoff-date"><i class="tiny material-icons grey-text text-lighten-2">today</i> Drop off Date</label>
                                <input id="dropoff-date" name='dropoff_date' class="datepicker" type="date">
                             </div>
                             <div class="input-field col s5 date">
-                               <label for="dropoff-time"><i class="tiny material-icons grey-text text-lighten-2">query_builder</i> Drop-off Time</label>
+                               <label for="dropoff-time"><i class="tiny material-icons grey-text text-lighten-2">query_builder</i> Drop off Time</label>
                                <input id="dropoff-time" name='dropoff_time' class="timepicker" type="time">
                            </div>
                         </div>
@@ -224,6 +238,179 @@
         </div>
     </div>
 
+
+    <div id="modal1" class="custom-modal modal animated bounceInDown">
+                
+        <div class="modal-content">
+          <h5><i class="material-icons grey-text">mode_edit</i> Pick up address</h5>
+          <div class='row'>
+            <div class="input-field col s12">
+               <label for="pick_address">Address</label>
+               <input id="pick_address" name='pick_address' type="text">
+            </div>
+          </div>
+          <div class='row'>
+            <div class="input-field col s5">
+               <select name='pick_state' id='pick_state'>
+                    <option value='' disabled selected>Select state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <label for="pick_state">State</label>
+            </div>
+            <div class="input-field col s5">
+               <label for="pick_city">City</label>
+               <input id="pick_city" name='pick_city' type="text">
+            </div>
+            <div class="input-field col s2">
+               <label for="pick_zip">Zip</label>
+               <input id="pick_zip" name='pick_zip' type="text">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer"> 
+            <div class="row done">
+                <button type='button' class="modal-action modal-close col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="modal2" class="custom-modal modal animated bounceInDown">
+                
+        <div class="modal-content">
+          <h5><i class="material-icons grey-text">mode_edit</i> Drop off address</h5>
+          <div class='row'>
+            <div class="input-field col s12">
+               <label for="drop_address">Address</label>
+               <input id="drop_address" name='drop_address' type="text">
+            </div>
+          </div>
+          <div class='row'>
+            <div class="input-field col s5">
+               <select name='drop_state' id='drop_state'>
+                    <option value='' disabled selected>Select state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <label for="drop_state">State</label>
+            </div>
+            <div class="input-field col s5">
+               <label for="drop_city">City</label>
+               <input id="drop_city" name='drop_city' type="text">
+            </div>
+            <div class="input-field col s2">
+               <label for="drop_zip">Zip</label>
+               <input id="drop_zip" name='pick_zip' type="text">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer"> 
+            <div class="row done">
+                <button type='button' class="modal-action modal-close col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>
+            </div>
+        </div>
+
+    </div>
+
     <script>
         $(function(){
             $('#state').change(function(){
@@ -252,7 +439,67 @@
             $('#state').change();
         @endif
             
-            
+            $('#modal1').modal(
+                {
+                    dismissible: false,
+                    opacity: .5,
+                    in_duration: 100,
+                    out_duration: 100, 
+                    starting_top: '2%', 
+                    ending_top: '2%',
+                    complete: function() { 
+                        var address = [];
+                        if ($("#pick_address").val()) 
+                            address.push($("#pick_address").val());
+
+                        if ($("#pick_city").val())
+                            address.push($("#pick_city").val());
+
+                        if ($("#pick_state").val())
+                            address.push($("#pick_state").val());
+
+                        if ($("#pick_zip").val()) 
+                            address.push($("#pick_zip").val());
+
+                        $("#pickup_address").val(address.join(', ')).change();
+                    } 
+                }
+            );
+
+            $('#modal2').modal(
+                {
+                    dismissible: false,
+                    opacity: .5,
+                    in_duration: 100,
+                    out_duration: 100, 
+                    starting_top: '2%', 
+                    ending_top: '2%',
+                    complete: function() { 
+                        var address = [];
+                        if ($("#drop_address").val()) 
+                            address.push($("#drop_address").val());
+
+                        if ($("#drop_city").val())
+                            address.push($("#drop_city").val());
+
+                        if ($("#drop_state").val())
+                            address.push($("#drop_state").val());
+
+                        if ($("#drop_zip").val()) 
+                            address.push($("#drop_zip").val());
+
+                        $("#dropoff_address").val(address.join(', ')).change();
+                    } 
+                }
+            );
+
+            $("body").on('focus', "#pickup_address", function(){
+                $('#modal1').modal('open');
+            });
+
+            $("body").on('focus', "#dropoff_address", function(){
+                $('#modal2').modal('open');
+            });
             
             $("body").on('change', ".switch input[type=checkbox]", function(){
                 if($(this).is(':checked')) {
@@ -275,6 +522,8 @@
             });
 
             $("#type").change();
+
+            
 
             $("body").on('change', "#drive", function(){
                 if($(this).is(':checked')) {
@@ -377,12 +626,13 @@
 
             var validate = function() {
                 var valid = true;
-                var required = ['city', 'state', 'pickup', 'pickup-date', 'pickup-time', 'email', 'phone'];
+                var required = ['city', 'state', 'pickup', 'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
                 } else {
                     required.push('dropoff');
+                    required.push('dropoff_address');
                 }
 
                 for(r in required) {
@@ -397,20 +647,32 @@
                 if($("#email").val() && !$("#email").is(":valid")) {
                     $(".row.email").addClass('invalid');
                     valid = false;
-                } else if ($("#email").val() && !$("#email").is(":valid")){
+                } else if ($("#email").val() && $("#email").is(":valid")){
                     $(".row.email").removeClass('invalid');
                 }
+
+                if(
+                    $('#pickup-date').val() && $('#dropoff-date').val() && $('#pickup-date').val() == $('#dropoff-date').val() && 
+                    $('#pickup-time').val() && $('#dropoff-date').val() && $('#pickup-time').val() >= $('#dropoff-time').val()
+                ) {
+                    $(".row.dropoff-time").addClass('invalid');
+                    valid = false;
+                } else if ($('#pickup-time').val() && $('#dropoff-date').val()) {
+                    $(".row.dropoff-time").removeClass('invalid');
+                }
+
                 return valid;
             };
 
             var validateField = function(input) {
 
-                var required = ['city', 'state', 'pickup', 'pickup-date', 'pickup-time', 'email', 'phone'];
+                var required = ['city', 'state', 'pickup', 'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
                 } else {
                     required.push('dropoff');
+                    required.push('dropoff_address');
                 }
                 var field = $(input).attr("id");
                 if (required.indexOf(field) >= 0) {
@@ -425,6 +687,16 @@
                     $(".row.email").addClass('invalid');
                 } else if (field == 'email' && $("#email").val() && !$("#email").is(":valid")){
                     $(".row.email").removeClass('invalid');
+                }
+
+                if(field == 'dropoff-time' && (
+                        $('#pickup-date').val() && $('#dropoff-date').val() && $('#pickup-date').val() == $('#dropoff-date').val() && 
+                        $('#pickup-time').val() && $('#dropoff-date').val() && $('#pickup-time').val() >= $('#dropoff-time').val()
+                        )
+                    ) {
+                    $(".row.dropoff-time").addClass('invalid');
+                } else if (field == 'dropoff-time'){
+                    $(".row.dropoff-time").removeClass('invalid');
                 }
             };
 

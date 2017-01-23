@@ -17,22 +17,30 @@
 		<td>{{$request->drive ? 'Hourly rent' : 'Drive to location'}}</td>
 	</tr>
 	<tr>
-		<td>Pickup location type</td>
+		<td>Pick up location type</td>
 		<td>{{ucwords($request->pickup)}}</td>
 	</tr>
 	<tr>
-		<td>Pickup date/time</td>
+		<td>Pick up address</td>
+		<td>{{$request->pickup_address}}</td>
+	</tr>
+	<tr>
+		<td>Pick up date/time</td>
 		<td>{{$request->pickup_date}} {{$request->pickup_time}}</td>
 	</tr>
 
 	@if ($request->drive == 0)
 	<tr>
-		<td>Dropoff location type</td>
+		<td>Drop off location type</td>
 		<td>{{ucwords($request->dropoff)}}</td>
+	</tr>
+	<tr>
+		<td>Drop off address</td>
+		<td>{{$request->dropoff_address}}</td>
 	</tr>
 	@else
 	<tr>
-		<td>Dropoff date/time</td>
+		<td>Drop off date/time</td>
 		<td>{{$request->dropoff_date}} {{$request->dropoff_time}}</td>
 	</tr>
 	@endif
@@ -82,7 +90,7 @@
 	<tr>
 		<td>Event</td>
 		<td>
-			{{$request->event}}
+			{{ucwords($request->event)}}
 		</td>
 	</tr>
 	@if($request->event == 'other')

@@ -23,6 +23,7 @@ class RequestController extends Controller
 		        'pickup' => 'required',
 		        'pickup_date' => 'required',
 		        'pickup_time' => 'required',
+                'pickup_address' => 'required',
 		        'phone' => 'required',
 		        'state' => 'required|exists:states,id',
                 'email' => 'required|email'
