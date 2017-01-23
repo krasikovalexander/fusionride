@@ -592,8 +592,8 @@
                         });
 
                         if (!$("#pickup-time").val()) {
+                            $('#pickup-date').focus().blur();
                             this.close();
-                            $('#pickup-date').change();
                             $("#pickup-time").click();
                         }
                     }
@@ -613,8 +613,8 @@
                         });
 
                         if (!$("#dropoff-time").val()) {
+                            $('#dropoff-date').focus().blur();
                             this.close();
-                            $('#dropoff-date').change();
                             $("#dropoff-time").click();
                         }
                     }
