@@ -21,7 +21,7 @@ class RequestController extends Controller
     	if ($request->isMethod('post')) {
     		$this->validate($request, [
 		        'city' => 'required',
-		        'pickup' => 'required',
+		        //'pickup' => 'required',
 		        'pickup_date' => 'required',
 		        'pickup_time' => 'required',
                 'pickup_address' => 'required',

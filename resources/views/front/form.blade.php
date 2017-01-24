@@ -29,7 +29,7 @@
 
                         <div class="row">
                             <div class='col s12'>
-                                <div class="switch">
+                                <div class="switch switch-drive">
                                     <label>
                                         <div class='left-part selected'>Drive to location</div>
                                         <input type="checkbox" type="checkbox" value='1' id="drive" name='drive'>
@@ -40,8 +40,8 @@
                             </div>
                         </div>
 
-                        <div class="row pickup">
-                            <div class="input-field col s12">
+                       <!-- <div class="row pickup">
+                            <div class="input-field col s12" style='display:none'>
                                 <select name='pickup' id='pickup'>
                                     <option value="" disabled selected>Choose pick up location type</option>
                                     <option value="airport">Airport</option>
@@ -51,7 +51,7 @@
                                 </select>
                                 <label>Pick me up at</label>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="row free-text pickup_address">
                             <div class="input-field col s12">
@@ -72,7 +72,7 @@
                            </div>
                         </div>
                         
-                        <div class="row for-drive dropoff">
+                        <!--<div class="row for-drive dropoff">
                             <div class="input-field col s12">
                                 <select name='dropoff' id='dropoff'>
                                     <option value="" disabled selected>Choose drop off location type</option>
@@ -83,7 +83,7 @@
                                 </select>
                                 <label>Drop me off at</label>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="row free-text for-drive dropoff_address">
                             <div class="input-field col s12">
@@ -104,7 +104,7 @@
                         </div>
 
                     
-                        <div class="row">
+                        <div class="row car_type">
                             <div class='col s12'>
                                 <div class="switch switch-type">
                                     <label>
@@ -592,12 +592,17 @@
                         });
 
                         if (!$("#pickup-time").val()) {
-                            $('#pickup-date').focus().blur();
                             this.close();
                             $("#pickup-time").click();
                         }
                     }
                 }
+            });
+            $('#pickup-date').on('focus', function(){
+                $('label[for="pickup-date"]').addClass('active');
+            });
+            $('#dropoff-date').on('focus', function(){
+                $('label[for="dropoff-date"]').addClass('active');
             });
 
             var pickupPicker = $('#pickup-date').pickadate('picker');
@@ -630,12 +635,14 @@
 
             var validate = function() {
                 var valid = true;
-                var required = ['city', 'state', 'pickup', 'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
+                var required = ['city', 'state', 
+                //'pickup', 
+                'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
                 } else {
-                    required.push('dropoff');
+                    //required.push('dropoff');
                     required.push('dropoff_address');
                 }
 
@@ -670,12 +677,14 @@
 
             var validateField = function(input) {
 
-                var required = ['city', 'state', 'pickup', 'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
+                var required = ['city', 'state', 
+                //'pickup', 
+                'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
                 } else {
-                    required.push('dropoff');
+                    //required.push('dropoff');
                     required.push('dropoff_address');
                 }
                 var field = $(input).attr("id");

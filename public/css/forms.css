@@ -230,10 +230,6 @@ input.timepicker, input.datepicker {
     background-repeat: no-repeat;
 }
 
-.carousel.carousel-slider {
-	top: -20px;
-}
-
 .carousel.carousel-slider.types {
 	height:215px;
 }
@@ -316,9 +312,11 @@ input.timepicker, input.datepicker {
 .row.with-range {
 	padding-left: 10px;
     padding-right: 10px;
-    height: 50px;
+    height: 80px;
     border-bottom: 1px solid #f4f4f4;
-    margin:0px;
+    margin: 0px;
+    padding-top: 20px;
+    border-top: 1px solid #f4f4f4;
 } 
 
 .with-range  label {
@@ -334,7 +332,7 @@ input.timepicker, input.datepicker {
     padding-right: 10px;
     border-bottom: 1px solid #f4f4f4;
     margin: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .custom-type label {
 	margin-left: 0px;
@@ -364,11 +362,9 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 
 .row.info {
 	margin: 0px;
-	//margin-bottom: 20px; 
 	border-bottom:1px solid #f4f4f4;
 	background-color: #f4f4f4;
     padding-top: 20px;
-    margin-top:-20px;
 }
 .row.info .s1 { 
 	margin-top:-5px;
@@ -665,3 +661,37 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     top: 20px;
 }
 
+.container .row.free-text.dropoff_address {
+	border-top: 1px solid #f4f4f4;
+    padding-top: 20px;
+}
+
+.container .row.free-text.car_type {
+	border-top: 1px solid #f4f4f4;
+    padding-top: 10px;
+}
+
+.switch-type {
+	border-bottom: 0;
+	margin-bottom: 10px;
+}
+.switch-drive {
+	padding-bottom: 20px;
+}
+
+.container .row.dropoff-date {
+	border-bottom: 1px solid #f4f4f4;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.container .row.dropoff-date .s6 {
+	padding-right: 0px;
+}
+
+.container .row.dropoff-date .s6 label, .container .row.dropoff-date .s6 input {
+	margin-left:10px;
+}
+.container .row.free-text.phone {
+	margin-bottom: 0px;
+}
