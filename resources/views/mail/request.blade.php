@@ -16,10 +16,10 @@
 		<td>Type</td>
 		<td>{{$request->drive ? 'Hourly rent' : 'Drive to location'}}</td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td>Pick up location type</td>
 		<td>{{ucwords($request->pickup)}}</td>
-	</tr>
+	</tr>-->
 	<tr>
 		<td>Pick up address</td>
 		<td>{{$request->pickup_address}}</td>
@@ -30,10 +30,10 @@
 	</tr>
 
 	@if ($request->drive == 0)
-	<tr>
+	<!--<tr>
 		<td>Drop off location type</td>
 		<td>{{ucwords($request->dropoff)}}</td>
-	</tr>
+	</tr>-->
 	<tr>
 		<td>Drop off address</td>
 		<td>{{$request->dropoff_address}}</td>
