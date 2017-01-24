@@ -3,7 +3,8 @@
 @if(count($providers)) 
 	<div class='container container-request'>
         <div class='row main'>
-        	<div class="col s12 m8 offset-m2 l6 offset-l3 result-form">
+        	<div class="col s12 m8 offset-m2 l6 offset-l3 result-form done">
+        		<a href="{{route('front.pdf', ['_' => base64_encode(implode(',', $providers->pluck('id')->all()))])}}"><div class="pdf"></div></a>
 	        	<div class='card-panel z-depth-5'>
 	        		<ul class="collection with-header">
 	        		<li class="collection-header"><h4>That's all!</h4> <h5>We sent your request to the following providers:</h5></li>
@@ -20,7 +21,7 @@
 	        		<li class="collection-item"><span class="title center-align">Multiple offers will be on the way via email and/or phone.</span></li>
 	        		</ul>
 	        	</div>
-	        			    </div>
+	        </div>
         </div>
     </div>
 @else

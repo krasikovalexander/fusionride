@@ -20,6 +20,7 @@ Route::group(['as' => 'front.'], function () {
 	Route::get('/request/notavailable', ['as' => 'nocity', 'uses' => 'Front\RequestController@nocity']);
 	Route::get('/request/done', ['as' => 'done', 'uses' => 'Front\RequestController@done']);
 	Route::get('/request/fail', ['as' => 'fail', 'uses' => 'Front\RequestController@done']);
+	Route::get('/request/pdf', ['as' => 'pdf', 'uses' => 'Front\RequestController@pdf']);
 	Route::post('/subscribe', ['as' => 'subscribe', 'uses' => 'Front\RequestController@subscribe']);
 });
 

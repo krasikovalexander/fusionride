@@ -648,3 +648,20 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .custom-modal .select-wrapper span.caret{
 	right: -10px;
 }
+
+.result-form.done {
+	position: relative;
+}
+
+.pdf {
+    background-image: url(../img/pdfdownload-icon.png);
+    display: block;
+    width: 36px;
+    height: 36px;
+    background-size: contain;
+    position: absolute;
+    right: 20px;
+    z-index: 10;
+    top: 20px;
+}
+

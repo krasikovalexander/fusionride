@@ -12,6 +12,7 @@ use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\DB;
 use App\Mail\RequestToProvider;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class RequestController extends Controller
 {
@@ -129,5 +130,12 @@ class RequestController extends Controller
     	]);
 
     	return view('front.subscribed');
+    }
+
+    public function pdf(HttpRequest $request) {
+        $ids = explode(',', base64_decode($request->get("_")));
+        $providers = Provider::whereIn('id', $ids)->get();
+        $pdf = PDF::loadView('front.pdf', ['providers' => $providers]);
+        return $pdf->download('providers.pdf');
     }
 }
