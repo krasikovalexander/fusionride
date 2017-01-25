@@ -50,6 +50,10 @@
 		<td>Vehicle type</td>
 		<td>{{$request->typeRelation->name}}</td>
 	</tr>
+	<tr>
+		<td>Passengers</td>
+		<td>{{$request->typeRelation->passengers}}</td>
+	</tr>
 	@else
 	<tr>
 		<td>Vehicle type</td>
