@@ -82,67 +82,17 @@
             <form autocomplete='off' role="form" id="form" novalidate method="GET" action="{{route('front.requestForm')}}">
             <div class="row state">
               <div class="input-field col s12">
-                <select name='state' id='state' required>
-                    <option value='' disabled selected>Select state</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District Of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                </select>
-                <label>State</label>
+                <label for="state">State</label>
+                <input type="text" id="state" placeholder="Type state" class="autocomplete">
+                <input type='hidden' id='state-code' name='state'>
+                
               </div>
             </div>
             <div class='row city'>
               <div class="input-field col s12">
-                <label>City</label>
-                <input type="text" placeholder="Type city name here" name='city' id='city' required>
+                <label for="city">City</label>
+                <input type="text" name='city' placeholder="Type city" id='city'>
+                
               </div>
             </div>
             <div class='row continue'>
@@ -163,7 +113,10 @@
     <script>
         $(function(){
             $('select').material_select();
-                var validate = function() {
+
+            var states = {!!$states!!};
+
+            var validate = function() {
                 var valid = true;
                 var required = ['city', 'state'];
 
@@ -176,6 +129,15 @@
                        $(".row."+field).removeClass('invalid');
                     }
                 }
+
+                field = 'state';
+                if (!_.where(states, {state: $('#state').val()}).length) {
+                    $(".row."+field).addClass('invalid');
+                    valid = false;
+                } else {
+                    $(".row."+field).removeClass('invalid');
+                }
+
                 return valid;
             };
 
@@ -186,6 +148,13 @@
                 var field = $(input).attr("id");
                 if (required.indexOf(field) >= 0) {
                     if (!$(input).val()) {
+                        $(".row."+field).addClass('invalid');
+                    } else {
+                       $(".row."+field).removeClass('invalid');
+                    }
+                }
+                if (field == 'state') {
+                    if (!_.where(states, {state: $(input).val()}).length) {
                         $(".row."+field).addClass('invalid');
                     } else {
                        $(".row."+field).removeClass('invalid');
@@ -206,7 +175,18 @@
                     }, 3000);
                     e.preventDefault();
                 }
+                $("#state-code").val(_.where(states, {state: $("#state").val()})[0].code);
             });
+
+            $('#state').autocomplete({
+                data: {
+                   @foreach ($states as $state)
+                       "{{$state->state}}": null,
+                   @endforeach
+                },
+                limit: 5, 
+              });
+                    
         });
     </script>
 @endsection

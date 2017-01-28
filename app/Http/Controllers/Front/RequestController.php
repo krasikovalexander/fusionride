@@ -96,7 +96,8 @@ class RequestController extends Controller
         	'selectedCity' => $city, 
         	'types' => $types,
         	'state' => $request->get("state"), 
-			'city' => $request->get("city")
+			'city' => $request->get("city"),
+            'allStates' => State::all(),
         ]);
     }
 
@@ -138,4 +139,11 @@ class RequestController extends Controller
         $pdf = PDF::loadView('front.pdf', ['providers' => $providers]);
         return $pdf->download('providers.pdf');
     }
+
+    public function home(HttpRequest $request) {
+        return view('front.home', [
+            'states' => State::all()
+        ]);
+    }
+
 }

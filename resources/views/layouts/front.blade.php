@@ -36,6 +36,7 @@
         <script src="/materialize-picker/js/materialize.clockpicker.js"></script>
         <script src="/nouislider/nouislider.min.js"></script>
         <script src="/js/jquery.maskedinput.min.js"></script>
+        <script src="/js/underscore-min.js"></script>
 
         <link href="/css/animate.css" rel="stylesheet">
         <link href="/css/forms.css" rel="stylesheet">

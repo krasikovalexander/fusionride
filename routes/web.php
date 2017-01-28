@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', ['as' => 'home', function () {
-    return view('welcome');
-}]);
+Route::get('/', ['as' => 'home', 'uses' => 'Front\RequestController@home']);
 
 Route::group(['as' => 'front.'], function () {
 	Route::any('/request', ['as' => 'requestForm', 'uses' => 'Front\RequestController@index']);
