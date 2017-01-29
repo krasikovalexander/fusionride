@@ -20,6 +20,9 @@ Route::group(['as' => 'front.'], function () {
 	Route::get('/request/fail', ['as' => 'fail', 'uses' => 'Front\RequestController@done']);
 	Route::get('/request/pdf', ['as' => 'pdf', 'uses' => 'Front\RequestController@pdf']);
 	Route::post('/subscribe', ['as' => 'subscribe', 'uses' => 'Front\RequestController@subscribe']);
+	Route::post('/request/tracking/approve', ['as' => 'approve', 'uses' => 'Front\RequestController@approve']);
+	Route::get('/request/tracking/{hash}', ['as' => 'tracking', 'uses' => 'Front\RequestController@tracking']);
+	Route::post('/request/tracking/{hash}', ['as' => 'tracking.update', 'uses' => 'Front\RequestController@update']);
 });
 
 Route::get('login', ['as' => 'loginForm', 'uses' => 'Auth\LoginController@showLoginForm']);

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterRequestsAddFailed extends Migration
+class AlterRequestsAddHashkey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AlterRequestsAddFailed extends Migration
     public function up()
     {
         Schema::table('requests', function (Blueprint $table) {
-            $table->boolean('failed')->default(0);
+            $table->string('hashkey')->nulable();
         });
     }
 
@@ -26,7 +26,7 @@ class AlterRequestsAddFailed extends Migration
     public function down()
     {
         Schema::table('requests', function (Blueprint $table) {
-             $table->dropColumn('failed');
+            $table->dropColumn('hashkey');
         });
     }
 }

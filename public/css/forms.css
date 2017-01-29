@@ -2,7 +2,7 @@
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
-* {
+.request-form * {
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: -moz-none;
@@ -357,7 +357,9 @@ input.timepicker, input.datepicker {
 
 input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: inherit;
-    box-shadow: 0 1px 0 0 #7b1fa2;
+    box-shadow: 0px 1px 0px 0px #7b1fa2;
+    border-right: 1px solid white;
+    transition-duration: 0s;
 }
 
 .row.info {
@@ -706,3 +708,20 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	left: 0px;
 }
 
+.getlink {
+	margin-top:15px;
+}
+
+.tracking-form {
+	padding-top:15px;
+}
+
+.tracking-form {
+	background-color: #f4f4f4;
+	padding: 20px;
+	padding-bottom: 0px;
+}
+
+.success {
+	color: #37bb37!important;
+}

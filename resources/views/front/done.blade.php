@@ -18,7 +18,23 @@
 					      </p>
 					    </li>
 	        		@endforeach
-	        		<li class="collection-item"><span class="title center-align">Multiple offers will be on the way via email and/or phone.</span></li>
+	        		
+	        		<li class="collection-item">
+	        			<form method='post' action="{{route('front.approve')}}">
+	        				{{ csrf_field() }}
+	        				<input type='hidden' name='hash' value="{{$request->hashkey}}">
+	        				<div class="title center-align">Multiple offers will be on the way via email and/or phone.</div>
+	        				<div class="center-align">
+	        					<p class="center-align">We built simple <b>FREE</b> tool to help you <b>easily</b> record and compare responses from service providers.</p>
+	        					<p class="title center-align"><b>Sign up not required!</b></p>
+	        					<p class="center-align">Just obtain <b>private</b> link to get access anytime, anywhere.</p>
+  							</div>
+
+	        				<div class="center-align getlink">
+	        					<button class="waves-effect waves-light btn"><i class="material-icons left">verified_user</i>Get Link</button>
+	        				</div>
+	        			</form>
+	        		</li>
 	        		</ul>
 	        	</div>
 	        </div>

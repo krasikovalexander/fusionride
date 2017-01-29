@@ -443,7 +443,7 @@
             $("#event").change();
 
             $("#phone").mask("(999) 999-9999");
-            $(".zip").mask("99999");
+            $(".zip").mask("99999",{placeholder:" "});
 
             var slider = document.getElementById('passengers');
             noUiSlider.create(slider, {

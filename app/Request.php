@@ -18,4 +18,8 @@ class Request extends Model
 	public function stateRelation() {
     	return $this->belongsTo('App\State', 'state', 'id');
 	}
+
+	public function tracks() {
+		return $this->hasMany('App\Track');
+	}
 }

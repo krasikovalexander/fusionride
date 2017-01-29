@@ -7,12 +7,14 @@ use App\State;
 use App\Type;
 use App\Request;
 use App\Provider;
+use App\Track;
 use App\Subscription;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\DB;
 use App\Mail\RequestToProvider;
 use Illuminate\Support\Facades\Mail;
 use PDF;
+use Hash;
 
 class RequestController extends Controller
 {
@@ -34,6 +36,7 @@ class RequestController extends Controller
     		
     		$rideRequest = new Request;
     		$rideRequest->fill($data);
+            $rideRequest->hashkey = base64_encode(Hash::make(str_random(64)));
     		$rideRequest->save();
 
     		$providers = Provider::where('state_id', $data['state'])
@@ -53,7 +56,13 @@ class RequestController extends Controller
     			$providers->each(function($provider) use ($rideRequest){
 					Mail::to($provider->email)
                         ->queue(new RequestToProvider($provider, $rideRequest));
+                    
+                    $track = new Track();
+                    $track->request_id = $rideRequest->id;
+                    $track->provider_id = $provider->id;
+                    $track->save(); 
     			});
+
     		} else {
                 $rideRequest->failed = true;
                 $rideRequest->save();
@@ -62,7 +71,7 @@ class RequestController extends Controller
     		return redirect()->route('front.'.(count($providers) ? 'done' : 'fail'), [
     				'state' => State::find($request->get("state"))->code, 
     				'city' => $request->get("city")
-    			])->with(['providers' => $providers]);
+    			])->with(['providers' => $providers, 'request' => $rideRequest]);
     	}
 
     	
@@ -110,7 +119,12 @@ class RequestController extends Controller
 
     public function done(HttpRequest $request) {
     	if (session()->has('providers')) {
-    		return view('front.done', ['providers' => session()->pull('providers'),'state' => $request->get("state"), 'city' => $request->get("city")]);
+    		return view('front.done', [
+                'providers' => session()->pull('providers'), 
+                'request' => session()->pull('request'), 
+                'state' => $request->get("state"), 
+                'city' => $request->get("city")
+            ]);
     	} else {
     		return redirect()->route('front.requestForm');
     	}
@@ -146,4 +160,43 @@ class RequestController extends Controller
         ]);
     }
 
+    public function approve(HttpRequest $request) {
+        $rideRequest = Request::whereHashkey($request->get('hash'))->first();
+        if (!$rideRequest) {
+            return redirect()->route('home');
+        }
+        $rideRequest->key_access_agreed = true;
+        $rideRequest->save();
+        return redirect()->route('front.tracking', ['hash' => $rideRequest->hashkey])->with(['firstTime' => true]);
+    }
+
+    public function tracking(HttpRequest $request, $hash) {
+        $rideRequest = Request::whereHashkey($hash)->whereKeyAccessAgreed(true)->first();
+        if (!$rideRequest) {
+            return redirect()->route('home');
+        }
+        return view('front.tracking', [
+            'request' => $rideRequest,
+            'firstTime' => session()->pull('firstTime'), 
+            'tracks' => $rideRequest->tracks()->with(['provider'])->get(),
+            'hash' => $hash,
+            'isSaved' =>  session()->pull('isSaved'),
+        ]);
+    }
+
+    public function update(HttpRequest $request, $hash) {
+        $rideRequest = Request::whereHashkey($hash)->whereKeyAccessAgreed(true)->first();
+        if (!$rideRequest) {
+            return redirect()->route('home');
+        }
+        $track = $rideRequest->tracks()->whereId($request->get('track'))->first();
+        if (!$track) {
+            return redirect()->route('home');
+        }
+        $track->price = $request->get('price');
+        $track->result = $request->get('result');
+        $track->notes = $request->get('notes');
+        $track->save();
+        return redirect()->route('front.tracking', ['hash' => $hash])->with(['isSaved' => true]);
+    }
 }
