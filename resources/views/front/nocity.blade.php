@@ -11,7 +11,7 @@
               <p>
               	We are sorry, but none of providers in {{$city}} have yet signed up for this free service.
               	But we are working on it!<br/><br/>
-              	Leave you email and we'll notify you as soon as service will be available in this area.<br/>
+              	Leave your email and we'll notify you as soon as service will be available in this area.<br/>
               </p>
               <div class="row">
                   <form novalidate action="{{route('front.subscribe', ['state' => $state, 'city' => $city])}}" method='post'>
