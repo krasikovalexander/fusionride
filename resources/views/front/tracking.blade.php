@@ -35,7 +35,7 @@
 						            	<option value='No response' {{$track->result == 'No response' ? 'selected' : '' }}>No response</option>
 						            	<option value='Yes' {{$track->result == 'Yes' ? 'selected' : '' }}>Yes</option>
 						            	<option value='No' {{$track->result == 'No' ? 'selected' : '' }}>No</option>
-						            	<option value='May be' {{$track->result == 'May be' ? 'selected' : '' }}>May be</option>
+						            	<option value='May be' {{$track->result == 'May be' ? 'selected' : '' }}>Maybe</option>
                                 	</select>		
                                 	<label for="result{{$i}}">Result</label>				            
 						          </div>
