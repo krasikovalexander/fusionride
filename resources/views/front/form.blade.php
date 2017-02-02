@@ -389,13 +389,35 @@
             );
 
             $("body").on('focus', "#pickup_address", function(){
+                if (!$("#pickup_address").val()) {
+                    if ($("#state").val()) {
+                        $("#pick_state").val($("#state option:selected").text());
+                        $('label[for="pick_state"]').addClass('active');
+                    }
+                    
+                    if ($("#city").val()) {
+                        $("#pick_city").val($("#city").val());
+                        $('label[for="pick_city"]').addClass('active');
+                    }
+                }
                 $('#modal1').modal('open');
                 $("#pickup_address").blur();
             });
 
             $("body").on('focus', "#dropoff_address", function(){
+                if (!$("#dropoff_address").val()) {
+                    if ($("#state").val()) {
+                        $("#drop_state").val($("#state option:selected").text());
+                        $('label[for="drop_state"]').addClass('active');
+                    }
+                    
+                    if ($("#city").val()) {
+                        $("#drop_city").val($("#city").val());
+                        $('label[for="drop_city"]').addClass('active');
+                    }
+                }
                 $('#modal2').modal('open');
-                 $("#dropoff_address").blur();
+                $("#dropoff_address").blur();
             });
             
             $("body").on('change', ".switch input[type=checkbox]", function(){

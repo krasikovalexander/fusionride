@@ -142,7 +142,10 @@
 	        <div class="form-group">
 	            <div class="col-lg-offset-2 col-lg-10">
 	             	<a class="btn btn-default" href="{{!old('draft', $provider->draft) ? route('admin.providers') : route('admin.drafts')}}">Cancel</a>
-	                <button class="btn btn-primary" type="submit">Save</button>
+	                <button class="btn btn-primary" type="submit" name="action" value="save">Save</button>
+	                @if ($provider->id)
+	                <button class="btn btn-danger" style="margin-left:100px" type="submit" name="action" value="clone">Save as New</button>
+	                @endif
 	            </div>
 	        </div>
 	    </form>

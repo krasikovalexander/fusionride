@@ -31,7 +31,7 @@
   							</div>
 
 	        				<div class="center-align getlink">
-	        					<button class="waves-effect waves-light btn"><i class="material-icons left">verified_user</i>Get Link</button>
+	        					<button class="waves-effect waves-light btn"><i class="material-icons left">verified_user</i>Get Link</button> <a class='no' href="{{route("home")}}">No, thanks</a>
 	        				</div>
 	        			</form>
 	        		</li>

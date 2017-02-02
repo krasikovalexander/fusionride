@@ -30,14 +30,19 @@ class ProvidersController extends Controller
                 'email' => 'required|email'
 		    ]);
 
-    		$data = $request->all();
-    		$data['draft'] = $request->has('draft');
+            $data = $request->all();
+            $data['draft'] = $request->has('draft');
+
+            if ($request->get('action') == 'clone') {
+                $provider = new Provider;
+                $data['draft'] = true;
+            }
 
     		$provider->fill($data);
     		$provider->save();
             $provider->types()->sync((array)$request->get('type'));
 
-    		return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' updated successfully."]);
+    		return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' ".($request->get('action') == 'clone' ? "created" : "updated")." successfully."]);
     	}
         return view('admin.providers.edit', ["provider" => $provider, 'states' => State::all(), 'types' => Type::all()]);
     }
