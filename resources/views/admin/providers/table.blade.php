@@ -1,4 +1,4 @@
-<table class="footable table table-stripped" data-page-size="20" data-filter=#filter>
+<table class="footable table table-stripped" data-page-size="20" data-filter-min="2" data-filter=#filter>
     <thead>
     <tr>
         <th>Name</th>
