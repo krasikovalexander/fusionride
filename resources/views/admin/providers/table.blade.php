@@ -4,10 +4,10 @@
         <th>Name</th>
         <th>State</th>
         <th data-hide="phone">City</th>
-        <th data-hide="phone,tablet">Address</th>
-        <th data-hide="phone,tablet">Site</th>
+        <th data-hide="all">Address</th>
+        <th data-hide="all">Site</th>
         <th data-hide="phone">Phone</th>
-        <th data-hide="phone">Email</th>
+        <th data-hide="all">Email</th>
         <th data-hide="phone">Status</th>
         <th data-hide="phone,tablet">Note</th>
         <th>Actions</th>
