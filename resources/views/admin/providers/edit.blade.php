@@ -151,6 +151,15 @@
 	    </form>
 	</div>
 </div>
+
+<div class="ibox float-e-margins">
+	<div class="ibox-title">
+	    <h5>Possible duplicates</h5>
+	</div>
+	<div class="ibox-content">
+	    @include('admin.providers.table')
+	</div>
+</div>
 @endsection
 
 @section('scripts')

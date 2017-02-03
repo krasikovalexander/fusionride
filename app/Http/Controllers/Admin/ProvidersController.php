@@ -11,24 +11,27 @@ use Illuminate\Support\Facades\DB;
 
 class ProvidersController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('admin.providers.list', ['drafts' => false, 'providers' => Provider::whereDraft(0)->with(['types', 'state'])->get()]);
     }
 
-    public function drafts() {
+    public function drafts()
+    {
         return view('admin.providers.list', ['drafts' => true, 'providers' => Provider::whereDraft(1)->with(['types', 'state'])->get()]);
     }
 
- 	public function edit(Request $request, $id) {
- 		$provider = Provider::find($id);
+    public function edit(Request $request, $id)
+    {
+        $provider = Provider::find($id);
 
-    	if ($request->isMethod('post')) {
-    		$this->validate($request, [
-		        'name' => 'required',
-		        'city' => 'required',
-		        'state_id' => 'required|exists:states,id',
+        if ($request->isMethod('post')) {
+            $this->validate($request, [
+                'name' => 'required',
+                'city' => 'required',
+                'state_id' => 'required|exists:states,id',
                 'email' => 'required|email'
-		    ]);
+            ]);
 
             $data = $request->all();
             $data['draft'] = $request->has('draft');
@@ -38,51 +41,66 @@ class ProvidersController extends Controller
                 $data['draft'] = true;
             }
 
-    		$provider->fill($data);
-    		$provider->save();
+            $provider->fill($data);
+            $provider->save();
             $provider->types()->sync((array)$request->get('type'));
 
-    		return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' ".($request->get('action') == 'clone' ? "created" : "updated")." successfully."]);
-    	}
-        return view('admin.providers.edit', ["provider" => $provider, 'states' => State::all(), 'types' => Type::all()]);
+            if ($request->get('action') == 'clone') {
+                return redirect()->route('admin.providers.edit', [$provider->id])->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
+            }
+
+
+            //return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' updated successfully."]);
+
+            return redirect()->route('admin.providers.edit', [$provider->id])->with("notifications", ['success' => "Provider '$provider->name' updated successfully."]);
+        }
+        return view('admin.providers.edit', [
+            'provider' => $provider,
+            'states' => State::all(),
+            'types' => Type::all(),
+            'providers' => $provider->duplicates
+        ]);
     }
 
-    public function create(Request $request) {
-    	if ($request->isMethod('post')) {
-    		$this->validate($request, [
-		        'name' => 'required',
-		        'city' => 'required',
-		        'state_id' => 'required|exists:states,id',
+    public function create(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $this->validate($request, [
+                'name' => 'required',
+                'city' => 'required',
+                'state_id' => 'required|exists:states,id',
                 'email' => 'required|email'
-		    ]);
+            ]);
 
-    		$data = $request->all();
-    		$data['draft'] = $request->has('draft');
+            $data = $request->all();
+            $data['draft'] = $request->has('draft');
 
-    		$provider = Provider::create($data);
+            $provider = Provider::create($data);
             $provider->types()->sync((array)$request->get('type'));
 
-    		return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
-    	}
+            //return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
+            
+            return redirect()->route('admin.providers.edit', [$provider->id])->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
+        }
 
         return view('admin.providers.edit', ["provider" => new Provider, 'states' => State::all(), 'types' => Type::all()]);
     }
 
-    public function search(Request $request) {
-    	$results = [];
-    	switch ($request->get('field')) {
-    		case "city":
-    			$cities = DB::table('providers')
-    				->distinct()
-    				->orderBy('city')
-    				->whereStateId($request->get('state'))
-    				->pluck('city');
-    			foreach ($cities as $key => $value) {
-    				$results[] = ["id" => $key, "label"=> $value];
-    			}
-    			break;
-
-    	}
-    	return response()->json($results);
+    public function search(Request $request)
+    {
+        $results = [];
+        switch ($request->get('field')) {
+            case "city":
+                $cities = DB::table('providers')
+                    ->distinct()
+                    ->orderBy('city')
+                    ->whereStateId($request->get('state'))
+                    ->pluck('city');
+                foreach ($cities as $key => $value) {
+                    $results[] = ["id" => $key, "label"=> $value];
+                }
+                break;
+        }
+        return response()->json($results);
     }
 }
