@@ -25,7 +25,14 @@
         <td><a href="mailto:{{$provider->email}}">{{$provider->email}}</a></td>
         <td>{{ucwords($provider->status)}}</td>
         <td>{{$provider->note}}</td>
-        <td><a href="{{route('admin.providers.edit', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a></td>
+        <td>
+            <a href="{{route('admin.providers.edit', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a>
+            @if ($provider->trashed())
+            <a href="{{route('admin.providers.restore', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-undo"></i></a>   
+            @else
+             <a href="{{route('admin.providers.delete', ['id'=>$provider->id])}}" class='btn btn-xs btn-info btn-danger'><i class="fa fa-trash"></i></a>   
+            @endif
+        </td>
     </tr>
     @endforeach
     </tbody>

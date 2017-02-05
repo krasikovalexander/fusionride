@@ -75,6 +75,9 @@
                     <a href="{{route('admin.drafts')}}"><i class="fa fa-question-circle"></i> <span class="nav-label">Drafts</span></a>
                 </li>
                 <li>
+                    <a href="{{route('admin.deleted')}}"><i class="fa fa-trash"></i> <span class="nav-label">Deleted</span></a>
+                </li>
+                <li>
                     <a href="{{route('admin.types')}}"><i class="fa fa-car"></i> <span class="nav-label">Car types</span> </a>
                 </li>
             </ul>

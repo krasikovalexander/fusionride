@@ -111,7 +111,7 @@
                                         <div class='left-part selected'>Conventional cars</div>
                                         <input type="checkbox" type="checkbox" value='1' id='type' name='type'>
                                         <span class="lever"></span>
-                                        <div class='right-part'>Special request</div>
+                                        <div class='right-part'>Specialty vehicle</div>
                                     </label>
                                 </div>
                             </div>
@@ -126,6 +126,8 @@
                                 <div class="title">{{$type->name}}</div>
                             </div>
                             @endforeach
+                            <div class='next'><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                            <div class='prev'><i class="fa fa-angle-left" aria-hidden="true"></i></div>
                         </div>
                         <input type='hidden' name='car' id='car'/>
 
@@ -141,10 +143,10 @@
                             </div>
                         </div>
 
-                        <div class="row for-special custom-type" style='display: none'>
+                        <div class="row for-special custom_type" style='display: none'>
                             <div class="input-field col s12">
-                                <label>Special request car</label>
-                                <input type="text" name="custom_type" placeholder='Type here, what kind of car you want'/>
+                                <label for="custom_type">Special request vehicle</label>
+                                <input type="text" id="custom_type"  name="custom_type" placeholder='Type here, what kind of car you want'/>
                             </div>
                         </div>
                         
@@ -551,6 +553,14 @@
                 $("#car").val(types[$('.indicators li').index($('.indicator-item.active'))].id);
             },100);
 
+            $('.next').on('click', function(e){
+                $('.carousel').carousel('next');
+            });
+
+            $('.prev').on('click', function(e){
+                $('.carousel').carousel('prev');
+            });
+
             var validate = function() {
                 var valid = true;
                 var required = ['city', 'state', 
@@ -563,6 +573,12 @@
                     //required.push('dropoff');
                     required.push('dropoff_address');
                 }
+
+                if ($("#type").is(':checked')) {
+                    required.push('custom_type');
+                }
+
+                $(".row").removeClass('invalid');
 
                 for(r in required) {
                     var field = required[r];
@@ -605,6 +621,11 @@
                     //required.push('dropoff');
                     required.push('dropoff_address');
                 }
+
+                if ($("#type").is(':checked')) {
+                    required.push('custom_type');
+                }
+
                 var field = $(input).attr("id");
                 if (required.indexOf(field) >= 0) {
                     if (!$(input).val()) {

@@ -40,7 +40,10 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.', 'prefix' => 'admin'], 
 
     Route::get('providers', ['as' => 'providers', 'uses' => 'Admin\ProvidersController@index']);
     Route::get('drafts', ['as' => 'drafts', 'uses' => 'Admin\ProvidersController@drafts']);
+    Route::get('deleted', ['as' => 'deleted', 'uses' => 'Admin\ProvidersController@deleted']);
     Route::any('providers/{id}', ['as' => 'providers.edit', 'uses' => 'Admin\ProvidersController@edit'])->where('id', '[0-9]+');
     Route::any('providers/create', ['as' => 'providers.create', 'uses' => 'Admin\ProvidersController@create']);
+    Route::any('providers/{id}/delete', ['as' => 'providers.delete', 'uses' => 'Admin\ProvidersController@trash']);
+    Route::any('providers/{id}/restore', ['as' => 'providers.restore', 'uses' => 'Admin\ProvidersController@restore']);
     Route::get('providers/search', ['as' => 'providers.search', 'uses' => 'Admin\ProvidersController@search']);
 });

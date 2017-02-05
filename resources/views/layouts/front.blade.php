@@ -26,7 +26,7 @@
         <meta name="theme-color" content="#ffffff">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
+        <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="/materialize/css/materialize.min.css" rel="stylesheet">
         <link href="/materialize-picker/css/materialize.clockpicker.css" rel="stylesheet">
         <link href="/nouislider/nouislider.css" rel="stylesheet">

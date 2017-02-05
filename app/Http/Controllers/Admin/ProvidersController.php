@@ -42,13 +42,13 @@ class ProvidersController extends Controller
             }
 
             $provider->fill($data);
+            $provider->phone_numbers = preg_replace("/[^0-9]/", "", $provider->phone);
             $provider->save();
             $provider->types()->sync((array)$request->get('type'));
 
             if ($request->get('action') == 'clone') {
                 return redirect()->route('admin.providers.edit', [$provider->id])->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
             }
-
 
             //return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' updated successfully."]);
 
@@ -76,6 +76,10 @@ class ProvidersController extends Controller
             $data['draft'] = $request->has('draft');
 
             $provider = Provider::create($data);
+
+            $provider->phone_numbers = preg_replace("/[^0-9]/", "", $provider->phone);
+            $provider->save();
+
             $provider->types()->sync((array)$request->get('type'));
 
             //return redirect()->route('admin.'.($provider->draft ? 'drafts' : 'providers'))->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
@@ -102,5 +106,24 @@ class ProvidersController extends Controller
                 break;
         }
         return response()->json($results);
+    }
+
+    public function trash(Request $request, $id)
+    {
+        $provider = Provider::find($id);
+        $provider->delete();
+        return redirect()->back()->with("notifications", ['warning' => "Provider '$provider->name' deleted successfully."]);
+    }
+
+    public function restore(Request $request, $id)
+    {
+        $provider = Provider::withTrashed()->find($id);
+        $provider->restore();
+        return redirect()->back()->with("notifications", ['warning' => "Provider '$provider->name' restored successfully."]);
+    }
+
+    public function deleted()
+    {
+        return view('admin.providers.deleted', ['providers' => Provider::onlyTrashed()->with(['types', 'state'])->get()]);
     }
 }
