@@ -23,7 +23,7 @@ class ProvidersController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $provider = Provider::find($id);
+        $provider = Provider::withTrashed()->find($id);
 
         if ($request->isMethod('post')) {
             $this->validate($request, [
