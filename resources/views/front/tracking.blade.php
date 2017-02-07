@@ -74,7 +74,7 @@
 		  $(document).ready(function() {
 		    $('.materialize-textarea').characterCounter();
 		    $('select').material_select();
-		    $(".price").mask("99999", {placeholder:" "});
+		    $(".price").mask("?99999", {placeholder:" "});
 		  });
 	</script>
 @endsection
