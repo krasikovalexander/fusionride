@@ -1,8 +1,39 @@
 @extends('layouts.front')
+
+@section('styles')
+	<link href="/css/footable.standalone.min.css" rel="stylesheet">
+@endsection
+
+@section('scripts')
+	<script src="/js/footable.min.js"></script>
+	<script>
+		$(document).ready(function() {
+		    $(".price").mask("?99999", {placeholder:" "});
+		    $('table').footable();
+		});
+
+    	jQuery.fn.addHidden = function (name, value) {
+		    return this.each(function () {
+		        var input = $("<input>").attr("type", "hidden").attr("name", name).val(value);
+		        $(this).append($(input));
+		    });
+		};
+
+		function save(row) {
+		  	$('#form')
+		  		.addHidden('result', $('select[name="result"]', row).val())
+		  		.addHidden('price', $('input[name="price"]', row).val())
+		  		.addHidden('notes', $('textarea[name="notes"]', row).val())
+		  		.addHidden('track', $('input[name="track"]', row).val())
+		  		.submit();
+		}
+	</script>
+@endsection
+
 @section('content')
 	<div class='container container-request'>
         <div class='row main'>
-        	<div class="col s12 m8 offset-m2 l6 offset-l3 result-form done">
+        	<div class="col s12 result-form done">
         		
 	        	<div class='card-panel z-depth-5'>
 	        		<ul class="collection with-header">
@@ -17,64 +48,63 @@
 	        				<p class='success'>Information updated!</p>
 	        			@endif
 	        		</li>
-	        		@foreach($tracks as $i => $track)
+	   
+	           		<form method='post' action="{{route('front.tracking.update', ['hash' => $hash])}}" id='form'>
+	        			{{ csrf_field() }}
+        			</form>
+
 					    <li class="collection-item">
-					      	<span class="title">{{$track->provider->name}}</span>
-					      	<p>
-					      		Address: {{$track->provider->address}}<br/>
-					      		Phone: {{$track->provider->phone}}<br/>
-					      		Site: <a href="{{$track->provider->site}}">{{$track->provider->site}}</a>		      
-					      	</p>
-					      	<div class="row tracking-form">
-						      <form method='post' action="{{route('front.tracking.update', ['hash' => $hash])}}" class="col s12">
-	        					{{ csrf_field() }}
-	        					<input type='hidden' name='track' value="{{$track->id}}">
-						        <div class="row">
-						          <div class="input-field col s8">
-						            <select name='result' id='result{{$i}}'>
-						            	<option value='No response' {{$track->result == 'No response' ? 'selected' : '' }}>No response</option>
-						            	<option value='Yes' {{$track->result == 'Yes' ? 'selected' : '' }}>Yes</option>
-						            	<option value='No' {{$track->result == 'No' ? 'selected' : '' }}>No</option>
-						            	<option value='May be' {{$track->result == 'May be' ? 'selected' : '' }}>Maybe</option>
-                                	</select>		
-                                	<label for="result{{$i}}">Result</label>				            
-						          </div>
-						          <div class="input-field col s4">
-						          	<label for="price{{$i}}">Price</label>
-						            <input id="price{{$i}}" name='price' class='price' type="text" value="{{$track->price}}">
-						          </div>
-						        </div>
-						        <div class="row">
-						          <div class="input-field col s12">
-						            <label for="notes{{$i}}">Notes</label>
-						            <textarea id='notes{{$i}}' name='notes' class="materialize-textarea" maxlength="200" data-length="200">{{$track->notes}}</textarea>
-						          </div>
-						        </div>
-						        <div class="row">
-						          <div class="col s12 center">
-						          <button class="waves-effect waves-light btn"><i class="material-icons left">done</i>Save</button>
-						          </div>
-						        </div>
-						      </form>
-					    	</div>
-					    </li>
-	        		@endforeach
-	        		
-	        		</ul>
-	        	</div>
-	        </div>
-        </div>
-    </div>
+					    	<div class="row tracking-form">		     	
+        						<table class='table' data-filtering="false">
+        							<thead>
+	        							<tr>
+		        							<th>Name</th>
+		        							<th data-breakpoints="all">Address</th>
+		        							<th data-breakpoints="xs sm">Phone</th>
+		        							<th data-breakpoints="all">Site</th>
+		        							<th>Result</th>
+		        							<th>Price</th>
+		        							<th data-breakpoints="all">Notes</th>
+		        							<th style="width:32px"></th>
+		        						</tr>
+		        					</thead>
+        							@foreach($tracks as $i => $track)
+									
+        							<tr>
+        								<td>{{$track->provider->name}}</td>
+							      		<td>{{$track->provider->address}}</td>
+							      		<td>{{$track->provider->phone}}</td>
+							      		<td><a href="{{$track->provider->site}}">{{$track->provider->site}}</a></td>	      
+	        							<td>
+	        								<input type='hidden' name='track' value="{{$track->id}}">
+		        							<select class='browser-default'  name='result'>
+								            	<option value='No response' {{$track->result == 'No response' ? 'selected' : '' }}>No response</option>
+								            	<option value='Yes' {{$track->result == 'Yes' ? 'selected' : '' }}>Yes</option>
+								            	<option value='No' {{$track->result == 'No' ? 'selected' : '' }}>No</option>
+								            	<option value='May be' {{$track->result == 'May be' ? 'selected' : '' }}>Maybe</option>
+		                                	</select>
+		                                </td>
+		                                <td>
+                                			<input class='browser-default price' style="width:50px; background-color: white; border: 1px solid #f2f2f2;"  name='price' type="text" value="{{$track->price}}">
+                                		</td>
+                                		<td>
+                                			<textarea class='browser-default' name='notes'>{{$track->notes}}</textarea>
+                                		</td>
+                                		<td>
+                                			<button type="button" onclick='save($(this).parent().parent())' title='Save' class="btn-floating waves-effect waves-light"><i class="material-icons">done</i></button>
+                                		</td>
+                                	</tr>
+        							@endforeach
+        						</table>
+						   
+					   		</div>
+						</li>	
+		        	</ul>
+		       	</div>
+		    </div>
+	    </div>
+	</div>
 
 
 @endsection
 
-@section('scripts')
-	<script>
-		  $(document).ready(function() {
-		    $('.materialize-textarea').characterCounter();
-		    $('select').material_select();
-		    $(".price").mask("?99999", {placeholder:" "});
-		  });
-	</script>
-@endsection
