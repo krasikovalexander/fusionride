@@ -152,6 +152,7 @@
 	</div>
 </div>
 
+@if ($provider->id)
 <div class="ibox float-e-margins">
 	<div class="ibox-title">
 	    <h5>Possible duplicates</h5>
@@ -160,6 +161,7 @@
 	    @include('admin.providers.table')
 	</div>
 </div>
+@endif
 @endsection
 
 @section('scripts')
