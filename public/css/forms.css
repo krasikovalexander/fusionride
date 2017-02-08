@@ -753,13 +753,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	padding: 2px;
 }
 .result-form .btn-floating {
-	width: 24px;
-	height:24px;
-	line-height: 24px;
+	width: 36px;
+	height:36px;
+	line-height: 36px;
 }
 
 .result-form .btn-floating i {
-	line-height: 24px;
+	line-height: 36px;
 }
 .result-form input[type="text"]{ 
 	margin:0; 
@@ -775,4 +775,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .price {
 	border: 1px solid #f2f2f2;
+}
+.footable * {
+	font-size: 12px!important;
 }

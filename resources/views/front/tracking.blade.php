@@ -7,9 +7,26 @@
 @section('scripts')
 	<script src="/js/footable.min.js"></script>
 	<script>
+		var save;
 		$(document).ready(function() {
-		    $(".price").mask("?99999", {placeholder:" "});
 		    $('table').footable();
+		   	$(".price").mask("?99999", {placeholder:" "});
+
+		   	save = function (row) {
+		   		var notes = "";
+				if ($('.notes', row).length) {
+					notes = $('.notes', row).val();
+				} else {
+					notes = $('.notes', $(row).next()).val();
+				}
+
+			  	$('#form')
+			  		.addHidden('result', $('select[name="result"]', row).val())
+			  		.addHidden('price', $('input[name="price"]', row).val())
+			  		.addHidden('notes', notes)
+			  		.addHidden('track', $('input[name="track"]', row).val())
+			  		.submit();
+			}
 		});
 
     	jQuery.fn.addHidden = function (name, value) {
@@ -19,14 +36,6 @@
 		    });
 		};
 
-		function save(row) {
-		  	$('#form')
-		  		.addHidden('result', $('select[name="result"]', row).val())
-		  		.addHidden('price', $('input[name="price"]', row).val())
-		  		.addHidden('notes', $('textarea[name="notes"]', row).val())
-		  		.addHidden('track', $('input[name="track"]', row).val())
-		  		.submit();
-		}
 	</script>
 @endsection
 
@@ -61,7 +70,7 @@
 		        							<th>Name</th>
 		        							<th data-breakpoints="all">Address</th>
 		        							<th data-breakpoints="xs sm">Phone</th>
-		        							<th data-breakpoints="all">Site</th>
+		        							<th data-breakpoints="xs sm md">Site</th>
 		        							<th>Result</th>
 		        							<th>Price</th>
 		        							<th data-breakpoints="all">Notes</th>
@@ -88,7 +97,7 @@
                                 			<input class='browser-default price' style="width:50px; background-color: white; border: 1px solid #f2f2f2;"  name='price' type="text" value="{{$track->price}}">
                                 		</td>
                                 		<td>
-                                			<textarea class='browser-default' name='notes'>{{$track->notes}}</textarea>
+                                			<textarea class='browser-default notes' style="border: 1px solid #f2f2f2;"  name='notes'>{{$track->notes}}</textarea>
                                 		</td>
                                 		<td>
                                 			<button type="button" onclick='save($(this).parent().parent())' title='Save' class="btn-floating waves-effect waves-light"><i class="material-icons">done</i></button>
