@@ -11,7 +11,7 @@ class MailController extends Controller
     public function retry()
     {
         $exitCode = Artisan::call('queue:retry', ['all']);
-        return redirect()->route('admin.dashboard')->with("notifications", ['success' => "Retry finished. Response: $exitCodes"]);
+        return redirect()->route('admin.dashboard')->with("notifications", ['success' => "Retry finished. Response: $exitCode"]);
     }
 
     public function restart()
