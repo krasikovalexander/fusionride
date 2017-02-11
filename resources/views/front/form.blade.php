@@ -117,6 +117,7 @@
                             </div>
                         </div>
 
+                        <div class='for-conventional choose-car'>Choose car type</div>
                         <div class="carousel carousel-slider center types for-conventional" data-indicators="true">
                             @foreach ($types as $type)
                             <div class="carousel-item white white-text" style="background-image: url({{$type->img ? $type->img : '/img/notype.png'}})">

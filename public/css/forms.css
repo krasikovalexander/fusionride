@@ -779,3 +779,14 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .footable * {
 	font-size: 13px!important;
 }
+
+.choose-car {
+    color: rgba(0, 0, 0, 0.870588);
+    padding-left: 20px;
+    color: rgb(117, 117, 117);
+    border-top: 1px solid rgb(244, 244, 244);
+    padding-top: 10px;
+    display: block;
+    padding-bottom: 10px;
+
+}

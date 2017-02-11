@@ -1,7 +1,41 @@
 @extends('layouts.admin')
 @section('content')
 	<div class='row'>
-		<div class='col-lg-6'>
+
+		<div class='col-lg-4'>
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+				    <h5>Mail status</h5>
+				    <div class="ibox-tools">
+				        <a class="collapse-link">
+				            <i class="fa fa-chevron-up"></i>
+				        </a>
+				        <a class="close-link">
+				            <i class="fa fa-times"></i>
+				        </a>
+				    </div>
+				</div>
+				<div class="ibox-content">
+				    Queued <span class="label label-primary pull-right">{{$mail['queued']}}</span>
+				</div>
+				<div class="ibox-content">
+				    Last time <span class="label label-default pull-right">{{$mail['last'] ? $mail['last']->created_at->diffForHumans() : '-'}}</span>
+				</div>
+				<div class="ibox-content">
+				    With retries <span class="label label-warning pull-right">{{$mail['retries']}}</span>
+				</div>
+				<div class="ibox-content">
+					Failed <span class="label label-danger pull-right">{{$mail['failed']}}</span>
+				</div>
+				<div class="ibox-content text-right">
+					<a href='#' class='btn btn-default {{$mail['failed'] ? '' : 'disabled'}}'>Retry failed</a>
+					<a href='#' class='btn btn-danger'>Restart daemon</a>
+				</div>
+			</div>
+		</div>
+
+
+		<div class='col-lg-4'>
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 				    <h5>Requests</h5>
@@ -74,7 +108,7 @@
 			</div>
 		</div>
 
-		<div class='col-lg-6'>
+		<div class='col-lg-4'>
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
 				    <h5>Subscriptions</h5></span>

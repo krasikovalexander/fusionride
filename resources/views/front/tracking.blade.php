@@ -64,17 +64,17 @@
 
 					    <li class="collection-item">
 					    	<div class="row tracking-form">		     	
-        						<table class='table' data-filtering="false">
+        						<table class='table' data-filtering="false" data-sorting="true">
         							<thead>
 	        							<tr>
 		        							<th>Name</th>
-		        							<th data-breakpoints="all">Address</th>
-		        							<th data-breakpoints="xs sm">Phone</th>
-		        							<th data-breakpoints="xs sm md">Site</th>
+		        							<th data-sortable="false" data-breakpoints="all">Address</th>
+		        							<th data-sortable="false" data-breakpoints="xs sm">Phone</th>
+		        							<th data-sortable="false" data-breakpoints="xs sm md">Site</th>
 		        							<th>Result</th>
 		        							<th>Price</th>
-		        							<th data-breakpoints="all">Notes</th>
-		        							<th style="width:32px"></th>
+		        							<th data-sortable="false" data-breakpoints="all">Notes</th>
+		        							<th data-sortable="false" style="width:32px"></th>
 		        						</tr>
 		        					</thead>
         							@foreach($tracks as $i => $track)

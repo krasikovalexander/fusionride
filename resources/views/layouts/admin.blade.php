@@ -39,12 +39,12 @@
 
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-
+    <link href="/css/admin.css" rel="stylesheet">
 
 
 </head>
 
-<body>
+<body class='md-skin'>
 
 <div id="wrapper">
 
