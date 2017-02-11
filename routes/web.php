@@ -46,4 +46,6 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.', 'prefix' => 'admin'], 
     Route::any('providers/{id}/delete', ['as' => 'providers.delete', 'uses' => 'Admin\ProvidersController@trash']);
     Route::any('providers/{id}/restore', ['as' => 'providers.restore', 'uses' => 'Admin\ProvidersController@restore']);
     Route::get('providers/search', ['as' => 'providers.search', 'uses' => 'Admin\ProvidersController@search']);
+    Route::get('mail/retry', ['as' => 'mail.retry', 'uses' => 'Admin\MailController@retry']);
+    Route::get('mail/restart', ['as' => 'mail.restart', 'uses' => 'Admin\MailController@restart']);
 });

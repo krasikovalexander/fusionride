@@ -16,6 +16,9 @@
 				    </div>
 				</div>
 				<div class="ibox-content">
+				    Status <span class="label label-default pull-right">{{$mail['status']}}</span>
+				</div>
+				<div class="ibox-content">
 				    Queued <span class="label label-primary pull-right">{{$mail['queued']}}</span>
 				</div>
 				<div class="ibox-content">
@@ -28,8 +31,8 @@
 					Failed <span class="label label-danger pull-right">{{$mail['failed']}}</span>
 				</div>
 				<div class="ibox-content text-right">
-					<a href='#' class='btn btn-default {{$mail['failed'] ? '' : 'disabled'}}'>Retry failed</a>
-					<a href='#' class='btn btn-danger'>Restart daemon</a>
+					<a href='{{route('admin.mail.retry')}}' class='btn btn-default {{$mail['failed'] ? '' : 'disabled'}}'>Retry failed</a>
+					<a href='{{route('admin.mail.restart')}}' class='btn btn-danger'>Restart daemon</a>
 				</div>
 			</div>
 		</div>

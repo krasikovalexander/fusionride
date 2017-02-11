@@ -44,7 +44,7 @@
 
 </head>
 
-<body class='md-skin'>
+<body class=''>
 
 <div id="wrapper">
 

@@ -50,6 +50,7 @@ class DashboardController extends Controller
                 ]
             ],
             'mail' => [
+                'status' => exec('ps aux | grep [q]ueue') == "" ? "Stopped" : "Running",
                 'queued' => Job::all()->count(),
                 'last'   => Job::orderBy('created_at', 'DESC')->first(),
                 'retries' => Job::where('attempts', '>', 0)->count(),
