@@ -32,7 +32,12 @@
   						
 	        		</li>
 
-	        		<li class="collection-item"><h5>We sent your request to the following providers:</h5></li>
+	        		<li class="collection-item">
+	        			<h5>We sent your request to the following providers:</h5>
+	        			<div style="font-weight:bold; color:red">
+	        				If a provider isn't listed please let them know to contact us at 610-255-7283
+	        			</div>
+	        		</li>
 	        		@foreach($providers as $provider)
 					    <li class="collection-item">
 					      <span class="title">{{$provider->name}}</span>
