@@ -7,17 +7,8 @@
         		<a href="{{route('front.pdf', ['_' => base64_encode(implode(',', $providers->pluck('id')->all()))])}}"><div class="pdf"></div></a>
 	        	<div class='card-panel z-depth-5'>
 	        		<ul class="collection with-header">
-	        		<li class="collection-header"><h4>That's all!</h4> <h5>We sent your request to the following providers:</h5></li>
-	        		@foreach($providers as $provider)
-					    <li class="collection-item">
-					      <span class="title">{{$provider->name}}</span>
-					      <p>
-					      	Address: {{$provider->address}}<br/>
-					      	Phone: {{$provider->phone}}<br/>
-					      	Site: <a href="{{$provider->site}}">{{$provider->site}}</a>		      
-					      </p>
-					    </li>
-	        		@endforeach
+
+	        		<li class="collection-header"><h4>That's all!</h4></li>
 	        		
 	        		<li class="collection-item">
 	        			<form method='post' action="{{route('front.approve')}}">
@@ -40,6 +31,20 @@
   						</div>
   						
 	        		</li>
+
+	        		<li class="collection-item"><h5>We sent your request to the following providers:</h5></li>
+	        		@foreach($providers as $provider)
+					    <li class="collection-item">
+					      <span class="title">{{$provider->name}}</span>
+					      <p>
+					      	Address: {{$provider->address}}<br/>
+					      	Phone: {{$provider->phone}}<br/>
+					      	Site: <a href="{{$provider->site}}">{{$provider->site}}</a>		      
+					      </p>
+					    </li>
+	        		@endforeach
+	        		
+	        		
 	        		</ul>
 	        	</div>
 	        </div>
