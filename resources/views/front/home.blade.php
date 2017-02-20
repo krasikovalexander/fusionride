@@ -116,6 +116,10 @@
 
             var states = {!!$states!!};
 
+            _.map(states, function(state){
+                return state.state = state.state.toLowerCase();
+            });
+
             var validate = function() {
                 var valid = true;
                 var required = ['city', 'state'];
@@ -154,7 +158,7 @@
                     }
                 }
                 if (field == 'state') {
-                    if (!_.where(states, {state: $(input).val()}).length) {
+                    if (!_.where(states, {state: $(input).val().toLowerCase()}).length) {
                         $(".row."+field).addClass('invalid');
                     } else {
                        $(".row."+field).removeClass('invalid');
@@ -175,7 +179,7 @@
                     }, 3000);
                     e.preventDefault();
                 }
-                $("#state-code").val(_.where(states, {state: $("#state").val()})[0].code);
+                $("#state-code").val(_.where(states, {state: $("#state").val().toLowerCase()})[0].code);
             });
 
             $('#state').autocomplete({
