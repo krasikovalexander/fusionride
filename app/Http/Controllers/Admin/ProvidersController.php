@@ -42,7 +42,7 @@ class ProvidersController extends Controller
             }
 
             $provider->fill($data);
-            $provider->phone_numbers = preg_replace("/[^0-9]/", "", $provider->phone);
+            $provider->phone_numbers = $provider->phone ? preg_replace("/[^0-9]/", "", $provider->phone) : "";
             $provider->save();
             $provider->types()->sync((array)$request->get('type'));
 
@@ -74,10 +74,10 @@ class ProvidersController extends Controller
 
             $data = $request->all();
             $data['draft'] = $request->has('draft');
+            $data['phone_numbers'] = preg_replace("/[^0-9]/", "", $request->get('phone', ""));
 
             $provider = Provider::create($data);
-
-            $provider->phone_numbers = preg_replace("/[^0-9]/", "", $provider->phone);
+           
             $provider->save();
 
             $provider->types()->sync((array)$request->get('type'));
