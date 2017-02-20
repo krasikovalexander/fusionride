@@ -135,7 +135,7 @@
                 }
 
                 field = 'state';
-                if (!_.where(states, {state: $('#state').val()}).length) {
+                if (!_.where(states, {state: $('#state').val().toLowerCase()}).length) {
                     $(".row."+field).addClass('invalid');
                     valid = false;
                 } else {
