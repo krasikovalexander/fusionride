@@ -126,7 +126,7 @@
 
                 for(r in required) {
                     var field = required[r];
-                    if (!$("#"+field).val()) {
+                    if (!$("#"+field).val().trim()) {
                         $(".row."+field).addClass('invalid');
                         valid = false;
                     } else {
@@ -135,7 +135,7 @@
                 }
 
                 field = 'state';
-                if (!_.where(states, {state: $('#state').val().toLowerCase()}).length) {
+                if (!_.where(states, {state: $('#state').val().toLowerCase().trim()}).length) {
                     $(".row."+field).addClass('invalid');
                     valid = false;
                 } else {
@@ -151,14 +151,14 @@
 
                 var field = $(input).attr("id");
                 if (required.indexOf(field) >= 0) {
-                    if (!$(input).val()) {
+                    if (!$(input).val().trim()) {
                         $(".row."+field).addClass('invalid');
                     } else {
                        $(".row."+field).removeClass('invalid');
                     }
                 }
                 if (field == 'state') {
-                    if (!_.where(states, {state: $(input).val().toLowerCase()}).length) {
+                    if (!_.where(states, {state: $(input).val().toLowerCase().trim()}).length) {
                         $(".row."+field).addClass('invalid');
                     } else {
                        $(".row."+field).removeClass('invalid');
@@ -179,7 +179,8 @@
                     }, 3000);
                     e.preventDefault();
                 }
-                $("#state-code").val(_.where(states, {state: $("#state").val().toLowerCase()})[0].code);
+                $("#state-code").val(_.where(states, {state: $("#state").val().toLowerCase().trim()})[0].code);
+                $("#city").val($("#city").val().trim());
             });
 
             $('#state').autocomplete({
