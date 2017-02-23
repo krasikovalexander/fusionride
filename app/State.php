@@ -12,6 +12,6 @@ class State extends Model
     }
 
     public function getCitiesAttribute() {
-    	return $this->Providers()->distinct('city')->orderBy('city', 'asc')->pluck('city');
+    	return $this->Providers()->active()->distinct('city')->orderBy('city', 'asc')->pluck('city');
     }
 }
