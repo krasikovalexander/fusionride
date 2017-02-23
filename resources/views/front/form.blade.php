@@ -8,22 +8,24 @@
                     <div class='card-panel z-depth-5'>
                         <div class="row state">
                             <div class="input-field col s12">
+                                <label for="state" class='active'>State</label>
                                 <select name='state' id='state'>
                                     <option value="" disabled>Choose state</option>
                                     @foreach($states as $state)
                                     <option value='{{$state->id}}' {!!$state->id == $selectedState ? "selected": ""!!}>{{$state->state}}</option>
                                     @endforeach
                                 </select>
-                                <label>State</label>
+                                
                             </div>
                         </div>
 
                         <div class="row city">
                             <div class="input-field col s12">
+                                <label for="city"  class='active'>City</label>
                                 <select name='city' id='city'>
                                     <option value="" disabled>Choose city</option>
                                 </select>
-                                <label>City</label>
+
                             </div>
                         </div>
 
@@ -324,10 +326,6 @@
                 $('select').material_select();
             });
 
-        @if($selectedState) 
-            $('label[for="state"]').addClass('active');
-        @endif
-
         @if($selectedCity)
             @foreach ($states as $state)
             @if ($state->id == $selectedState) 
@@ -337,7 +335,6 @@
             @endif
             @endforeach
             $("#city").val('{{$selectedCity}}');
-            $('label[for="city"]').addClass('active');
         @else
             $('#state').change();
         @endif
