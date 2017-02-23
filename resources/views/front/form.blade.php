@@ -324,6 +324,10 @@
                 $('select').material_select();
             });
 
+        @if($selectedState) 
+            $('label[for="state"]').addClass('active');
+        @endif
+
         @if($selectedCity)
             @foreach ($states as $state)
             @if ($state->id == $selectedState) 
@@ -333,12 +337,10 @@
             @endif
             @endforeach
             $("#city").val('{{$selectedCity}}');
+            $('label[for="city"]').addClass('active');
         @else
-            //$('#state').change();
+            $('#state').change();
         @endif
-
-        $('#state').change();
-        $('#city').change();
             
             $('#modal1').modal(
                 {
