@@ -334,8 +334,11 @@
             @endforeach
             $("#city").val('{{$selectedCity}}');
         @else
-            $('#state').change();
+            //$('#state').change();
         @endif
+
+        $('#state').change();
+        $('#city').change();
             
             $('#modal1').modal(
                 {
