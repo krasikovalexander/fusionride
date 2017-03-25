@@ -2,7 +2,7 @@
 @section('content')
 
 <p>Hello,</p>
-<p>we've got a new availability request for you:</p>
+<p>We've got a new availability request for you:</p>
 <table cellpadding="10" cellspacing="0" border="0">
 	<tr>
 		<td>State</td>
