@@ -56,7 +56,10 @@
               <p>
               	Address: {{$provider->address}}<br/>
               	Phone: {{$provider->phone}}<br/>
-              	Site: <a href="{{$provider->site}}">{{$provider->site}}</a>	      
+                @if($provider->site)
+                <br/>
+                Site: <a href="{{$provider->site}}">{{$provider->site}}</a> 
+                @endif    
               </p>
             </li>
         @endforeach

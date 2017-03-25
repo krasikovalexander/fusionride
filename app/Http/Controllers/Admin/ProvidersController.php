@@ -8,6 +8,9 @@ use App\State;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Hash;
+use App\Mail\InviteToProvider;
+use Illuminate\Support\Facades\Mail;
 
 class ProvidersController extends Controller
 {
@@ -40,7 +43,9 @@ class ProvidersController extends Controller
                 $provider = new Provider;
                 $data['draft'] = true;
             }
-
+            
+            $oldProvider = $provider;
+            
             $provider->fill($data);
             $provider->phone_numbers = $provider->phone ? preg_replace("/[^0-9]/", "", $provider->phone) : "";
             $provider->save();
@@ -75,6 +80,7 @@ class ProvidersController extends Controller
             $data = $request->all();
             $data['draft'] = $request->has('draft');
             $data['phone_numbers'] = preg_replace("/[^0-9]/", "", $request->get('phone', ""));
+            $data['subscription_key'] = base64_encode(Hash::make(str_random(64)));
 
             $provider = Provider::create($data);
            
@@ -125,5 +131,23 @@ class ProvidersController extends Controller
     public function deleted()
     {
         return view('admin.providers.deleted', ['providers' => Provider::onlyTrashed()->with(['types', 'state'])->get()]);
+    }
+
+    public function invite(Request $request, $id)
+    {
+        $provider = Provider::find($id);
+        if (!$provider) {
+            redirect()->back()->with("notifications", ['warning' => "Provider not found"]);
+        }
+
+        if (in_array($provider->subscription_status, ['none', 'pending', 'unsubscribed'])) {
+            $provider->subscription_status = 'pending';
+            $provider->save();
+        }
+
+        Mail::to($provider->email)
+            ->queue(new InviteToProvider($provider));
+          
+        return redirect()->back()->with("notifications", ['success' => "Invite sent to '$provider->name'"]);
     }
 }

@@ -9,6 +9,7 @@
         <th data-hide="phone">Phone</th>
         <th data-hide="all">Email</th>
         <th data-hide="phone">Status</th>
+        <th data-hide="phone">Subscription</th>
         <th data-hide="phone,tablet">Note</th>
         <th>Actions</th>
     </tr>
@@ -24,9 +25,13 @@
         <td>{{$provider->phone}}</td>
         <td><a href="mailto:{{$provider->email}}">{{$provider->email}}</a></td>
         <td>{{ucwords($provider->status)}}</td>
+        <td>{{ucwords($provider->subscription_status)}}</td>
         <td>{{$provider->note}}</td>
         <td>
             <a href="{{route('admin.providers.edit', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a>
+            @if ($provider->subscription_status != 'subscribed' && $provider->email)
+            <a href="{{route('admin.providers.invite', ['id'=>$provider->id])}}" class='btn btn-xs btn-warning'><i class="fa fa-paper-plane-o"></i></a>
+            @endif
             @if ($provider->trashed())
             <a href="{{route('admin.providers.restore', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-undo"></i></a>   
             @else

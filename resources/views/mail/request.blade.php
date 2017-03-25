@@ -122,3 +122,13 @@
 	
 </table>
 @endsection
+@section('footer')
+<div>
+	You received this email because you subscribed to a free <a href="http://FusionRide.net">FusionRide.net</a> service.
+	<br/>
+	Visit you <a href="{{route('front.provider.subscribe', ['hash' => $provider->subscription_key])}}">profile</a> page to update settings.
+	<br/>
+	If you do not wish to receive further communications like this, please <a href="{{route('front.provider.unsubscribe', ['hash' => $provider->subscription_key])}}">click here to unsubscribe</a>.
+</div>
+<div style="clear:both"></div>
+@endsection

@@ -23,6 +23,9 @@ Route::group(['as' => 'front.'], function () {
     Route::post('/request/tracking/approve', ['as' => 'approve', 'uses' => 'Front\RequestController@approve']);
     Route::get('/request/tracking/{hash}', ['as' => 'tracking', 'uses' => 'Front\RequestController@tracking']);
     Route::post('/request/tracking/{hash}', ['as' => 'tracking.update', 'uses' => 'Front\RequestController@update']);
+    Route::get('/subscription/{hash}', ['as' => 'provider.subscribe', 'uses' => 'Front\SubscriptionController@subscribe']);
+    Route::post('/subscription/{hash}', ['as' => 'provider.update', 'uses' => 'Front\SubscriptionController@update']);
+    Route::any('/subscription/{hash}/unsubscribe', ['as' => 'provider.unsubscribe', 'uses' => 'Front\SubscriptionController@unsubscribe']);
 });
 
 Route::get('login', ['as' => 'loginForm', 'uses' => 'Auth\LoginController@showLoginForm']);
@@ -48,4 +51,5 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.', 'prefix' => 'admin'], 
     Route::get('providers/search', ['as' => 'providers.search', 'uses' => 'Admin\ProvidersController@search']);
     Route::get('mail/retry', ['as' => 'mail.retry', 'uses' => 'Admin\MailController@retry']);
     Route::get('mail/restart', ['as' => 'mail.restart', 'uses' => 'Admin\MailController@restart']);
+    Route::get('providers/{id}/invite', ['as' => 'providers.invite', 'uses' => 'Admin\ProvidersController@invite']);
 });
