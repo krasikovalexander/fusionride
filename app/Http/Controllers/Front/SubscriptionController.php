@@ -41,6 +41,8 @@ class SubscriptionController extends Controller
         $provider->phone_numbers = $provider->phone ? preg_replace("/[^0-9]/", "", $provider->phone) : "";
         if (in_array($provider->subscription_status, ['pending', 'unsubscribed'])) {
             $provider->subscription_status = 'subscribed';
+            $provider->status = 'active';
+            $provider->draft = false;
         }
         $provider->save();
         $provider->types()->sync((array)$request->get('type'));
