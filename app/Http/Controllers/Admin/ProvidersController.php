@@ -48,8 +48,11 @@ class ProvidersController extends Controller
             
             $provider->fill($data);
             $provider->phone_numbers = $provider->phone ? preg_replace("/[^0-9]/", "", $provider->phone) : "";
+            $provider->geocode();
             $provider->save();
             $provider->types()->sync((array)$request->get('type'));
+
+
 
             if ($request->get('action') == 'clone') {
                 return redirect()->route('admin.providers.edit', [$provider->id])->with("notifications", ['success' => "Provider '$provider->name' created successfully."]);
@@ -83,7 +86,7 @@ class ProvidersController extends Controller
             $data['subscription_key'] = base64_encode(Hash::make(str_random(64)));
 
             $provider = Provider::create($data);
-           
+            $provider->geocode();
             $provider->save();
 
             $provider->types()->sync((array)$request->get('type'));

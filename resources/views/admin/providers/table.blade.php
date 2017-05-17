@@ -11,6 +11,7 @@
         <th data-hide="phone">Status</th>
         <th data-hide="phone">Subscription</th>
         <th data-hide="phone,tablet">Note</th>
+        <th data-hide="phone,tablet">Coords</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -27,6 +28,7 @@
         <td>{{ucwords($provider->status)}}</td>
         <td>{{ucwords($provider->subscription_status)}}</td>
         <td>{{$provider->note}}</td>
+        <td><span style="font-weight: bold; color: red">{{$provider->geocoded ? "" : "!"}}</span></td>
         <td>
             <a href="{{route('admin.providers.edit', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a>
             @if ($provider->subscription_status != 'subscribed' && $provider->email)

@@ -33,16 +33,12 @@ class EventServiceProvider extends ServiceProvider
 
         //
         Provider::saved(function ($provider) {
-            if ($provider->status == 'active' && $provider->draft == 0) {
-                
-                $provider->load('state');
-
-                $subscriptions = Subscription::where('state_id', $provider->state_id)
-                    ->where('city', $provider->city)
+            if ($provider->status == 'active' && $provider->draft == 0 && $provider->lat) {
+                $subscriptions = Subscription::containing($provider->lat, $provider->lng)
                     ->where('notified', 0)
                     ->get();
                     
-                $subscriptions->each(function($subscription) use ($provider){
+                $subscriptions->each(function ($subscription) use ($provider) {
                     Mail::to($subscription->email)
                         ->queue(new SubscriptionNotification($provider));
                     $subscription->notified = true;

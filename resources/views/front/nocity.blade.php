@@ -9,12 +9,12 @@
             <div class="card-content">
               <span class="card-title">Oops!</span>
               <p>
-              	We are sorry, but none of providers in {{$city}} have yet signed up for this free service.
+              	We are sorry, but none of providers in selected area have yet signed up for this free service.
               	But we are working on it!<br/><br/>
               	Leave your email and we'll notify you as soon as service will be available in this area.<br/>
               </p>
               <div class="row">
-                  <form novalidate action="{{route('front.subscribe', ['state' => $state, 'city' => $city])}}" method='post'>
+                  <form novalidate action="{{route('front.subscribe', $params)}}" method='post'>
                   {{ csrf_field() }}
                   <div class="input-field col s12 {{ $errors->has('email') ? ' has-error' : '' }}">
                       <input type='email' value='{{old('email')}}' name='email' placeholder='Type your email here'>
@@ -32,7 +32,6 @@
             </div>
             <div class="card-action">
               <a href="{{route('home')}}">Try again</a>
-              <a href="{{route('front.requestForm')}}">View all</a>
             </div>
           </div>
         </div>

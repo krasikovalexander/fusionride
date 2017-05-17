@@ -56,8 +56,13 @@
                         <strong>{{ $errors->first('address') }}</strong>
                     </span>
                 @endif
+                @if ($provider->geocoded) 
+                <div id="map" style="height: 250px"></div>
+                @endif
 	            </div>
 	        </div>
+
+           
 
 	       	<div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Site</label>
 
@@ -180,4 +185,24 @@
 		});
 	});
 </script>
+
+@if ($provider->geocoded) 
+<script>
+      function initMap() {
+        var place = {lat: {{$provider->lat}}, lng: {{$provider->lng}}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: place
+        });
+        var marker = new google.maps.Marker({
+          position: place,
+          map: map
+        });
+      }
+    </script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{config("services.google.maps.api_key")}}&callback=initMap">
+    </script>
+@endif
+
 @endsection

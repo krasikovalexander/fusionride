@@ -2,196 +2,184 @@
 @section('styles')
     <style>
         html, body {
-            background-image: url(../img/bg.jpg);
             min-height: 100vh;
             margin: 0;
             overflow-x: hidden;
         }
-
-        .splash .top {
-            color: #ffffff;
-            font-size: 50px;
+        #map {
+            width: 100%;
+            height: 100%;
+            min-width: 100vw;
+            min-height: 100vh;
+        }
+        .gmnoprint {
+          display: none !important;
+        }
+        .controls {
+          margin-top: 10px;
+          border: 1px solid transparent;
+          border-radius: 2px 0 0 2px;
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          height: 32px;
+          outline: none;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        .slogan .card-panel {
-            min-height: 90px;
-            font-size: 20px;
-            line-height: 60px;
-            text-align: left;
+        #pac-input {
+          background-color: #5e35b1;
+          font-family: Roboto;
+          font-size: 15px;
+          text-overflow: ellipsis;
+          margin-top: 10px;
+          width: 90%;
+          max-width:500px;
+          padding: 5px;
+          color: white;
+          font-weight: bold;
+          border-radius: 4px;
+          opacity: 0.8;
+        }
+        body>#pac-input {
+          display:none;
         }
 
-        .row.slogan .col {
-            padding: 0;
+        #pac-input:focus {
+          border-color: #5e35b1;
         }
 
-        .bottom .card-panel {
-            padding: 15px;
-            padding-top: 30px;
-            margin:10px;
+        .pac-container {
+          font-family: Roboto;
         }
-        .text {
-            color: #ffffff;
-            font-size: 1.3rem;
+        body {
+          background-color: #e4e4e4;
+          background-image: none;
         }
-        .row {
-            margin-bottom: 10px;
+        .buttons {
+          position: absolute;
+          bottom: 5px;
+          width: 100%;
+          text-align: center; 
         }
-        @media (min-height:510px) {
-            body {
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-align-items: center;
-                -ms-flex-align: center;
-                align-items: center;
-            }
+        #done {
+          width: 90%;
+          max-width:500px;
+          opacity: 0.8;
+        }
+        @media (max-width: 600px) {
+          #launcher {
+            bottom: 60px!important;
+          }
         }
     </style>
 @endsection
 @section('content')
-    <div class="container splash center-align">
-        <div class='row top  animated fadeInDown'>
-            <div class='col s12'>Fusion Ride</div>
-        </div>
-        <div class='row slogan'>
+    <input id="pac-input" class="controls" type="text" placeholder="Where is the service required?">
+    <div id="map"></div>
 
-            <div class='col l6 offset-l3  hide-on-med-and-down animated slideInLeft'>
-                <div class="card-panel hoverable light-blue">
-                  <div class="white-text"><i class="medium material-icons left">query_builder</i>Request date time you would like service</div>
-                </div> 
-            </div>
-
-            <div class='col l6 offset-l3  hide-on-med-and-down  animated slideInRight'>
-                <div class="card-panel hoverable light-blue">
-                    <div class="white-text"><i class="medium material-icons left">view_carousel</i>Pick your vehicle type</div>
-                </div>
-            </div>
-
-            <div class='col l6 offset-l3 hide-on-med-and-down  animated slideInLeft'>
-                <div class="card-panel hoverable light-blue">
-                    <div class="white-text"><i class="medium material-icons left">done</i> Submit a request for quote and availability</div>
-                </div>
-            </div>
-
-            <div class='col s12 hide-on-large-only text'>
-                Submit a request for quote and availability.<br/><br/>
-            </div>
-        </div>
-        <div class='row bottom'>
-            <div class='card-panel hoverable col l6 offset-l3 s12 z-depth-1  animated fadeInUp'>
-            <form autocomplete='off' role="form" id="form" novalidate method="GET" action="{{route('front.requestForm')}}">
-            <div class="row state">
-              <div class="input-field col s12">
-                <label for="state">State</label>
-                <input type="text" id="state" placeholder="Type state" class="autocomplete">
-                <input type='hidden' id='state-code' name='state'>
-                
-              </div>
-            </div>
-            <div class='row city'>
-              <div class="input-field col s12">
-                <label for="city">City</label>
-                <input type="text" name='city' placeholder="Type city" id='city'>
-                
-              </div>
-            </div>
-            <div class='row continue'>
-              <div class="input-field col s12">
-                <button type="submit" class="btn waves-effect waves-light light-blue">Continue <i class="material-icons right">send</i></button>
-                <div class='error-msg'>Please fill correctly all <span class='error-color'><b>marked</b></span> fields</div>
-              </div>
-            </div>
-            </form>
-            </div>
-        </div>
-        <div class='row bottom'>
-            <div class='col s12 text'>
-                Multiple offers will be on the way via email and/or phone.
-            </div>
-        </div>
+    <div class='buttons'>
+      <button id="done" type="button" class="waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class="material-icons">done</i>
+      </button>
     </div>
+
     <script>
-        $(function(){
-            $('select').material_select();
+      function initMap() {
+        var center = {lat: 36.7791301, lng: -99.9283838};
 
-            var states = {!!$states!!};
+        var zoom = 8;
+        var radius = 30*1609.34;
 
-            _.map(states, function(state){
-                return state.state = state.state.toLowerCase();
+        var styledMapType = new google.maps.StyledMapType([{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7f75b5"},{"visibility":"on"}]}]);
+
+        var createMap = function() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: zoom,
+            center: center,
+            mapTypeControl: false,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                position: google.maps.ControlPosition.TOP_CENTER
+            },
+            zoomControl: false,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_CENTER
+            },
+            scaleControl: false,
+            streetViewControl: false,
+            streetViewControlOptions: {
+                position: google.maps.ControlPosition.LEFT_TOP
+            },
+            fullscreenControl: false
+          });
+
+          map.mapTypes.set('styled_map', styledMapType);
+          map.setMapTypeId('styled_map');
+
+          var marker = new google.maps.Marker({
+            position: center,
+            map: map
+          });
+
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#5e35b1',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#5e35b1',
+            fillOpacity: 0.35,
+            map: map,
+            center: center,
+            radius: radius,
+            editable: true,
+          });
+
+          google.maps.event.addListener(cityCircle, 'radius_changed', function() {
+            radius = cityCircle.getRadius();
+          });
+
+          google.maps.event.addListener(cityCircle, 'center_changed', function() {
+            center = cityCircle.getCenter();
+            map.setCenter(center);
+          });
+
+          var input = document.getElementById('pac-input');
+          var autocomplete = new google.maps.places.Autocomplete(input);
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+          map.addListener('bounds_changed', function() {
+            autocomplete.setBounds(map.getBounds());
+          });
+
+          autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+
+            cityCircle.setCenter(place.geometry.location);
+            map.setCenter(place.geometry.location);
+            center = place.geometry.location;
+          });
+          $("#done").show().click(function(){
+            if (typeof center.lat == 'function') 
+              window.location = "{{route('front.requestForm')}}?lat="+center.lat()+"&lng="+center.lng()+"&r="+Math.ceil(radius/1609.34);
+            else
+              window.location = "{{route('front.requestForm')}}?lat="+center.lat+"&lng="+center.lng+"&r="+Math.ceil(radius/1609.34);
+          })
+        };
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position){
+                center.lat = position.coords.latitude;
+                center.lng = position.coords.longitude;
+                zoom = 8;
+                createMap();
+            }, function(failure){
+               createMap();
             });
-
-            var validate = function() {
-                var valid = true;
-                var required = ['city', 'state'];
-
-                for(r in required) {
-                    var field = required[r];
-                    if (!$("#"+field).val().trim()) {
-                        $(".row."+field).addClass('invalid');
-                        valid = false;
-                    } else {
-                       $(".row."+field).removeClass('invalid');
-                    }
-                }
-
-                field = 'state';
-                if (!_.where(states, {state: $('#state').val().toLowerCase().trim()}).length) {
-                    $(".row."+field).addClass('invalid');
-                    valid = false;
-                } else {
-                    $(".row."+field).removeClass('invalid');
-                }
-
-                return valid;
-            };
-
-            var validateField = function(input) {
-
-                var required = ['city', 'state'];
-
-                var field = $(input).attr("id");
-                if (required.indexOf(field) >= 0) {
-                    if (!$(input).val().trim()) {
-                        $(".row."+field).addClass('invalid');
-                    } else {
-                       $(".row."+field).removeClass('invalid');
-                    }
-                }
-                if (field == 'state') {
-                    if (!_.where(states, {state: $(input).val().toLowerCase().trim()}).length) {
-                        $(".row."+field).addClass('invalid');
-                    } else {
-                       $(".row."+field).removeClass('invalid');
-                    }
-                }
-            };
-
-            $("select, input").change(function(){
-                validateField(this);
-            });
-
-            $("#form").on('submit', function(e){
-                var valid = validate();
-                if (!valid) {
-                    $('.error-msg').addClass('visible');
-                    setTimeout(function(){
-                        $('.error-msg').removeClass('visible');
-                    }, 3000);
-                    e.preventDefault();
-                }
-                $("#state-code").val(_.where(states, {state: $("#state").val().toLowerCase().trim()})[0].code);
-                $("#city").val($("#city").val().trim());
-            });
-
-            $('#state').autocomplete({
-                data: {
-                   @foreach ($states as $state)
-                       "{{$state->state}}": null,
-                   @endforeach
-                },
-                limit: 5, 
-              });
-                    
-        });
+        } else {
+          createMap();
+        }
+        
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{config("services.google.maps.api_key")}}&callback=initMap&libraries=places&language=en">
     </script>
 @endsection

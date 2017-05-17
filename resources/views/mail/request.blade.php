@@ -5,14 +5,6 @@
 <p>We've got a new availability request for you:</p>
 <table cellpadding="10" cellspacing="0" border="0">
 	<tr>
-		<td>State</td>
-		<td>{{$request->stateRelation->state}}</td>
-	</tr>
-	<tr>
-		<td>City</td>
-		<td>{{$request->city}}</td>
-	</tr>
-	<tr>
 		<td>Type</td>
 		<td>{{$request->drive ? 'Hourly rent' : 'Drive to location'}}</td>
 	</tr>

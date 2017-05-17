@@ -68,12 +68,12 @@
 	            <div class="card-content">
 	              <span class="card-title">Oops!</span>
 	              <p>
-	              	We could not find any suitable provider in {{$city}}.<br/>
+	              	We could not find any suitable provider in selected area.<br/>
           			Please choose another vehicle type or make it special request.
           		  </p>
 	            </div>
 	            <div class="card-action">
-	              <a href="{{route('front.requestForm', ['state' => $state, 'city' => $city])}}">Try again</a>
+	              <a href="{{route('front.requestForm', ['lat' => $lat, 'lng' => $lng, 'r' => $r])}}">Try again</a>
 	            </div>
 	          </div>
 	        </div>

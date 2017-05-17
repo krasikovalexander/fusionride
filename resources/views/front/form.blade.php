@@ -2,33 +2,10 @@
 @section('content')
     <div class='container container-request'>
         <div class='row main'>
-            <form method="post" id='form' action="{{route('front.requestForm')}}" novalidate>
+            <form method="post" id='form' action="" novalidate>
             {{ csrf_field() }}
                 <div class="col s12 m10 offset-m1 l6 offset-l3 request-form">
                     <div class='card-panel z-depth-5'>
-                        <div class="row state">
-                            <div class="input-field col s12">
-                                <label for="state" class='active'>State</label>
-                                <select name='state' id='state'>
-                                    <option value="" disabled>Choose state</option>
-                                    @foreach($states as $state)
-                                    <option value='{{$state->id}}' {!!$state->id == $selectedState ? "selected": ""!!}>{{$state->state}}</option>
-                                    @endforeach
-                                </select>
-                                
-                            </div>
-                        </div>
-
-                        <div class="row city">
-                            <div class="input-field col s12">
-                                <label for="city"  class='active'>City</label>
-                                <select name='city' id='city'>
-                                    <option value="" disabled>Choose city</option>
-                                </select>
-
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class='col s12'>
                                 <div class="switch switch-drive">
@@ -41,19 +18,6 @@
                                 </div>
                             </div>
                         </div>
-
-                       <!-- <div class="row pickup">
-                            <div class="input-field col s12" style='display:none'>
-                                <select name='pickup' id='pickup'>
-                                    <option value="" disabled selected>Choose pick up location type</option>
-                                    <option value="airport">Airport</option>
-                                    <option value="business">Business</option>
-                                    <option value="home">Home</option>
-                                    <option value="apartment">Apartment/Condo</option>
-                                </select>
-                                <label>Pick me up at</label>
-                            </div>
-                        </div>-->
 
                         <div class="row free-text pickup_address">
                             <div class="input-field col s12">
@@ -74,18 +38,6 @@
                            </div>
                         </div>
                         
-                        <!--<div class="row for-drive dropoff">
-                            <div class="input-field col s12">
-                                <select name='dropoff' id='dropoff'>
-                                    <option value="" disabled selected>Choose drop off location type</option>
-                                    <option value="airport">Airport</option>
-                                    <option value="business">Business</option>
-                                    <option value="home">Home</option>
-                                    <option value="apartment">Apartment/Condo</option>
-                                </select>
-                                <label>Drop me off at</label>
-                            </div>
-                        </div>-->
 
                         <div class="row free-text for-drive dropoff_address">
                             <div class="input-field col s12">
@@ -241,127 +193,63 @@
                 </div>
             </form>
         </div>
+        
     </div>
 
-
-    <div id="modal1" class="custom-modal modal">
+    <div id="modal1" class="modal custom-modal">
                 
         <div class="modal-content">
-          <h5><i class="material-icons grey-text">mode_edit</i> Pick up address</h5>
-          <div class='row'>
-            <div class="input-field col s12">
-               <label for="pick_address">Address</label>
-               <input id="pick_address" name='pick_address' type="text">
+            <h5><i class="material-icons grey-text">mode_edit</i> Pick up address</h5>
+            <div class='row'>
+                <div class="input-field col s12">
+                    <input id="pick_address" name='pick_address' placeholder="Search location or drop pin" type="text">
+                </div>
             </div>
-          </div>
-          <div class='row'>
-            <div class="input-field col s5">
-                <label for="pick_state">State</label>
-                <input type="text" name='pick_state' id='pick_state' class='state'>
-                
+            <div class='row'>
+                <div id="pickup-map"></div>
             </div>
-            <div class="input-field col s5">
-               <label for="pick_city">City</label>
-               <input id="pick_city" name='pick_city' type="text">
+            <div class="modal-footer"> 
+                <div class="row done">
+                    <button type='button' class="modal-action modal-close col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>
+                </div>
             </div>
-            <div class="input-field col s2">
-               <label for="pick_zip">Zip</label>
-               <input id="pick_zip" name='pick_zip' type="text" class='zip'>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer"> 
-            <div class="row done">
-                <button type='button' class="modal-action modal-close col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>
-            </div>
-        </div>
 
+        </div>
     </div>
 
-    <div id="modal2" class="custom-modal modal">
+     <div id="modal2" class="modal custom-modal">
                 
         <div class="modal-content">
-          <h5><i class="material-icons grey-text">mode_edit</i> Drop off address</h5>
-          <div class='row'>
-            <div class="input-field col s12">
-               <label for="drop_address">Address</label>
-               <input id="drop_address" name='drop_address' type="text">
+            <h5><i class="material-icons grey-text">mode_edit</i> Drop off address</h5>
+            <div class='row'>
+                <div class="input-field col s12">
+                    <input id="drop_address" name='drop_address' placeholder="Search location or drop pin" type="text">
+                </div>
             </div>
-          </div>
-          <div class='row'>
-            <div class="input-field col s5">
-                <label for="drop_state">State</label>
-                <input type="text" name='drop_state' id='drop_state' class='state'/>
+            <div class='row'>
+                <div id="dropoff-map"></div>
             </div>
-            <div class="input-field col s5">
-               <label for="drop_city">City</label>
-               <input id="drop_city" name='drop_city' type="text">
+            <div class="modal-footer"> 
+                <div class="row done">
+                    <button type='button' class="modal-action modal-close col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>
+                </div>
             </div>
-            <div class="input-field col s2">
-               <label for="drop_zip">Zip</label>
-               <input id="drop_zip" name='pick_zip' type="text">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer"> 
-            <div class="row done">
-                <button type='button' class="modal-action modal-close col s12 waves-effect waves-light deep-purple accent-3 white-text btn-flat btn-large"><i class='material-icons medium'>done</i></button>
-            </div>
-        </div>
 
+        </div>
     </div>
 
     <script>
         $(function(){
-            $('#state').change(function(){
-                $("#city option[value!='']").remove();
-                $("#city").val('');
-                @foreach ($states as $state)
-                if ($(this).val() == {{$state->id}}) {
-                    $.each({!!$state->cities!!}, function(key, value) {
-                        $('#city').append($("<option/>", {value: value, text: value}));
-                    });
-                }
-                @endforeach
-                $('select').material_select();
-            });
 
-        @if($selectedCity)
-            @foreach ($states as $state)
-            @if ($state->id == $selectedState) 
-                $.each({!!$state->cities!!}, function(key, value) {
-                    $('#city').append($("<option/>", {value: value, text: value}));
-                });
-            @endif
-            @endforeach
-            $("#city").val('{{$selectedCity}}');
-        @else
-            $('#state').change();
-        @endif
-            
             $('#modal1').modal(
                 {
                     dismissible: false,
                     opacity: .5,
                     in_duration: 100,
                     out_duration: 100, 
-                    starting_top: '2%', 
-                    ending_top: '2%',
+                    starting_top: '0%', 
+                    ending_top: '0%',
                     complete: function() { 
-                        var address = [];
-                        if ($("#pick_address").val()) 
-                            address.push($("#pick_address").val());
-
-                        if ($("#pick_city").val())
-                            address.push($("#pick_city").val());
-
-                        if ($("#pick_state").val())
-                            address.push($("#pick_state").val());
-
-                        if ($("#pick_zip").val()) 
-                            address.push($("#pick_zip").val());
-
-                        $("#pickup_address").val(address.join(', ')).change();
                     } 
                 }
             );
@@ -372,59 +260,28 @@
                     opacity: .5,
                     in_duration: 100,
                     out_duration: 100, 
-                    starting_top: '2%', 
-                    ending_top: '2%',
+                    starting_top: '0%', 
+                    ending_top: '0%',
                     complete: function() { 
-                        var address = [];
-                        if ($("#drop_address").val()) 
-                            address.push($("#drop_address").val());
-
-                        if ($("#drop_city").val())
-                            address.push($("#drop_city").val());
-
-                        if ($("#drop_state").val())
-                            address.push($("#drop_state").val());
-
-                        if ($("#drop_zip").val()) 
-                            address.push($("#drop_zip").val());
-
-                        $("#dropoff_address").val(address.join(', ')).change();
                     } 
                 }
             );
 
+
             $("body").on('focus', "#pickup_address", function(){
-                if (!$("#pickup_address").val()) {
-                    if ($("#state").val()) {
-                        $("#pick_state").val($("#state option:selected").text());
-                        $('label[for="pick_state"]').addClass('active');
-                    }
-                    
-                    if ($("#city").val()) {
-                        $("#pick_city").val($("#city").val());
-                        $('label[for="pick_city"]').addClass('active');
-                    }
-                }
                 $('#modal1').modal('open');
                 $("#pickup_address").blur();
+                initMap();
             });
 
             $("body").on('focus', "#dropoff_address", function(){
-                if (!$("#dropoff_address").val()) {
-                    if ($("#state").val()) {
-                        $("#drop_state").val($("#state option:selected").text());
-                        $('label[for="drop_state"]').addClass('active');
-                    }
-                    
-                    if ($("#city").val()) {
-                        $("#drop_city").val($("#city").val());
-                        $('label[for="drop_city"]').addClass('active');
-                    }
-                }
                 $('#modal2').modal('open');
                 $("#dropoff_address").blur();
+                initMap2();
             });
-            
+
+
+                     
             $("body").on('change', ".switch input[type=checkbox]", function(){
                 if($(this).is(':checked')) {
                     $(this).parent().find('.left-part').removeClass('selected');
@@ -446,8 +303,6 @@
             });
 
             $("#type").change();
-
-            
 
             $("body").on('change', "#drive", function(){
                 if($(this).is(':checked')) {
@@ -566,14 +421,11 @@
 
             var validate = function() {
                 var valid = true;
-                var required = ['city', 'state', 
-                //'pickup', 
-                'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
+                var required = ['pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
                 } else {
-                    //required.push('dropoff');
                     required.push('dropoff_address');
                 }
 
@@ -614,14 +466,11 @@
 
             var validateField = function(input) {
 
-                var required = ['city', 'state', 
-                //'pickup', 
-                'pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
+                var required = ['pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
                 } else {
-                    //required.push('dropoff');
                     required.push('dropoff_address');
                 }
 
@@ -670,14 +519,172 @@
                 }
             });
 
-            $('.state').autocomplete({
-                data: {
-                   @foreach ($allStates as $state)
-                       "{{$state->state}}": null,
-                   @endforeach
-                },
-                limit: 5, 
-              });
         });
+    </script>
+    <script>
+      var mapInitialized = false;
+      function initMap() {
+        if (mapInitialized) 
+            return;
+        else
+            mapInitialized = true;
+
+        var center = {lat: 36.7791301, lng: -99.9283838};
+        var zoom = 8;
+        var address = "";
+
+        var styledMapType = new google.maps.StyledMapType([{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7f75b5"},{"visibility":"on"}]}]);
+
+        var createMap = function() {
+          var map = new google.maps.Map(document.getElementById('pickup-map'), {
+            zoom: zoom,
+            center: center,
+            mapTypeControl: false,
+            zoomControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            fullscreenControl: false
+          });
+
+          map.mapTypes.set('styled_map', styledMapType);
+          map.setMapTypeId('styled_map');     
+
+          var marker = new google.maps.Marker({
+            position: center,
+            map: map,
+            draggable: true,
+          });  
+          var geocoder = new google.maps.Geocoder();
+
+          var fillForm = function(place){
+            $("#pickup_address").val(place.formatted_address);
+          };
+
+          var input = (document.getElementById('pick_address'));
+          var autocomplete = new google.maps.places.Autocomplete(input);
+          autocomplete.bindTo('bounds', map);
+
+          autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            map.setCenter(place.geometry.location);
+            marker.setPosition(place.geometry.location);
+            map.setZoom(15);
+            fillForm(autocomplete.getPlace());
+          });
+
+          google.maps.event.addListener(marker, 'dragend', function() 
+          {
+              geocoder.geocode({'location': marker.getPosition()}, function(results, status) {
+                  fillForm(results[0]);
+              });
+          });
+          
+          map.set("disableDoubleClickZoom", true);
+          google.maps.event.addListener(map, 'click', function(e) 
+          {
+              marker.setPosition(e.latLng);
+              geocoder.geocode({'location': e.latLng}, function(results, status) {
+                  fillForm(results[0]);
+              });
+          });
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position){
+                center.lat = position.coords.latitude;
+                center.lng = position.coords.longitude;
+                zoom = 14;
+                createMap();
+            }, function(failure){
+               createMap();
+            });
+        } else {
+          createMap();
+        }
+    };
+
+    var mapInitialized2 = false;
+    function initMap2() {
+        if (mapInitialized2) 
+            return;
+        else
+            mapInitialized2 = true;
+
+        var center = {lat: 36.7791301, lng: -99.9283838};
+        var zoom = 8;
+        var address = "";
+
+        var styledMapType = new google.maps.StyledMapType([{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7f75b5"},{"visibility":"on"}]}]);
+
+        var createMap2 = function() {
+          var map = new google.maps.Map(document.getElementById('dropoff-map'), {
+            zoom: zoom,
+            center: center,
+            mapTypeControl: false,
+            zoomControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            fullscreenControl: false
+          });
+
+          map.mapTypes.set('styled_map', styledMapType);
+          map.setMapTypeId('styled_map');     
+
+          var marker = new google.maps.Marker({
+            position: center,
+            map: map,
+            draggable: true,
+          });  
+          var geocoder = new google.maps.Geocoder();
+
+          var fillForm = function(place){
+            $("#dropoff_address").val(place.formatted_address);
+          };
+
+          var input = (document.getElementById('drop_address'));
+          var autocomplete = new google.maps.places.Autocomplete(input);
+          autocomplete.bindTo('bounds', map);
+
+          autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            map.setCenter(place.geometry.location);
+            marker.setPosition(place.geometry.location);
+            map.setZoom(15);
+            fillForm(autocomplete.getPlace());
+          });
+
+          google.maps.event.addListener(marker, 'dragend', function() 
+          {
+              geocoder.geocode({'location': marker.getPosition()}, function(results, status) {
+                  fillForm(results[0]);
+              });
+          });
+          
+          map.set("disableDoubleClickZoom", true);
+          google.maps.event.addListener(map, 'click', function(e) 
+          {
+              marker.setPosition(e.latLng);
+              geocoder.geocode({'location': e.latLng}, function(results, status) {
+                  fillForm(results[0]);
+              });
+          });
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position){
+                center.lat = position.coords.latitude;
+                center.lng = position.coords.longitude;
+                zoom = 14;
+                createMap2();
+            }, function(failure){
+               createMap2();
+            });
+        } else {
+          createMap2();
+        }
+    };
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{config("services.google.maps.api_key")}}&libraries=places&language=en">
     </script>
 @endsection

@@ -602,22 +602,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .custom-modal {
-	width:33%!important;
-	height:317px;
-	min-height:317px;
+	width:100%;
+    height: 100%;
+    min-height: 100vh;
 	overflow: hidden;
-}
-
-@media (max-width:600px) {
-	.custom-modal {
-		width:98%!important;
-	}
-}
-
-@media (min-width:601px) and (max-width:768px) {
-	.custom-modal {
-		width:82%!important;
-	}
+    border-radius: 0px;
 }
 
 .modal-overlay {
@@ -627,6 +616,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .custom-modal .modal-footer {
 	padding: 0;
 	height: initial;
+    position: absolute;
+    bottom: 0px;
+}
+
+.custom-modal .row {
+    margin-bottom: 0px;
 }
 
 .custom-modal .done {
@@ -634,6 +629,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 .custom-modal.modal .modal-footer .btn-large, .custom-modal.modal .modal-footer .btn-flat {
 	margin: 0;
+    border-radius: 0px;
 }
 
 .custom-modal .dropdown-content.select-dropdown {
@@ -641,7 +637,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .custom-modal.modal .modal-content {
-	padding:24px 10px;
+	padding:0px;
+}
+#pickup-map {
+    height: 85vh;
+}
+#dropoff-map {
+    height: 85vh;
 }
 
 .custom-modal h5 {
@@ -794,4 +796,25 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .subscription-page .switch.default {
   height: initial;
+}
+
+@media (max-width: 600px) {
+    .card-panel {
+        border-radius:0px;
+    }
+}
+
+.pac-container {
+    z-index:10000!important;
+}
+
+@media (min-width: 601px) {
+    .custom-modal {
+        width:98%;
+        max-width: 800px;
+        min-height: 96vh;
+        margin-top:1%;
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px; 
+    }
 }
