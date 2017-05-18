@@ -587,6 +587,9 @@
                   fillForm(results[0]);
               });
           });
+          geocoder.geocode({'location': marker.getPosition()}, function(results, status) {
+              fillForm(results[0]);
+          });
         }
 
         if (navigator.geolocation) {
@@ -667,6 +670,9 @@
               geocoder.geocode({'location': e.latLng}, function(results, status) {
                   fillForm(results[0]);
               });
+          });
+          geocoder.geocode({'location': marker.getPosition()}, function(results, status) {
+              fillForm(results[0]);
           });
         }
 
