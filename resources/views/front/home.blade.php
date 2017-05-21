@@ -31,7 +31,7 @@
           font-family: Roboto;
           font-size: 15px;
           text-overflow: ellipsis;
-          margin-top: 10px;
+          margin-top: 11vh;
           width: 90%;
           max-width:500px;
           padding: 5px;
@@ -71,9 +71,19 @@
             bottom: 60px!important;
           }
         }
+        .fr-logo {
+          background: url(../img/logo-new.png) center center no-repeat;
+          height: 10vh;
+          background-size: contain;
+          position: absolute;
+          margin: auto; 
+          z-index:1;
+          width: 100%;
+        }
     </style>
 @endsection
 @section('content')
+    <div class='fr-logo'></div>
     <input id="pac-input" class="controls" type="text" placeholder="Where is the service required?">
     <div id="map"></div>
 
