@@ -13,10 +13,15 @@ class SubscriptionController extends Controller
     public function subscribe(Request $request, $hash)
     {
         $provider = Provider::where('subscription_key', $hash)->first();
+        if ($provider->is_taxi) {
+            $types = Type::where('taxi_available', 1)->get();
+        } else {
+            $types = Type::all();
+        }
         return view('front.provider.subscribe', [
             'provider' => $provider,
             'states' => State::all(),
-            'types' => Type::all()
+            'types' => $types
         ]);
     }
 

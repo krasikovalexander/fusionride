@@ -38,6 +38,7 @@ class ProvidersController extends Controller
 
             $data = $request->all();
             $data['draft'] = $request->has('draft');
+            $data['is_taxi'] = $request->has('is_taxi');
 
             if ($request->get('action') == 'clone') {
                 $provider = new Provider;
@@ -82,6 +83,7 @@ class ProvidersController extends Controller
 
             $data = $request->all();
             $data['draft'] = $request->has('draft');
+            $data['is_taxi'] = $request->has('is_taxi');
             $data['phone_numbers'] = preg_replace("/[^0-9]/", "", $request->get('phone', ""));
             $data['subscription_key'] = base64_encode(Hash::make(str_random(64)));
 

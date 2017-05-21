@@ -45,6 +45,18 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> <input type="checkbox" class="i-checks" name='taxi_available' {{$type->taxi_available ? "checked" : ""}}> Taxi available </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> <input type="checkbox" class="i-checks" name='protected' {{$type->protected ? "checked" : ""}}> Protected (only admin can assign) </label>
+                </div>
+            </div>
+
 	        <div class="form-group">
 	            <div class="col-lg-offset-2 col-lg-10">
 	             	<a class="btn btn-default" href="{{route('admin.types')}}">Cancel</a>

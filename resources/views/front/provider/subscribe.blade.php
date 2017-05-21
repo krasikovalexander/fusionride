@@ -123,13 +123,30 @@
                                 <label class="col-lg-2 control-label">Car types</label>
                                 @foreach($types as $type)
                                 <div class="col-lg-offset-2 col-lg-10">
+                                    @if($type->protected)
+                                    <div class="switch default">
+                                        <label>
+                                            {{$type->name}}
+                                            @if (in_array($type->id, (array)old('type', $provider->cars)))
+                                                <input type="hidden" name="type[]" value="{{$type->id}}">
+                                                <span class="pull-right" style="margin-right: 20px;">Yes</span>
+                                            @else
+                                                <span class="pull-right" style="margin-right: 20px;">No</span>
+                                            @endif
+                                        </label>
+                                        <div class="note" style="padding: 5px 0px; font-size:0.8rem; color:#777">
+                                            <a href="mailto:610allrave@gmail.com">Contact us</a> in order to {{in_array($type->id, (array)old('type', $provider->cars)) ? 'disable' : 'enable'}} this type of car
+                                        </div>
+                                    </div>        
+                                    @else
                                     <div class="switch default">
                                         <label>
                                             {{$type->name}}
                                             <input type="checkbox" {{in_array($type->id, (array)old('type', $provider->cars)) ? "checked" : ""}} value='{{$type->id}}' name='type[]'> 
                                             <span class="lever"></span>
                                         </label>
-                                    </div>            
+                                    </div>  
+                                    @endif         
                                 </div>
                                 @endforeach
                             </div>

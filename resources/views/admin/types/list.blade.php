@@ -21,6 +21,8 @@
                 <th>Name</th>
                 <th data-hide="phone">Passengers</th>
                 <th>Active</th>
+                <th data-hide="phone">Taxi available</th>
+                <th data-hide="phone">Protected</th>
                 <th data-sortable="false">Actions</th>
             </tr>
             </thead>
@@ -31,6 +33,8 @@
                 <td>{{$type->name}}</td>
                 <td>{{$type->passengers}}</td>
                 <td>{{$type->active ? 'Active' : 'Disabled'}}</td>
+                <td>{{$type->taxi_available ? 'Yes' : ''}}</td>
+                <td>{!!$type->protected ? '<i class="fa fa-lock" aria-hidden="true"></i>' : ''!!}</td>
                 <td>
                     <a href="{{route('admin.types.edit', ['id'=>$type->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a>
                 @if($type->sort != $minSort)

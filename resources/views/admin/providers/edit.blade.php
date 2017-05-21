@@ -134,6 +134,12 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> <input type="checkbox" class="i-checks" name='is_taxi' {{ old('is_taxi', $provider->is_taxi) ? "checked" : ""}}> Taxi </label>
+                </div>
+            </div>
+
 
             <div class="form-group">
             	<label class="col-lg-2 control-label">Car types</label>

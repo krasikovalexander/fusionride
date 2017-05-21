@@ -13,7 +13,7 @@ class Provider extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name', 'state_id', 'city', 'address', 'site', 'phone', 'status', 'note', 'draft', 'email', 'phone_numbers', 'subscription_status', 'subscription_key'
+        'name', 'state_id', 'city', 'address', 'site', 'phone', 'status', 'note', 'draft', 'email', 'phone_numbers', 'subscription_status', 'subscription_key', 'is_taxi'
     ];
 
     public function types()
