@@ -115,7 +115,7 @@
 	<tr>
 		<td></td>
 		<td>
-			<a href="{{route('front.provider.quote.show', ['hash' => $track->hash])}}"><button style="background: #ff0af7;background-image: -webkit-linear-gradient(top, #ff0af7, #ce00d9);background-image: -moz-linear-gradient(top, #ff0af7, #ce00d9);background-image: -ms-linear-gradient(top, #ff0af7, #ce00d9);background-image: -o-linear-gradient(top, #ff0af7, #ce00d9);background-image: linear-gradient(to bottom, #ff0af7, #ce00d9);-webkit-border-radius: 5;-moz-border-radius: 5;border-radius: 5px;text-shadow: 1px 1px 3px #1c1c1c;font-family: Arial;color: #ffffff;font-size: 20px;padding: 10px 20px 10px 20px;text-decoration: none;" type="button">Bid your price</button></a>
+			<a href="{{route('front.provider.quote.show', ['hash' => $track->hash])}}"><button style="border: none;background: #ff0af7;background-image: -webkit-linear-gradient(top, #ff0af7, #ce00d9);background-image: -moz-linear-gradient(top, #ff0af7, #ce00d9);background-image: -ms-linear-gradient(top, #ff0af7, #ce00d9);background-image: -o-linear-gradient(top, #ff0af7, #ce00d9);background-image: linear-gradient(to bottom, #ff0af7, #ce00d9);-webkit-border-radius: 5;-moz-border-radius: 5;border-radius: 5px;text-shadow: 1px 1px 3px #1c1c1c;font-family: Arial;color: #ffffff;font-size: 20px;padding: 10px 20px 10px 20px;text-decoration: none;" type="button">Bid your price</button></a>
 		</td>
 	</tr>
 	
