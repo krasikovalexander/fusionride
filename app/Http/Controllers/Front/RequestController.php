@@ -12,6 +12,7 @@ use App\Subscription;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\DB;
 use App\Mail\RequestToProvider;
+use App\Mail\Quoted;
 use Illuminate\Support\Facades\Mail;
 use PDF;
 use Hash;
@@ -20,7 +21,7 @@ use Validator;
 class RequestController extends Controller
 {
     public function index(HttpRequest $request)
-    {       
+    {
         if ($request->isMethod('post')) {
             $this->validate($request, [
                 'pickup_date' => 'required',
@@ -53,13 +54,14 @@ class RequestController extends Controller
             //send email
             if (count($providers)) {
                 $providers->each(function ($provider) use ($rideRequest) {
-                    Mail::to($provider->email)
-                        ->queue(new RequestToProvider($provider, $rideRequest));
-                    
                     $track = new Track();
                     $track->request_id = $rideRequest->id;
                     $track->provider_id = $provider->id;
+                    $track->hash = base64_encode(Hash::make(str_random(64)));
                     $track->save();
+
+                    Mail::to($provider->email)
+                        ->queue(new RequestToProvider($provider, $rideRequest, $track));
                 });
             } else {
                 $rideRequest->failed = true;
@@ -191,5 +193,34 @@ class RequestController extends Controller
         $track->notes = $request->get('notes');
         $track->save();
         return redirect()->route('front.tracking', ['hash' => $hash])->with(['isSaved' => true]);
+    }
+
+    public function quote(HttpRequest $request, $hash)
+    {
+        $track = Track::whereHash($hash)->with(['request', 'provider'])->first();
+        
+        if (!$track) {
+            return back()->with("notifications", ["warning" => 'Not found']);
+        }
+
+        if ($request->isMethod('post')) {
+            if ($track->quote) {
+                return redirect()->route('front.provider.quote.store')->with("notifications", ["error" => 'Quote already saved!']);
+            }
+
+            $this->validate($request, [
+                'quote' => 'required'
+            ]);
+
+            $track->quote = $request->get('quote');
+            $track->save();
+
+            Mail::to($track->request->email)
+                ->queue(new Quoted($track));
+            
+            return redirect()->route('front.provider.quote.store', ['hash'=>$track->provider->subscription_key])->with("notifications", ["success" => 'Quote saved!']);
+        }
+
+        return view("front.quote", ['track' => $track, 'request' => $track->request, 'provider' => $track->provider]);
     }
 }
