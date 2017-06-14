@@ -1,7 +1,7 @@
 @extends('layouts.mail')
 @section('content')
 <p>Hello,</p>
-<p>provider <b>{{$track->provider->name}}</b> has quoted yor request:</p>
+<p>provider <b>{{$track->provider->name}}</b> has quoted your request:</p>
 
 <table cellpadding="10" cellspacing="0" border="0">
     <tr>
@@ -88,7 +88,7 @@
 @section('footer')
 @if($track->request->key_access_agreed)
 <div>
-    Visit <a href="{{route('front.tracking', ['hash' => $track->request->hashkey])}}">tracking</a> page to check all quotes.
+    Visit <a href="{{route('front.tracking', ['hash' => $track->request->hashkey])}}">tracking</a> page to check all quotes for this request.
 </div>
 <div style="clear:both"></div>
 @endif
