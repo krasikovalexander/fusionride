@@ -122,6 +122,7 @@
 </table>
 	
 @endsection
+
 @section('footer')
 <div>
 	You received this email because you subscribed to a free <a href="http://FusionRide.net">FusionRide.net</a> service.

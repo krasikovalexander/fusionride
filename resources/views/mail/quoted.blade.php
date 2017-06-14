@@ -91,4 +91,5 @@
     Visit <a href="{{route('front.tracking', ['hash' => $track->request->hashkey])}}">tracking</a> page to check all quotes.
 </div>
 <div style="clear:both"></div>
+@endif
 @endsection
