@@ -1,7 +1,7 @@
 @extends('layouts.mail')
 @section('content')
 <p>Hello,</p>
-<p>provider <b>{{$track->request->provider->name}}</b> has quoted yor request:</p>
+<p>provider <b>{{$track->provider->name}}</b> has quoted yor request:</p>
 
 <table cellpadding="10" cellspacing="0" border="0">
     <tr>

@@ -12,8 +12,6 @@ class Quoted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $provider;
-    public $request;
     public $track;
 
     /**
