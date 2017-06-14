@@ -5,8 +5,8 @@
 
 <table cellpadding="10" cellspacing="0" border="0">
     <tr>
-        <td><b>Quote</b></td>
-        <td>
+        <td style="color:red"><b>Quote</b></td>
+        <td style="color:red">
             <b>{{$track->quote}}</b>
         </td>
     </tr>
