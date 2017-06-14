@@ -84,3 +84,11 @@
 
 </table>
 @endsection
+
+@section('footer')
+@if($track->request->key_access_agreed)
+<div>
+    Visit <a href="{{route('front.tracking', ['hash' => $track->request->hashkey])}}">tracking</a> page to check all quotes.
+</div>
+<div style="clear:both"></div>
+@endsection
