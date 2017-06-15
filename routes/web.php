@@ -23,6 +23,8 @@ Route::group(['as' => 'front.'], function () {
     Route::post('/request/tracking/approve', ['as' => 'approve', 'uses' => 'Front\RequestController@approve']);
     Route::get('/request/tracking/{hash}', ['as' => 'tracking', 'uses' => 'Front\RequestController@tracking']);
     Route::post('/request/tracking/{hash}', ['as' => 'tracking.update', 'uses' => 'Front\RequestController@update']);
+    Route::get('/request/quote/{hash}', ['as' => 'provider.quote.show', 'uses' => 'Front\RequestController@quote']);
+    Route::post('/request/quote/{hash}', ['as' => 'provider.quote.store', 'uses' => 'Front\RequestController@quote']);
     Route::get('/subscription/{hash}', ['as' => 'provider.subscribe', 'uses' => 'Front\SubscriptionController@subscribe']);
     Route::post('/subscription/{hash}', ['as' => 'provider.update', 'uses' => 'Front\SubscriptionController@update']);
     Route::any('/subscription/{hash}/unsubscribe', ['as' => 'provider.unsubscribe', 'uses' => 'Front\SubscriptionController@unsubscribe']);

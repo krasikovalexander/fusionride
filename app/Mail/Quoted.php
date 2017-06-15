@@ -6,16 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Provider;
-use App\Request;
 use App\Track;
 
-class RequestToProvider extends Mailable
+class Quoted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $provider;
-    public $request;
     public $track;
 
     /**
@@ -23,10 +19,8 @@ class RequestToProvider extends Mailable
      *
      * @return void
      */
-    public function __construct(Provider $provider, Request $request, Track $track)
+    public function __construct(Track $track)
     {
-        $this->provider = $provider;
-        $this->request = $request;
         $this->track = $track;
     }
 
@@ -37,8 +31,7 @@ class RequestToProvider extends Mailable
      */
     public function build()
     {
-        return $this->subject('Fusion Ride availability request')
-            ->replyTo($this->request->email)
-            ->view('mail.request');
+        return $this->subject('Fusion Ride new quote')
+            ->view('mail.quoted');
     }
 }

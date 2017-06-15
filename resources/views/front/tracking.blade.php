@@ -73,6 +73,7 @@
 		        							<th data-sortable="false" data-breakpoints="xs sm md">Site</th>
 		        							<th>Result</th>
 		        							<th>Price</th>
+                                            <th data-breakpoints="xs">Quote</th>
 		        							<th data-sortable="false" data-breakpoints="all">Notes</th>
 		        							<th data-sortable="false" style="width:32px"></th>
 		        						</tr>
@@ -96,6 +97,9 @@
 		                                <td>
                                 			<input class='browser-default price' style="width:50px; background-color: white; border: 1px solid #f2f2f2;"  name='price' type="text" value="{{$track->price}}">
                                 		</td>
+                                        <td>
+                                            {{$track->quote ? $track->quote : "Unknown"}}
+                                        </td>
                                 		<td>
                                 			<textarea class='browser-default notes' style="border: 1px solid #f2f2f2;"  name='notes'>{{$track->notes}}</textarea>
                                 		</td>
