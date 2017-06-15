@@ -98,11 +98,6 @@
                             </div>
                         </div>
 
-                        @if ( session()->has('notifications') )
-                            @foreach(session()->get('notifications') as $type => $notification)
-                                <div class="{{$type}}">{{$notification}}</div>
-                            @endforeach
-                        @endif
                         {{ csrf_field() }}
                         <div class="form-group">
                                 <div class="center">
@@ -111,6 +106,12 @@
                                     </button>
                                 </div>
                         </div>
+                        @endif
+
+                        @if ( session()->has('notifications') )
+                            @foreach(session()->get('notifications') as $type => $notification)
+                                <div class="card-panel z-depth-1 {{['error'=> 'red', 'success'=>'green'][$type]}}">{{$notification}}</div>
+                            @endforeach
                         @endif
                     </div>
                     <div class="card-action">

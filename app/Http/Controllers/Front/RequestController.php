@@ -218,7 +218,7 @@ class RequestController extends Controller
             Mail::to($track->request->email)
                 ->queue(new Quoted($track));
             
-            return redirect()->route('front.provider.quote.store', ['hash'=>$track->provider->subscription_key])->with("notifications", ["success" => 'Quote saved!']);
+            return redirect()->route('front.provider.quote.store', ['hash' => $track->hash])->with("notifications", ["success" => 'Quote saved!']);
         }
 
         return view("front.quote", ['track' => $track, 'request' => $track->request, 'provider' => $track->provider]);
