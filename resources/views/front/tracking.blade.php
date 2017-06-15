@@ -56,6 +56,7 @@
 	        			@if (isset($isSaved)) 
 	        				<p class='success'>Information updated!</p>
 	        			@endif
+                        <p class='note'>The quote is not absolute, ALWAYS review your selected subscribers financial contract and inquire about any concerns before signing/agreeing to any and all of the subscribers binding contract terms.</p>
 	        		</li>
 	   
 	           		<form method='post' action="{{route('front.tracking.update', ['hash' => $hash])}}" id='form'>
