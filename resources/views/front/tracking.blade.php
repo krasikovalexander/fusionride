@@ -69,6 +69,7 @@
 	        							<tr>
 		        							<th>Name</th>
 		        							<th data-sortable="false" data-breakpoints="all">Address</th>
+                                            <th data-sortable="false" data-breakpoints="all">Reviews</th>
 		        							<th data-sortable="false" data-breakpoints="xs sm">Phone</th>
 		        							<th data-sortable="false" data-breakpoints="xs sm md">Site</th>
 		        							<th>Result</th>
@@ -83,6 +84,16 @@
         							<tr>
         								<td>{{$track->provider->name}}</td>
 							      		<td>{{$track->provider->address}}</td>
+                                        <td>
+                                            @if($track->provider->google_place_id) 
+                                                    <div class="rating ">
+                                                        <div class='rate'>{{(double)$track->provider->google_review_rating}}</div> <span class="rating-static rating-{{10*round($track->provider->google_review_rating*2)/2}}"></span>
+                                                    </div>
+                                                    <a target="_blank"  href="{{$track->provider->googleReviewsLink}}">Reviews</a>
+                                            @elseif ($track->provider->id && $track->provider->address)
+                                                    Not available
+                                            @endif
+                                        </td>
 							      		<td>{{$track->provider->phone}}</td>
 							      		<td><a href="{{$track->provider->site}}">{{$track->provider->site}}</a></td>	      
 	        							<td>
