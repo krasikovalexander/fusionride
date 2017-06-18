@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\Geocode::class
+        Commands\Geocode::class,
+        Commands\Ratings::class
     ];
 
     /**
