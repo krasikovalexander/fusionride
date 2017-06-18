@@ -84,7 +84,7 @@ class Provider extends Model
             $data = curl_exec($ch);
             curl_close($ch);
             $data = json_decode($data);
-
+            Log::info(print_r($data, true));
             if (isset($data->status) && $data->status == 'OK') {
                 return isset($data->result->rating) ? $data->result->rating : null;
             }
@@ -104,7 +104,7 @@ class Provider extends Model
         $data = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($data);
-
+        Log::info(print_r($data, true));
         if (isset($data->status) && $data->status == 'OK') {
             if (count($data->results)) {
                 return [
