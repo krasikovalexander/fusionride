@@ -99,6 +99,13 @@
 	@endif
 
 	<tr>
+		<td>Name</td>
+		<td>
+			{{$request->name}}
+		</td>
+	</tr>
+
+	<tr>
 		<td>Email</td>
 		<td>
 			<a href='mailto:{{$request->email}}'>{{$request->email}}</a>
@@ -111,6 +118,15 @@
 			{{$request->phone}}
 		</td>
 	</tr>
+
+	@if($request->note)
+	<tr>
+		<td>Notes</td>
+		<td>
+			{{$request->note}}
+		</td>
+	</tr>
+	@endif
 
 	<tr>
 		<td></td>

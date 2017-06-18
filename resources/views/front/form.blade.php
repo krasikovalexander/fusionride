@@ -162,6 +162,14 @@
                             </div>
                         </div>
 
+
+                        <div class="row free-text name">
+                            <div class="input-field col s12">
+                               <label for="name">Name</label>
+                               <input id="name" name='name' type="text">
+                            </div>
+                        </div>
+
                         <div class="row free-text email">
                             <div class="input-field col s12">
                                <label for="email">Email</label>
@@ -173,6 +181,13 @@
                             <div class="input-field col s12">
                                <label for="phone">Phone</label>
                                <input id="phone" name='phone' type="text">
+                            </div>
+                        </div>
+
+                        <div class="row free-text note">
+                            <div class="input-field col s12">
+                               <label for="note">Notes</label>
+                               <textarea id="note" name='note'></textarea>
                             </div>
                         </div>
 
@@ -421,7 +436,7 @@
 
             var validate = function() {
                 var valid = true;
-                var required = ['pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
+                var required = ['pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address', 'name'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");
@@ -466,7 +481,7 @@
 
             var validateField = function(input) {
 
-                var required = ['pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address'];
+                var required = ['pickup-date', 'pickup-time', 'email', 'phone', 'pickup_address', 'name'];
                 if ($("#drive").is(':checked')) {
                     required.push("dropoff-date");
                     required.push("dropoff-time");

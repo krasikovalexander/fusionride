@@ -81,6 +81,17 @@
                         <div class="form-group"><label>Phone</label>
                             <div>{{$request->phone}}</div>
                         </div>-->
+                        <div class="form-group"><label>Name</label>
+                            <div>{{$request->name}}</div>
+                        </div>
+
+                        @if($request->note)
+                        <div class="form-group"><label>Notes</label>
+                            <div>{{$request->note}}</div>
+                        </div>
+                        @endif
+
+
                         @if($track->quote)
                         <div class="form-group"><label>Quote</label>
                             <div>{{$track->quote}}</div>

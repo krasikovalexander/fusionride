@@ -43,6 +43,7 @@ class SubscriptionController extends Controller
             $provider->subscription_status = 'subscribed';
             $provider->status = 'active';
             $provider->draft = false;
+            $provider->geocode();
         }
         $provider->save();
         $provider->types()->sync((array)$request->get('type'));

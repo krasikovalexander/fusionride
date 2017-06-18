@@ -47,9 +47,22 @@
                 @endif
 	            </div>
 	        </div>
+            @if($provider->google_place_id) 
+            <div class="form-group"><label class="col-lg-2 control-label">Google reviews</label>
+                <div class="col-lg-10">
+                    <div class="rating ">
+                        <div class='rate'>{{(double)$provider->google_review_rating}}</div> <span class="rating-static rating-{{10*round($provider->google_review_rating*2)/2}}"></span>
+                    </div>
+                    <a target="_blank"  href="{{$provider->googleReviewsLink}}">Reviews</a>
+                </div>
+            </div>
+            @elseif ($provider->id && $provider->address)
+            <div class="form-group"><label class="col-lg-2 control-label">Google reviews</label>
+                <div class="col-lg-10">Not available (<a target="blank" href="https://www.google.ru/search?q={{urlencode($provider->address)}}">check address</a>)</div>
+            </div>
+            @endif
 
 	        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Address</label>
-
 	            <div class="col-lg-10"><input type="text" class="form-control" name="address" value="{{ old('address', $provider->address) }}"> 
 	            @if ($errors->has('address'))
                     <span class="help-block">

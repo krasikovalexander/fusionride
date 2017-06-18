@@ -10,6 +10,7 @@
         <th data-hide="all">Email</th>
         <th data-hide="phone">Status</th>
         <th data-hide="phone">Subscription</th>
+        <th data-hide="phone">Google Rating</th>
         <th data-hide="phone,tablet">Note</th>
         <th data-hide="phone,tablet">Coords</th>
         <th>Actions</th>
@@ -27,6 +28,7 @@
         <td><a href="mailto:{{$provider->email}}">{{$provider->email}}</a></td>
         <td>{{ucwords($provider->status)}}</td>
         <td>{{ucwords($provider->subscription_status)}}</td>
+        <td>{{$provider->google_review_rating}}</td>
         <td>{{$provider->note}}</td>
         <td><span style="font-weight: bold; color: red">{{$provider->geocoded ? "" : "!"}}</span></td>
         <td>
