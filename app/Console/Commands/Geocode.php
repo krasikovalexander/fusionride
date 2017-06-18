@@ -38,7 +38,7 @@ class Geocode extends Command
      */
     public function handle()
     {
-        Provider::withTrashed()->chunk(100, function ($providers) {
+        Provider::withTrashed()->whereNull('lat')->chunk(100, function ($providers) {
             $providers->each(function ($provider) {
                 $provider->geocode(true);
             });
