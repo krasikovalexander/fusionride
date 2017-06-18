@@ -87,7 +87,7 @@ class Provider extends Model
             $data = json_decode($data);
             Log::info(print_r($data, true));
             if (isset($data->status) && $data->status == 'OK') {
-                return isset($data->result->rating) ? $data->result->rating : null;
+                return isset($data->result->rating) ? $data->result->rating : 0;
             }
             return null;
         }
