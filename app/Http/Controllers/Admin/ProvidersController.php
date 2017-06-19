@@ -45,11 +45,13 @@ class ProvidersController extends Controller
                 $data['draft'] = true;
             }
             
-            $oldProvider = $provider;
+            $oldAddress = $provider->address;
             
             $provider->fill($data);
             $provider->phone_numbers = $provider->phone ? preg_replace("/[^0-9]/", "", $provider->phone) : "";
-            $provider->geocode();
+            if ($oldAddress != $provider->address) {
+                $provider->geocode();
+            }
             $provider->save();
             $provider->types()->sync((array)$request->get('type'));
 

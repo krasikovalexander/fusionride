@@ -40,7 +40,14 @@
 	        		</li>
 	        		@foreach($providers as $provider)
 					    <li class="collection-item">
-					      <span class="title">{{$provider->name}}</span>
+					    <span class="title">{{$provider->name}}</span>
+					    @if($provider->google_place_id)
+					    <br/>
+					    <div class="rating" style="display:inline">
+                            <div class='rate'>{{(double)$provider->google_review_rating}}</div> <span class="rating-static rating-{{10*round($provider->google_review_rating*2)/2}}"></span>
+                            </div>
+                        <a target="_blank"  href="{{$provider->googleReviewsLink}}">Reviews</a>
+					    @endif
 					      <p>
 					      	Address: {{$provider->address}}<br/>
 					      	Phone: {{$provider->phone}}

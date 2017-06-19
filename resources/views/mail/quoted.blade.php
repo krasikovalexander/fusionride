@@ -82,6 +82,15 @@
     </tr>
     @endif
 
+    @if($track->request->note)
+    <tr>
+        <td>Notes</td>
+        <td>
+            {{$track->request->note}}
+        </td>
+    </tr>
+    @endif
+
 </table>
 @endsection
 

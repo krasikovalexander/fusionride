@@ -46,7 +46,11 @@
         /*]]>*/</script>
         <!-- End of ravesupport Zendesk Widget script -->
 
-
+        <script>
+            document.addEventListener("contextmenu", function(e){
+                e.preventDefault();
+            }, false);
+        </script>
 
 
         <title>FusionRide</title>

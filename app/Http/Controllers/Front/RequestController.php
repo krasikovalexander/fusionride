@@ -32,6 +32,7 @@ class RequestController extends Controller
                 'lat' => 'required',
                 'lng' => 'required',
                 'r' => 'required',
+                'name' => 'required'
             ]);
 
             $data = $request->all();
