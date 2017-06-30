@@ -186,8 +186,9 @@
 
                         <div class="row free-text note">
                             <div class="input-field col s12">
-                               <label for="note">Notes</label>
-                               <textarea id="note" name='note'></textarea>
+                            <label for="note">Notes</label>
+                               <textarea id="note" name='note' class="materialize-textarea"></textarea>
+                               
                             </div>
                         </div>
 

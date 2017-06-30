@@ -10,12 +10,12 @@
     user-select: none;
 }
 
-input:not(.select-dropdown) {
+input:not(.select-dropdown), .request-form textarea {
       -webkit-user-select: initial;
       -khtml-user-select: initial;
       -moz-user-select: initial;
       -ms-user-select: initial;
-      user-select: initial;
+      user-select: auto;
      } 
 
 .dropdown-content.select-dropdown::-webkit-scrollbar-track
