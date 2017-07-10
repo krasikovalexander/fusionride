@@ -23,6 +23,8 @@
                             <div class="input-field col s12">
                                <label for="pickup_address">Pick up address</label>
                                <input id="pickup_address" name='pickup_address' type="text" readonly>
+                               <input id="pickup_lat" name='pickup_lat' type="hidden">
+                               <input id="pickup_lng" name='pickup_lng' type="hidden">
                             </div>
                         </div>
 
@@ -573,6 +575,8 @@
           var geocoder = new google.maps.Geocoder();
 
           var fillForm = function(place){
+            $("#pickup_lat").val(place.geometry.location.lat());
+            $("#pickup_lng").val(place.geometry.location.lng());
             $("#pickup_address").val(place.formatted_address);
           };
 

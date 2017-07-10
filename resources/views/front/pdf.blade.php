@@ -59,7 +59,13 @@
                 @if($provider->site)
                 <br/>
                 Site: <a href="{{$provider->site}}">{{$provider->site}}</a> 
-                @endif    
+                @endif
+                <br/> 
+                Payment types:  {{$provider->accept_visa ? "Visa, " : ""}}
+                                {{$provider->accept_mc ? "MasterCard, " : ""}}
+                                {{$provider->accept_discover ? "Discover, " : ""}}
+                                {{$provider->accept_amex ? "Amex, " : ""}}
+                                {{$provider->accept_cash ? "Cash" : ""}}   
               </p>
             </li>
         @endforeach

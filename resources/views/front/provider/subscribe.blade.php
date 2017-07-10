@@ -86,6 +86,62 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Payment types</label>
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <div class="switch default">
+                                        <label>
+                                            Visa
+                                            <input type="checkbox" value='1' name='accept_visa' {{old('accept_visa', $provider->accept_visa) ? "checked" : ""}}> 
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>            
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <div class="switch default">
+                                        <label>
+                                            MasterCard
+                                            <input type="checkbox" value='1' name='accept_mc' {{old('accept_mc', $provider->accept_mc) ? "checked" : ""}}> 
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>            
+                                </div>
+
+
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <div class="switch default">
+                                        <label>
+                                            Discover
+                                            <input type="checkbox" value='1' name='accept_discover' {{old('accept_discover', $provider->accept_discover) ? "checked" : ""}}> 
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>            
+                                </div>
+
+
+                                <div class="col-lg-offset-2 col-lg-10">
+                                   <div class="switch default">
+                                       <label>
+                                           Amex
+                                           <input type="checkbox" value='1' name='accept_amex' {{old('accept_amex', $provider->accept_amex) ? "checked" : ""}}> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div>            
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <div class="switch default">
+                                        <label>
+                                            Cash
+                                            <input type="checkbox" value='1' name='accept_cash' {{old('accept_cash', $provider->accept_cash) ? "checked" : ""}}> 
+                                            <span class="lever"></span>
+                                        </label>
+                                    </div>            
+                                </div>
+                            </div>
+
+
                             @if($provider->google_place_id) 
                             <div class="form-group" style='padding-bottom: 15px;margin-bottom: 20px;border-bottom: 1px solid #9e9e9e;'>
                             <label class="col-lg-2 control-label">Google reviews</label>
@@ -167,6 +223,7 @@
                                 </div>
                                 @endforeach
                             </div>
+
 
                             <div class="form-group">
                                 <div class="center">

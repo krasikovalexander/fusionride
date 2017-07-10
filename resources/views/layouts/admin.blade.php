@@ -35,6 +35,7 @@
     <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="/css/plugins/select2/select2.min.css" rel="stylesheet">
     <link href="/css/plugins/bootcomplete/bootcomplete.css" rel="stylesheet">
+    <link href="/css/plugins/summernote/summernote.css" rel="stylesheet">
 
 
     <link href="/css/animate.css" rel="stylesheet">
@@ -79,6 +80,10 @@
                 </li>
                 <li>
                     <a href="{{route('admin.types')}}"><i class="fa fa-car"></i> <span class="nav-label">Car types</span> </a>
+                </li>
+
+                <li>
+                    <a href="{{route('admin.mail.send')}}"><i class="fa fa-envelope"></i> <span class="nav-label">Mass mail</span> </a>
                 </li>
             </ul>
 
@@ -134,6 +139,7 @@
 <script src="/js/plugins/bootcomplete/jquery.bootcomplete.js"></script>
 
 <script src="/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="/js/plugins/summernote/summernote.min.js"></script>
 
 
 <!-- Custom and plugin javascript -->

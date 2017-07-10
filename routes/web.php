@@ -53,5 +53,6 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.', 'prefix' => 'admin'], 
     Route::get('providers/search', ['as' => 'providers.search', 'uses' => 'Admin\ProvidersController@search']);
     Route::get('mail/retry', ['as' => 'mail.retry', 'uses' => 'Admin\MailController@retry']);
     Route::get('mail/restart', ['as' => 'mail.restart', 'uses' => 'Admin\MailController@restart']);
+    Route::any('mail/send', ['as' => 'mail.send', 'uses' => 'Admin\MailController@send']);
     Route::get('providers/{id}/invite', ['as' => 'providers.invite', 'uses' => 'Admin\ProvidersController@invite']);
 });

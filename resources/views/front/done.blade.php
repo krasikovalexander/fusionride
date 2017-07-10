@@ -22,7 +22,8 @@
   							</div>
 
 	        				<div class="center-align getlink">
-	        					<button class="waves-effect waves-light btn"><i class="material-icons left">verified_user</i>Get Link</button> <a class='no' href="{{route("home")}}">No, thanks</a>
+	        					<button class="waves-effect waves-light btn"><i class="material-icons left">verified_user</i>Click now and keep your bids in one place</button> 
+	        					<!--<a class='no' href="{{route("home")}}">No, thanks</a>-->
 	        				</div>
 	        			</form>
 	        			
@@ -54,7 +55,13 @@
 					      	@if($provider->site)
 					      	<br/>
 					      	Site: <a href="{{$provider->site}}">{{$provider->site}}</a>	
-					      	@endif	      
+					      	@endif	  
+					      	<br/> 
+					      	Payment types:  {{$provider->accept_visa ? "Visa, " : ""}}
+                                            {{$provider->accept_mc ? "MasterCard, " : ""}}
+                                            {{$provider->accept_discover ? "Discover, " : ""}}
+                                            {{$provider->accept_amex ? "Amex, " : ""}}
+                                            {{$provider->accept_cash ? "Cash" : ""}}
 					      </p>
 					    </li>
 	        		@endforeach

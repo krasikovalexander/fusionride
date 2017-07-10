@@ -13,6 +13,9 @@ class SubscriptionController extends Controller
     public function subscribe(Request $request, $hash)
     {
         $provider = Provider::where('subscription_key', $hash)->first();
+        if (!$provider) {
+            abort(404);
+        }
         if ($provider->is_taxi) {
             $types = Type::where('taxi_available', 1)->get();
         } else {
@@ -42,6 +45,14 @@ class SubscriptionController extends Controller
         ]);
 
         $data = $request->all();
+
+        $data['accept_visa'] = $request->has('accept_visa');
+        $data['accept_mc'] = $request->has('accept_mc');
+        $data['accept_amex'] = $request->has('accept_amex');
+        $data['accept_discover'] = $request->has('accept_discover');
+        $data['accept_cash'] = $request->has('accept_cash');
+
+
         $oldAddress = $provider->address;
         $provider->fill($data);
         $provider->phone_numbers = $provider->phone ? preg_replace("/[^0-9]/", "", $provider->phone) : "";

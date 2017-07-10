@@ -70,12 +70,14 @@
 	        							<tr>
 		        							<th>Name</th>
 		        							<th data-sortable="false" data-breakpoints="all">Address</th>
+                                            <th data-sortable="false" data-breakpoints="all">Distance to pickup location</th>
                                             <th data-sortable="false" data-breakpoints="all">Reviews</th>
 		        							<th data-sortable="false" data-breakpoints="xs sm">Phone</th>
 		        							<th data-sortable="false" data-breakpoints="xs sm md">Site</th>
 		        							<th>Result</th>
 		        							<th>Price</th>
                                             <th data-breakpoints="xs">Quote</th>
+                                            <th data-sortable="false" data-breakpoints="all">Payment types</th>
 		        							<th data-sortable="false" data-breakpoints="all">Notes</th>
 		        							<th data-sortable="false" style="width:32px"></th>
 		        						</tr>
@@ -85,6 +87,7 @@
         							<tr>
         								<td>{{$track->provider->name}}</td>
 							      		<td>{{$track->provider->address}}</td>
+                                        <td>{{$track->distance ? number_format($track->distance,2)." Miles" : ""}}</td>
                                         <td>
                                             @if($track->provider->google_place_id) 
                                                     <div class="rating ">
@@ -111,6 +114,13 @@
                                 		</td>
                                         <td>
                                             {{$track->quote ? $track->quote : "Unknown"}}
+                                        </td>
+                                        <td>
+                                            {{$track->provider->accept_visa ? "Visa, " : ""}}
+                                            {{$track->provider->accept_mc ? "MasterCard, " : ""}}
+                                            {{$track->provider->accept_discover ? "Discover, " : ""}}
+                                            {{$track->provider->accept_amex ? "Amex, " : ""}}
+                                            {{$track->provider->accept_cash ? "Cash" : ""}}
                                         </td>
                                 		<td>
                                 			<textarea class='browser-default notes' style="border: 1px solid #f2f2f2;"  name='notes'>{{$track->notes}}</textarea>

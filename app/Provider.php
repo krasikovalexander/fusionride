@@ -14,7 +14,7 @@ class Provider extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name', 'state_id', 'city', 'address', 'site', 'phone', 'status', 'note', 'draft', 'email', 'phone_numbers', 'subscription_status', 'subscription_key', 'is_taxi'
+        'name', 'state_id', 'city', 'address', 'site', 'phone', 'status', 'note', 'draft', 'email', 'phone_numbers', 'subscription_status', 'subscription_key', 'is_taxi', 'accept_visa', 'accept_mc', 'accept_discover', 'accept_amex', 'accept_cash'
     ];
 
     protected $appends = ['googleReviewsLink'];

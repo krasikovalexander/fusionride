@@ -163,6 +163,35 @@
             	@endforeach
             </div>
 
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Payment types</label>
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> 
+                        <input type="checkbox" class="i-checks" value='1' name='accept_visa' {{old('accept_visa', $provider->accept_visa) ? "checked" : ""}}> Visa
+                    </label>                
+                </div>
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> 
+                        <input type="checkbox" class="i-checks" value='1' name='accept_mc' {{old('accept_mc', $provider->accept_mc) ? "checked" : ""}}> MasterCard
+                    </label>                
+                </div>
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> 
+                        <input type="checkbox" class="i-checks" value='1' name='accept_discover' {{old('accept_discover', $provider->accept_discover) ? "checked" : ""}}> Discover
+                    </label>                
+                </div>
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> 
+                        <input type="checkbox" class="i-checks" value='1' name='accept_amex' {{old('accept_amex', $provider->accept_amex) ? "checked" : ""}}> Amex
+                    </label>                
+                </div>
+                <div class="col-lg-offset-2 col-lg-10">
+                    <label> 
+                        <input type="checkbox" class="i-checks" value='1' name='accept_cash' {{old('accept_cash', $provider->accept_cash) ? "checked" : ""}}> Cash
+                    </label>                
+                </div>
+            </div>
+
 	        <div class="form-group">
 	            <div class="col-lg-offset-2 col-lg-10">
 	             	<a class="btn btn-default" href="{{!old('draft', $provider->draft) ? route('admin.providers') : route('admin.drafts')}}">Cancel</a>
