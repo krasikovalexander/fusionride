@@ -31,6 +31,7 @@ class RegistrationController extends Controller
             $data['is_taxi'] = $request->has('is_taxi');
             $data['phone_numbers'] = preg_replace("/[^0-9]/", "", $request->get('phone', ""));
             $data['subscription_key'] = base64_encode(Hash::make(str_random(64)));
+            $data['subscription_status'] = 'subscribed';
 
             $provider = Provider::create($data);
             $provider->geocode();
@@ -38,7 +39,7 @@ class RegistrationController extends Controller
 
             $provider->types()->sync((array)$request->get('type'));
 
-            Mail::to('krasikovap@gmail.com')
+            Mail::to('610allrave@gmail.com')
                         ->queue(new Registration($provider));
            
             return redirect()->back()->with("completed", true)->withInput()->with("notifications", ['success' => "Registration completed! Your application is being reviewed."]);
