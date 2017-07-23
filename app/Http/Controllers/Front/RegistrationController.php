@@ -23,6 +23,7 @@ class RegistrationController extends Controller
                 'state_id' => 'required|exists:states,id',
                 'email' => 'required|email',
                 'address' => 'required',
+                'phone' => 'required',
                 'site' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
             ]);
 
