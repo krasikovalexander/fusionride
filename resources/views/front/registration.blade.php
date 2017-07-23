@@ -166,7 +166,7 @@
                                     @if($type->protected)
                                     <div class="switch default">
                                         <label>
-                                            {{$type->name}} ({{$type->passengers}} passengers)
+                                            {{$type->name}} ({{$type->passengers}}<br/>passengers)
                                             @if (in_array($type->id, (array)old('type')))
                                                 <input type="hidden" name="type[]" value="{{$type->id}}">
                                                 <span class="pull-right" style="margin-right: 20px;">Yes</span>
@@ -181,7 +181,7 @@
                                     @else
                                     <div class="switch default">
                                         <label>
-                                            {{$type->name}} ({{$type->passengers}} passengers)
+                                            {{$type->name}} ({{$type->passengers}}<br/>passengers)
                                             <input type="checkbox" {{in_array($type->id, (array)old('type')) ? "checked" : ""}} value='{{$type->id}}' name='type[]'> 
                                             <span class="lever"></span>
                                         </label>
