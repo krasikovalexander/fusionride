@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-2 control-label">Payment types</label>
+                                <label class="col-lg-2 control-label">Accepted payment types</label>
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <div class="switch default">
                                         <label>
@@ -166,7 +166,7 @@
                                     @if($type->protected)
                                     <div class="switch default">
                                         <label>
-                                            {{$type->name}}
+                                            {{$type->name}} ({{$type->passengers}} passengers)
                                             @if (in_array($type->id, (array)old('type')))
                                                 <input type="hidden" name="type[]" value="{{$type->id}}">
                                                 <span class="pull-right" style="margin-right: 20px;">Yes</span>
@@ -181,7 +181,7 @@
                                     @else
                                     <div class="switch default">
                                         <label>
-                                            {{$type->name}}
+                                            {{$type->name}} ({{$type->passengers}} passengers)
                                             <input type="checkbox" {{in_array($type->id, (array)old('type')) ? "checked" : ""}} value='{{$type->id}}' name='type[]'> 
                                             <span class="lever"></span>
                                         </label>
