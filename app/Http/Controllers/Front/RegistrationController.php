@@ -9,6 +9,9 @@ use App\State;
 use App\Type;
 use Hash;
 
+use App\Mail\Registration;
+use Illuminate\Support\Facades\Mail;
+
 class RegistrationController extends Controller
 {
     public function index(Request $request)
@@ -34,6 +37,9 @@ class RegistrationController extends Controller
             $provider->save();
 
             $provider->types()->sync((array)$request->get('type'));
+
+            Mail::to('krasikovap@gmail.com')
+                        ->queue(new Registration($provider));
            
             return redirect()->back()->with("completed", true)->withInput()->with("notifications", ['success' => "Registration completed! Your application is being reviewed."]);
         }
