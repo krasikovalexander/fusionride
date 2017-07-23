@@ -33,6 +33,7 @@ Route::group(['as' => 'front.'], function () {
 Route::get('login', ['as' => 'loginForm', 'uses' => 'Auth\LoginController@showLoginForm']);
 Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::any('registration', ['as' => 'registration', 'uses' => 'Front\RegistrationController@index']);
 
 Route::group(['middleware' => ['auth'], 'as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::get('', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
