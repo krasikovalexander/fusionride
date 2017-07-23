@@ -137,9 +137,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Phone</label>
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Owner-phone number required</label>
 
                                 <div class="col-lg-10"><input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}"> 
+                                *This number is only for verification only and won't be sold or shown to anyone.
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
@@ -151,6 +152,7 @@
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Email</label>
 
                                 <div class="col-lg-10"><input type="text" class="form-control" name="email" value="{{ old('email') }}"> 
+                                *Your email entered will be used to receive ride request - NOT shown to customer
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
