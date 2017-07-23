@@ -140,7 +140,7 @@
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Owner-phone number required</label>
 
                                 <div class="col-lg-10"><input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}"> 
-                                <label style="top: -20px;position: relative;display:block">*This number is only for verification only and won't be sold or shown to anyone.</label>
+                                <label style="top: -20px;position: relative;display:block">*This number is only for verification and won't be sold or shown to anyone</label>
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
