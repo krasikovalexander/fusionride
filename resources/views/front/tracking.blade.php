@@ -83,7 +83,7 @@
 		        						</tr>
 		        					</thead>
         							@foreach($tracks as $i => $track)
-									
+									@if($track->provider)
         							<tr>
         								<td>{{$track->provider->name}}</td>
 							      		<td>{{$track->provider->address}}</td>
@@ -129,6 +129,7 @@
                                 			<button type="button" onclick='save($(this).parent().parent())' title='Save' class="btn-floating waves-effect waves-light"><i class="material-icons">done</i></button>
                                 		</td>
                                 	</tr>
+                                    @endif
         							@endforeach
         						</table>
 						   
