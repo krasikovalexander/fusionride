@@ -1,5 +1,56 @@
 @extends("layouts.front")
 
+
+@section("styles")
+<style>
+    .select2-search__field {
+        border-bottom: none!important;
+        height: 1em!important;
+        line-height: 1em!important;
+        margin: 0!important;
+        box-shadow: none!important;
+    }
+    .select2-container--default .select2-selection--multiple {
+        border: none!important;
+        border-bottom-width: 1px!important;
+        border-bottom-color: #aaa!important;
+        border-bottom-style: solid!important;
+        border-radius: 0!important;
+    }
+    .select2-container {
+        width:100%!important;
+    }
+    .form-group:last-child {
+        margin-top:20px;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        margin-top: 0!important;
+    }
+    .airports-2, .airports-3 {
+        display: none;
+    }
+    .airports-visible-2 .airports-2 {
+        display: block;
+    }
+    .airports-visible-3 .airports-3, .airports-visible-3 .airports-2 {
+        display: block;
+    }
+
+    .airports-visible-3 .add-airport {
+        display: none;
+    }
+    .clear {
+        clear:both;
+    }
+    .add-airport {
+        width: 100%;
+        background-color: white!important;
+        color: #424242;
+        border: 1px dashed #424242;
+    }
+</style>
+@endsection
+
 @section("content")
     @if ($provider)
         <div class="valign-wrapper subscription-page" style='min-height: 100vh'>
@@ -16,6 +67,15 @@
                           <div class="card-panel z-depth-1 {{['warning'=> 'orange', 'success'=>'blue'][$type]}}">{{$notification}}</div>
                         @endforeach
                       @endif
+                      <div class='referral-section'>
+                        <div class="col-lg-10">
+                            <p>
+                               Join FusionRide.net affiliate program. Publish this affiliate link on your site or send it to persons it may concern to achive benefits of being affiliated provider.
+                            </p>
+                            <span>{{url("/registration?_=".$provider->referral_key)}}</span>
+                        </div>
+                      </div>
+
 
                       <div class='row'>
                         <div style="float:left; margin: 10px; word-break: none; word-wrap: nowrap;">
@@ -139,6 +199,7 @@
                                         </label>
                                     </div>            
                                 </div>
+
                             </div>
 
 
@@ -224,6 +285,99 @@
                                 @endforeach
                             </div>
 
+                            <div class="form-group airports airports-visible-{{count($provider->airports) ?: 1}}">
+                                <label class="col-lg-2 control-label">Servicing airports</label>
+                                <div class="col-lg-offset-2 col-lg-10 airports-1">
+                                    <select class="form-control select2" id='airports' name="airports[]">
+                                        <option value=''>None</option>
+                                    @foreach($airports as $airport)
+                                        <option value='{{$airport->id}}' {{isset($provider->airports[0]) && $provider->airports[0]->airport_id == $airport->id ? "selected" : '' }}>{{$airport->code}} ({{$airport->name}})</option>
+                                    @endforeach
+                                </select> 
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-4 airports-1">
+                                    <div class="switch default">
+                                       <label>
+                                           Pickup without restrictions
+                                           <input type="checkbox" value='1' {{isset($provider->airports[0]) && $provider->airports[0]->pickup ? "checked" : '' }} name='pickup_no_restriction[0]'> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div> 
+                                </div>
+                                <div class="col-lg-offset-2 col-lg-4 airports-1">
+                                    <div class="switch default">
+                                       <label>
+                                           Dropoff without restrictions
+                                           <input type="checkbox" value='1' {{isset($provider->airports[0]) && $provider->airports[0]->dropoff ? "checked" : '' }} name='dropoff_no_restriction[0]'> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div> 
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-10 airports-2">
+                                    <select class="form-control select2" id='airports' name="airports[]">
+                                        <option value=''>None</option>
+                                    @foreach($airports as $airport)
+                                        <option value='{{$airport->id}}' {{isset($provider->airports[1]) && $provider->airports[1]->airport_id == $airport->id ? "selected" : '' }}>{{$airport->code}} ({{$airport->name}})</option>
+                                    @endforeach
+                                </select> 
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-4 airports-2">
+                                    <div class="switch default">
+                                       <label>
+                                           Pickup without restrictions
+                                           <input type="checkbox" value='1' {{isset($provider->airports[1]) && $provider->airports[1]->pickup ? "checked" : '' }} name='pickup_no_restriction[1]'> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div> 
+                                </div>
+                                <div class="col-lg-offset-2 col-lg-4 airports-2">
+                                    <div class="switch default">
+                                       <label>
+                                           Dropoff without restrictions
+                                           <input type="checkbox" value='1' {{isset($provider->airports[1]) && $provider->airports[1]->dropoff ? "checked" : '' }} name='dropoff_no_restriction[1]'> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div> 
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-10 airports-3">
+                                    <select class="form-control select2" id='airports' name="airports[]">
+                                        <option value=''>None</option>
+                                    @foreach($airports as $airport)
+                                        <option value='{{$airport->id}}' {{isset($provider->airports[2]) && $provider->airports[2]->airport_id == $airport->id ? "selected" : '' }}>{{$airport->code}} ({{$airport->name}})</option>
+                                    @endforeach
+                                </select> 
+                                </div>
+
+                                <div class="col-lg-offset-2 col-lg-4 airports-3">
+                                    <div class="switch default">
+                                       <label>
+                                           Pickup without restrictions
+                                           <input type="checkbox" value='1' {{isset($provider->airports[2]) && $provider->airports[2]->pickup ? "checked" : '' }} name='pickup_no_restriction[2]'> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div> 
+                                </div>
+                                <div class="col-lg-offset-2 col-lg-4 airports-3">
+                                    <div class="switch default">
+                                       <label>
+                                           Dropoff without restrictions
+                                           <input type="checkbox" value='1' {{isset($provider->airports[2]) && $provider->airports[2]->dropoff ? "checked" : '' }} name='dropoff_no_restriction[2]'> 
+                                           <span class="lever"></span>
+                                       </label>
+                                   </div> 
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <button class="btn add-airport" type="button">
+                                        + Add
+                                    </button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="center">
@@ -253,6 +407,16 @@
             $(function(){
                 $('select').material_select();
                 $("#phone").mask("(999) 999-9999");
+                $(".add-airport").click(function(){
+                    if ($(".airports").hasClass("airports-visible-1")) {
+                        $(".airports").removeClass("airports-visible-1").addClass("airports-visible-2");
+                        return;
+                    }
+                    if ($(".airports").hasClass("airports-visible-2")) {
+                        $(".airports").removeClass("airports-visible-2").addClass("airports-visible-3");
+                        return;
+                    }
+                });
             });
         </script>
     @else

@@ -8,6 +8,7 @@ use App\Provider;
 use App\State;
 use App\Type;
 use Hash;
+use App\ProviderAirportSettings;
 
 use App\Mail\Registration;
 use Illuminate\Support\Facades\Mail;
@@ -34,17 +35,41 @@ class RegistrationController extends Controller
             $data['subscription_key'] = base64_encode(Hash::make(str_random(64)));
             $data['subscription_status'] = 'subscribed';
 
+            if ($request->has('_')) {
+                $referralKey = $request->get("_");
+                $referrer = Provider::whereReferralKey($referralKey)->first();
+                if ($referrer) {
+                    $data['referred_by'] = $referrer->id;
+                } 
+            }
+
             $provider = Provider::create($data);
             $provider->geocode();
             $provider->save();
 
             $provider->types()->sync((array)$request->get('type'));
 
+            $airports = $request->get('airports',[]);
+            $pickup   = $request->get('pickup_no_restriction',[]);
+            $dropoff  = $request->get('dropoff_no_restriction',[]);
+
+            foreach ($airports as $index => $airport) {
+                if ( $airport) {
+                    $settings = new ProviderAirportSettings;
+                    $settings->provider_id = $provider->id;
+                    $settings->airport_id = $airport;
+                    $settings->pickup = isset($pickup[$index]);
+                    $settings->dropoff = isset($dropoff[$index]);
+                    $settings->save();
+                }
+            }
+
+
             Mail::to('610allrave@gmail.com')
                         ->queue(new Registration($provider));
            
             return redirect()->back()->with("completed", true)->withInput()->with("notifications", ['success' => "Registration completed! Your application is being reviewed."]);
         }
-        return view('front.registration', ['states' => State::all(), 'types' => Type::all()]);
+        return view('front.registration', ['states' => State::all(), 'types' => Type::all(), 'airports' => \App\Airport::all()]);
     }
 }

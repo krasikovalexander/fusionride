@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Provider;
 use App\State;
 use App\Type;
+use App\Airport;
+use App\ProviderAirportSettings;
 
 class SubscriptionController extends Controller
 {
@@ -24,7 +26,8 @@ class SubscriptionController extends Controller
         return view('front.provider.subscribe', [
             'provider' => $provider,
             'states' => State::all(),
-            'types' => $types
+            'types' => $types,
+            'airports' => Airport::all()
         ]);
     }
 
@@ -66,6 +69,23 @@ class SubscriptionController extends Controller
         }
         $provider->save();
         $provider->types()->sync((array)$request->get('type'));
+        $provider->airports()->delete();
+
+        $airports = $request->get('airports',[]);
+        $pickup   = $request->get('pickup_no_restriction',[]);
+        $dropoff  = $request->get('dropoff_no_restriction',[]);
+
+        foreach ($airports as $index => $airport) {
+            if ( $airport) {
+                $settings = new ProviderAirportSettings;
+                $settings->provider_id = $provider->id;
+                $settings->airport_id = $airport;
+                $settings->pickup = isset($pickup[$index]);
+                $settings->dropoff = isset($dropoff[$index]);
+                $settings->save();
+            }
+        }
+
 
         return back()->with("notifications", ["success" => 'Profile updated']);
     }

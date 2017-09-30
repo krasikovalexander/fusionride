@@ -25,18 +25,26 @@
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
+        <link href="/js/material-datetime-picker.css" rel="stylesheet">
         <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="/materialize/css/materialize.min.css" rel="stylesheet">
-        <link href="/materialize-picker/css/materialize.clockpicker.css" rel="stylesheet">
         <link href="/nouislider/nouislider.css" rel="stylesheet">
 
         <script src="/js/jquery-2.1.1.js"></script>
         <script src="/materialize/js/materialize.min.js"></script>
-        <script src="/materialize-picker/js/materialize.clockpicker.js"></script>
         <script src="/nouislider/nouislider.min.js"></script>
         <script src="/js/jquery.maskedinput.min.js"></script>
         <script src="/js/underscore-min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+        <script src="/js/material-datetime-picker.js" charset="utf-8"></script>
+
+        <!-- Select2 -->
+        <script src="/js/plugins/select2/select2.full.min.js"></script>       
+        <link href="/css/plugins/select2/select2.min.css" rel="stylesheet">
 
         <link href="/css/animate.css" rel="stylesheet">
         <link href="/css/forms.css" rel="stylesheet">

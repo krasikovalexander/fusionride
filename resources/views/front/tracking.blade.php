@@ -78,6 +78,7 @@
 		        							<th>Price</th>
                                             <th data-breakpoints="xs">Quote</th>
                                             <th data-sortable="false" data-breakpoints="all">Payment types</th>
+                                            <th data-sortable="false" data-breakpoints="all">Servicing Airports</th>
 		        							<th data-sortable="false" data-breakpoints="all">Notes</th>
 		        							<th data-sortable="false" style="width:32px"></th>
 		        						</tr>
@@ -121,6 +122,15 @@
                                             {{$track->provider->accept_discover ? "Discover, " : ""}}
                                             {{$track->provider->accept_amex ? "Amex, " : ""}}
                                             {{$track->provider->accept_cash ? "Cash" : ""}}
+                                        </td>
+                                        <td>
+                                            @foreach($track->provider->airports as $settings) 
+                                            <div>
+                                            <b>{{$settings->airport->code}} ({{$settings->airport->name}})</b><br/>
+                                            Pickup without restriction: {!!$settings->pickup ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
+                                            Drop off without restriction: {!!$settings->dropoff ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
+                                            </div>
+                                            @endforeach
                                         </td>
                                 		<td>
                                 			<textarea class='browser-default notes' style="border: 1px solid #f2f2f2;"  name='notes'>{{$track->notes}}</textarea>

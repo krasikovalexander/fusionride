@@ -32,11 +32,11 @@
                         <div class="row with-date pickup-date pickup-time">
                             <div class="input-field col s6 date ">
                                <label for="pickup-date"><i class="tiny material-icons grey-text text-lighten-2">today</i> Pick up Date</label>
-                               <input id="pickup-date" name='pickup_date' class="datepicker" type="date">
+                               <input id="pickup-date" readonly name='pickup_date' class="datepicker" type="text">
                             </div>
                             <div class="input-field col s5 date">
                                <label for="pickup-time"><i class="tiny material-icons grey-text text-lighten-2">query_builder</i> Pick up Time</label>
-                               <input id="pickup-time" name='pickup_time' class="timepicker" type="time">
+                               <input id="pickup-time" readonly name='pickup_time' class="timepicker" type="text">
                            </div>
                         </div>
                         
@@ -51,11 +51,11 @@
                         <div class="row for-rent with-date dropoff-date dropoff-time" style='display:none'>
                             <div class="input-field col s6 date">
                                <label for="dropoff-date"><i class="tiny material-icons grey-text text-lighten-2">today</i> Drop off Date</label>
-                               <input id="dropoff-date" name='dropoff_date' class="datepicker" type="date">
+                               <input id="dropoff-date" readonly name='dropoff_date' class="datepicker" type="text">
                             </div>
                             <div class="input-field col s5 date">
                                <label for="dropoff-time"><i class="tiny material-icons grey-text text-lighten-2">query_builder</i> Drop off Time</label>
-                               <input id="dropoff-time" name='dropoff_time' class="timepicker" type="time">
+                               <input id="dropoff-time" readonly name='dropoff_time' class="timepicker" type="text">
                            </div>
                         </div>
 
@@ -371,57 +371,13 @@
 
             $('select').material_select();
 
-            $('.timepicker').pickatime({
-                autoclose: true,
-                twelvehour: false,
-                default: '12:00:00'
-            });
-
-            $('#pickup-date').pickadate({
-                close: 'Done',
-                format: 'd mmmm, yyyy',
-                min: new Date(),
-                onSet: function(context) {
-                    if (context.select) {
-                        dropoffPicker.set({
-                            min: new Date($('#pickup-date').val())
-                        });
-
-                        if (!$("#pickup-time").val()) {
-                            this.close();
-                            $("#pickup-time").click();
-                        }
-                    }
-                }
-            });
             $('#pickup-date').on('focus', function(){
                 $('label[for="pickup-date"]').addClass('active');
             });
+
             $('#dropoff-date').on('focus', function(){
                 $('label[for="dropoff-date"]').addClass('active');
             });
-
-            var pickupPicker = $('#pickup-date').pickadate('picker');
-
-            $('#dropoff-date').pickadate({
-                close: 'Done',
-                format: 'd mmmm, yyyy',
-                min: new Date($('#pickup-date').val()),
-                onSet: function(context) {
-                    if (context.select) {
-                        pickupPicker.set({
-                            max: new Date($('#dropoff-date').val())
-                        });
-
-                        if (!$("#dropoff-time").val()) {
-                            $('#dropoff-date').focus().blur();
-                            this.close();
-                            $("#dropoff-time").click();
-                        }
-                    }
-                }
-            });
-            var dropoffPicker = $('#dropoff-date').pickadate('picker');
 
             $('.carousel.carousel-slider').carousel({full_width: true});
             var types = {!!$types!!};
@@ -536,6 +492,57 @@
                     e.preventDefault();
                 }
             });
+
+            var pickupPicker = new MaterialDatetimePicker;
+            pickupPicker.on('submit', function (val) {
+              $('#pickup-date').val(moment(val).format("DD/MM/YYYY"));
+              $('#pickup-time').val(moment(val).format("hh:mm A"));
+              $('label[for="pickup-date"]').addClass('active');
+              $('label[for="pickup-time"]').addClass('active');
+              if (!$('#dropoff-date').val() && $("#drive").is(":checked")) {
+                setTimeout(function(){
+                    $('#dropoff-date').click();
+                }, 500);
+              }
+            });
+
+            document.querySelector('#pickup-date').addEventListener('click', function () {
+              var timeString = $('#pickup-date').val()+" "+ $('#pickup-time').val();
+              var time = moment(timeString, "DD/MM/YYYY hh:mm A").isValid() ? moment(timeString, "DD/MM/YYYY hh:mm A") : moment();
+              return pickupPicker.open('Depart') || pickupPicker.set(time);
+            });
+
+            document.querySelector('#pickup-time').addEventListener('click', function () {
+              var timeString = $('#pickup-date').val()+" "+ $('#pickup-time').val();
+              var time = moment(timeString, "DD/MM/YYYY hh:mm A").isValid() ? moment(timeString, "DD/MM/YYYY hh:mm A") : moment();
+              return pickupPicker.open('Depart', 'clock') || pickupPicker.set(time);
+            });
+
+            var dropoffPicker = new MaterialDatetimePicker;
+            dropoffPicker.on('submit', function (val) {
+              $('#dropoff-date').val(moment(val).format("DD/MM/YYYY"));
+              $('#dropoff-time').val(moment(val).format("hh:mm A"));
+              $('label[for="dropoff-date"]').addClass('active');
+              $('label[for="dropoff-time"]').addClass('active');
+              if (!$('#pickup-date').val()) {
+                setTimeout(function(){
+                    $('#pickup-date').click();
+                }, 500);
+              }
+            });
+
+            document.querySelector('#dropoff-date').addEventListener('click', function () {
+              var timeString = $('#dropoff-date').val()+" "+ $('#dropoff-time').val();
+              var time = moment(timeString, "DD/MM/YYYY hh:mm A").isValid() ? moment(timeString, "DD/MM/YYYY hh:mm A") : moment();
+              return dropoffPicker.open('Estimated Finish') || dropoffPicker.set(time);
+            });
+
+            document.querySelector('#dropoff-time').addEventListener('click', function () {
+              var timeString = $('#dropoff-date').val()+" "+ $('#dropoff-time').val();
+              var time = moment(timeString, "DD/MM/YYYY hh:mm A").isValid() ? moment(timeString, "DD/MM/YYYY hh:mm A") : moment();
+              return dropoffPicker.open('Estimated Finish', 'clock') || dropoffPicker.set(time);
+            });
+
 
         });
     </script>

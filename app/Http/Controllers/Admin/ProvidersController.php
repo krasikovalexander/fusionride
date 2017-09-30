@@ -69,7 +69,9 @@ class ProvidersController extends Controller
             'provider' => $provider,
             'states' => State::all(),
             'types' => Type::all(),
-            'providers' => $provider->duplicates
+            'providers' => $provider->duplicates,
+            'referred' => $provider->referred,
+            'referrer' => $provider->referrer
         ]);
     }
 

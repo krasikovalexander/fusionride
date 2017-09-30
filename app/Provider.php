@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Log;
+use App\Events\ProviderCreated;
 
 class Provider extends Model
 {
@@ -14,7 +15,7 @@ class Provider extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name', 'state_id', 'city', 'address', 'site', 'phone', 'status', 'note', 'draft', 'email', 'phone_numbers', 'subscription_status', 'subscription_key', 'is_taxi', 'accept_visa', 'accept_mc', 'accept_discover', 'accept_amex', 'accept_cash'
+        'name', 'state_id', 'city', 'address', 'site', 'phone', 'status', 'note', 'draft', 'email', 'phone_numbers', 'subscription_status', 'subscription_key', 'is_taxi', 'accept_visa', 'accept_mc', 'accept_discover', 'accept_amex', 'accept_cash', 'referred_by'
     ];
 
     protected $appends = ['googleReviewsLink'];
@@ -161,5 +162,20 @@ class Provider extends Model
             return "https://search.google.com/local/reviews?placeid=".$this->google_place_id;
         }
         return null;
+    }
+
+    public function referrer()
+    {
+        return $this->belongsTo('App\Provider', 'referred_by');
+    }
+
+    public function referred()
+    {
+        return $this->hasMany('App\Provider', 'referred_by');
+    }
+
+    public function airports()
+    {
+         return $this->hasMany('App\ProviderAirportSettings');
     }
 }

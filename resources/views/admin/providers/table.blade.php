@@ -1,3 +1,12 @@
+<style>
+    .red {
+        color: red;
+    }
+    .green{
+        color:green;
+    }
+</style>
+
 <table class="footable table table-stripped" data-page-size="20" data-filter-min="2" data-filter-ignore-case="false" data-filter=#filter>
     <thead>
     <tr>
@@ -15,6 +24,7 @@
         <th data-hide="phone,tablet">Note</th>
         <th data-hide="phone,tablet">Coords</th>
         <th data-hide="all">Reviews</th>
+        <th data-hide="all">Servicing Airports</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -46,6 +56,15 @@
             @endif
         </td>
         <td>
+            @foreach($provider->airports as $settings) 
+                <div style="margin-bottom: 10px">
+                    <b>{{$settings->airport->code}} ({{$settings->airport->name}})</b><br/>
+                    Pickup: {!!$settings->pickup ? "<span class='green'>No restrictions</span>" : "<span class='red'>Restricted</span>"!!}<br/>
+                    Dropoff: {!!$settings->dropoff ? "<span class='green'>No restrictions</span>" : "<span class='red'>Restricted</span>"!!}<br/>
+                </div>
+            @endforeach
+        </td>
+        <td>
             <a href="{{route('admin.providers.edit', ['id'=>$provider->id])}}" class='btn btn-xs btn-info'><i class="fa fa-pencil"></i></a>
             @if ($provider->subscription_status != 'subscribed' && $provider->email)
             <a href="{{route('admin.providers.invite', ['id'=>$provider->id])}}" class='btn btn-xs btn-warning'><i class="fa fa-paper-plane-o"></i></a>
@@ -61,7 +80,7 @@
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="9">
+        <td colspan="12">
             <ul class="pagination pull-right"></ul>
         </td>
     </tr>

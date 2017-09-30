@@ -207,13 +207,32 @@
 
 @if ($provider->id)
 <div class="ibox float-e-margins">
-	<div class="ibox-title">
-	    <h5>Possible duplicates</h5>
-	</div>
-	<div class="ibox-content">
-	    @include('admin.providers.table')
-	</div>
+    <div class="ibox-title">
+        <h5>Referrer</h5>
+    </div>
+    <div class="ibox-content">
+        @include('admin.providers.table', ['providers' => $referrer ? [$referrer] : []])
+    </div>
 </div>
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>Referrals</h5>
+    </div>
+    <div class="ibox-content">
+        @include('admin.providers.table', ['providers' => $referred])
+    </div>
+</div>
+
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>Possible duplicates</h5>
+    </div>
+    <div class="ibox-content">
+        @include('admin.providers.table')
+    </div>
+</div>
+
 @endif
 @endsection
 

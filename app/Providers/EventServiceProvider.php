@@ -16,11 +16,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
-        ],
-    ];
+    protected $listen = [];
 
     /**
      * Register any events for your application.
@@ -45,6 +41,11 @@ class EventServiceProvider extends ServiceProvider
                     $subscription->save();
                 });
             }
+        });
+
+        Provider::created(function ($provider) {
+            $provider->referral_key = md5($provider->id.$provider->created_at);
+            $provider->save();
         });
     }
 }

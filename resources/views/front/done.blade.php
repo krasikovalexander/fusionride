@@ -62,6 +62,17 @@
                                             {{$provider->accept_discover ? "Discover, " : ""}}
                                             {{$provider->accept_amex ? "Amex, " : ""}}
                                             {{$provider->accept_cash ? "Cash" : ""}}
+                            <br/>
+                            <!--
+                            @foreach($provider->airports as $settings) 
+                            Servicing airports:
+                            <div>
+                            <b>{{$settings->airport->code}} ({{$settings->airport->name}})</b><br/>
+                            Pickup without restriction: {!!$settings->pickup ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
+                            Drop off without restriction: {!!$settings->dropoff ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
+                            </div>
+                            @endforeach
+                            -->
 					      </p>
 					    </li>
 	        		@endforeach

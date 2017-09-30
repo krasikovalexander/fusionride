@@ -178,47 +178,6 @@ input.timepicker, input.datepicker {
 	margin-left: 20px;
 }
 
-.picker__weekday-display {
-	background-color: #5e35b1;
-}
-
-.picker__date-display {
-	background-color: #7c4dff;
-}
-
-.picker__day.picker__day--today, .picker__close, .picker__today {
-	color: #aa00ff;
-}
-
-.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
-	background-color: #651fff;
-}
-
-.clockpicker-button.am-button, .clockpicker-button.pm-button {
-	background-color: #b388ff;
-}
-
-.btn-floating.btn-flat:active, .btn-floating.btn-flat.active {
-	background-color: #9c27b0;
-}
-
-.clockpicker-canvas-bg {
-	fill: rgba(179,136,255,0.5);
-}
-
-.clockpicker-canvas line {
-	stroke:  rgba(179,136,255,0.5);
-}
-
-.clockpicker-canvas-fg.active {
-	fill:  rgba(142,36,170,0.5);
-}
-
-.date i {
-	position: relative;
-	top: 2px;
-}
-
 .input-field.date  label {
 	font-size: 0.8rem;
 }
@@ -377,13 +336,6 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 	color: #9e9e9e;
 	font-size: 0.8rem;
 	margin-bottom: 20px;
-}
-
-.picker__day--disabled, .picker__day--disabled:hover, .picker--focused .picker__day--disabled {
-    background: #FFFFFF;
-    border-color: #FFFFFF;
-    color: #dddddd;
-    cursor: default;
 }
 
 .custom-color {
@@ -863,3 +815,80 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .rating-25 { background-position: -24px -16px; }
 .rating-35 { background-position: -12px -16px; }
 .rating-45 { background-position: 0 -16px; }
+
+.c-datepicker__header *, .c-datepicker__header *:before, .c-datepicker__header *:after {
+    box-sizing: content-box;
+}
+
+.c-datepicker td, .c-datepicker th {
+    padding: 0;
+    text-align: center;
+}
+
+.c-datepicker thead {
+    border-bottom: none;
+}
+.c-datepicker button:focus {
+    background-color: inherit;
+}
+.c-datepicker__header-date {
+    padding: 0;
+    height: 180px;
+}
+.c-datepicker__days {
+    margin: 10px 0;
+}
+
+.c-datepicker__clock {
+    padding: 320px 0 20px 0;
+}
+
+@-webkit-keyframes spinner {
+    0% { -webkit-transform: translate(-50%, -50%) rotateY(0deg);  }
+    50%   { -webkit-transform:  translate(-50%, -50%) rotateY(-90deg); }
+    100% { -webkit-transform: translate(-50%, -50%) rotateY(0deg) ;  }
+}
+
+.flipped
+{
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin:50% 50%;
+}
+
+.js-title {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);//#0097a7;
+  font-weight: bold;
+}
+.js-day {
+  display: none!important;
+}
+.modal-btns {
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 200px;
+}
+
+.c-datepicker__header-day {
+    background-color: white;
+}
+
+
+.referral-section {
+    padding: 20px;
+    background-color: #ab47bc;
+    color: white;
+}
+
+.referral-section span {
+    font-weight:bold;
+    border: none!important;
+    color: black;
+}
