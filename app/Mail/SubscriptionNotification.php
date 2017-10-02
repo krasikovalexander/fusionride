@@ -30,6 +30,6 @@ class SubscriptionNotification extends Mailable
      */
     public function build()
     {
-        return $this->subject('Fusion Ride availability notice')->view('mail.subscription');
+        return $this->subject('Future Ride availability notice')->view('mail.subscription');
     }
 }

@@ -70,7 +70,7 @@
                       <div class='referral-section'>
                         <div class="col-lg-10">
                             <p>
-                               Join FusionRide.net affiliate program. Publish this affiliate link on your site or send it to persons it may concern to achive benefits of being affiliated provider.
+                               Join FutureRide.net affiliate program. Publish this affiliate link on your site or send it to persons it may concern to achive benefits of being affiliated provider.
                             </p>
                             <span>{{url("/registration?_=".$provider->referral_key)}}</span>
                         </div>

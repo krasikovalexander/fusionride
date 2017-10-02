@@ -6,23 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Provider;
-use App\Request;
+use App\Track;
 
-class InviteToProvider extends Mailable
+class Quoted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $provider;
+    public $track;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Provider $provider)
+    public function __construct(Track $track)
     {
-        $this->provider = $provider;
+        $this->track = $track;
     }
 
     /**
@@ -32,7 +31,7 @@ class InviteToProvider extends Mailable
      */
     public function build()
     {
-        return $this->subject('Future Ride service activation')
-            ->view('mail.invite');
+        return $this->subject('Future Ride new quote')
+            ->view('mail.quoted');
     }
 }

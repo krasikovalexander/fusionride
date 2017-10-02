@@ -192,6 +192,18 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Servicing airports</label>
+                <div class="col-lg-offset-2 col-lg-10">
+                    @foreach($provider->airports as $settings) 
+                    <b>{{$settings->airport->code}} ({{$settings->airport->name}})</b><br/>
+                    Pickup without restriction: {!!$settings->pickup ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
+                    Drop off without restriction: {!!$settings->dropoff ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
+                    <br/>
+                    @endforeach
+                </div>
+            </div>
+
 	        <div class="form-group">
 	            <div class="col-lg-offset-2 col-lg-10">
 	             	<a class="btn btn-default" href="{{!old('draft', $provider->draft) ? route('admin.providers') : route('admin.drafts')}}">Cancel</a>

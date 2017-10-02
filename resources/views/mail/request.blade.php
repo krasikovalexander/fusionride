@@ -141,7 +141,7 @@
 
 @section('footer')
 <div>
-	You received this email because you subscribed to a free <a href="http://FusionRide.net">FusionRide.net</a> service.
+	You received this email because you subscribed to a free <a href="http://FutureRide.net">FutureRide.net</a> service.
 	<br/>
 	Visit you <a href="{{route('front.provider.subscribe', ['hash' => $provider->subscription_key])}}">profile</a> page to update settings.
 	<br/>

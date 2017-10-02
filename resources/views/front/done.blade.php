@@ -64,8 +64,9 @@
                                             {{$provider->accept_cash ? "Cash" : ""}}
                             <br/>
                             <!--
-                            @foreach($provider->airports as $settings) 
                             Servicing airports:
+                            @foreach($provider->airports as $settings) 
+                            
                             <div>
                             <b>{{$settings->airport->code}} ({{$settings->airport->name}})</b><br/>
                             Pickup without restriction: {!!$settings->pickup ? "<b>Yes</b>" : "<b>No</b>"!!}<br/>
