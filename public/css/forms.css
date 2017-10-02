@@ -857,6 +857,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     -webkit-animation-duration: 0.6s;
     -webkit-transform-style: preserve-3d;
     -webkit-transform-origin:50% 50%;
+    backface-visibility: hidden;
 }
 
 .js-title {
@@ -895,6 +896,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .noscroll {
     position: fixed;
     //overflow: hidden;
+    background-size: 100vw 100vh;
 }
 
 .c-datepicker__header-date__day {
@@ -927,4 +929,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     top: 96px;
     left: 56px;
     z-index: 99;
+}
+.c-datepicker {
+    perspective: 1000px;
 }
