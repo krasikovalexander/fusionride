@@ -840,7 +840,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .c-datepicker__clock {
-    padding: 320px 0 20px 0;
+    padding: 300px 0 20px 0;
 }
 
 @-webkit-keyframes spinner {
@@ -903,4 +903,19 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .c-datepicker__toggle {
     top: 140px;
+}
+
+.c-datepicker__clock__am-pm-toggle {
+    padding:10px;
+}
+.c-datepicker__clock::before {
+    top:35px;
+    left: 0px;
+}
+
+.c-datepicker__calendar {
+    height: 320px;
+}
+.c-datepicker__clock {
+    width:240px;
 }
