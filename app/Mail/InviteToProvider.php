@@ -32,7 +32,7 @@ class InviteToProvider extends Mailable
      */
     public function build()
     {
-        return $this->subject('Fusion Ride service activation')
+        return $this->subject('Future Ride service activation')
             ->view('mail.invite');
     }
 }

@@ -4,7 +4,7 @@
         <td style="padding:40px;margin:0px;display:block;font-family:Helvetica,Arial,sans-serif;border:1px solid #e8e8e8;color:#000000"">
         @yield('content')
         <hr>
-        <img style="float: left; width: 133px; margin-right: 20px;" src="http://www.fusionride.net/logo_200.png">
+        <img style="float: left; width: 133px; margin-right: 20px;" src="http://www.futureride.net/logo_200.png">
         @yield('footer')
         </td>
     </tr>

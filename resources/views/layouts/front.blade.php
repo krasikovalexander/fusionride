@@ -61,7 +61,7 @@
         </script>
 
 
-        <title>FusionRide</title>
+        <title>FutureRide</title>
         @yield('styles')
         @yield('scripts')
 

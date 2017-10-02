@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'RideRequest@fusionride.net'),
-        'name' => env('MAIL_FROM_NAME', 'Fusion Ride'),
+        'address' => env('MAIL_FROM_ADDRESS', 'RideRequest@futureride.net'),
+        'name' => env('MAIL_FROM_NAME', 'Future Ride'),
     ],
 
     /*

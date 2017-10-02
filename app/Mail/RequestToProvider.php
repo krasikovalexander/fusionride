@@ -37,7 +37,7 @@ class RequestToProvider extends Mailable
      */
     public function build()
     {
-        return $this->subject('Fusion Ride availability request')
+        return $this->subject('Future Ride availability request')
             ->replyTo($this->request->email)
             ->view('mail.request');
     }

@@ -31,7 +31,7 @@ class Quoted extends Mailable
      */
     public function build()
     {
-        return $this->subject('Fusion Ride new quote')
+        return $this->subject('Future Ride new quote')
             ->view('mail.quoted');
     }
 }

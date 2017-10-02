@@ -1,10 +1,10 @@
 @extends('layouts.mail')
 @section('content')
 <p>
-    <a href="http://www.fusionride.net">FusionRide.Net</a> is offering free referal service to limo and bus companies all over the USA.<br/> 
+    <a href="http://www.futureride.net">FutureRide.Net</a> is offering free referal service to limo and bus companies all over the USA.<br/> 
     FYI you have every right to cancel your free subscription anytime likewise,<br/>
-    FusionRide.Net reserves the right to discontinue sending free leads to your email without your consent.<br/>
-    <strong>Fusion Ride&trade; Provider Emails will not be sold or shown to customers when they use Fusion Ride&trade;.</strong>
+    FutureRide.Net reserves the right to discontinue sending free leads to your email without your consent.<br/>
+    <strong>Future Ride&trade; Provider Emails will not be sold or shown to customers when they use Future Ride&trade;.</strong>
 </p>
 
 <p style='text-align: center'>

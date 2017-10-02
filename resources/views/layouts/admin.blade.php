@@ -115,7 +115,7 @@
         </div>
         <div class="footer">
             <div>
-                <strong>Copyright</strong> Fusion Ride &copy; 2016
+                <strong>Copyright</strong> Future Ride &copy; 2016-2017
             </div>
         </div>
 
