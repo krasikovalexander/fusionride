@@ -833,7 +833,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 .c-datepicker__header-date {
     padding: 0;
-    height: 180px;
+    height: 140px;
 }
 .c-datepicker__days {
     margin: 10px 0;
@@ -891,4 +891,16 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     font-weight:bold;
     border: none!important;
     color: black;
+}
+.noscroll {
+    position: fixed;
+    overflow: hidden;
+}
+
+.c-datepicker__header-date__day {
+    font-size:45px;
+}
+
+.c-datepicker__toggle {
+    top: 140px;
 }

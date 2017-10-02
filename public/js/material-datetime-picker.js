@@ -339,13 +339,14 @@ var DateTimePicker = function (_Events) {
       $('body').on('click', '.c-datepicker__day-body', function(){
         instance.clickShowClock();
       });
-
+      $('body').addClass("noscroll");
       this._show();
     }
   }, {
     key: 'close',
     value: function close() {
       this._stopListeningForCloseEvents();
+      $('body').removeClass("noscroll");
       this._hide();
     }
   }, {
