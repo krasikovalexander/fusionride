@@ -71,7 +71,7 @@
                             {{ csrf_field() }}
 
                             
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Name</label>
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Provider Name</label>
 
                                 <div class="col-lg-10"><input type="text" class="form-control" name="name" value="{{ old('name')}}"> 
                                 @if ($errors->has('name'))
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Address</label>
+                            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}"><label class="col-lg-2 control-label">Provider Address</label>
 
                                 <div class="col-lg-10"><input type="text" class="form-control" name="address" value="{{ old('address') }}"> 
                                 @if ($errors->has('address'))
