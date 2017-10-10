@@ -25,10 +25,11 @@ class RegistrationController extends Controller
                 'email' => 'required|email',
                 'address' => 'required',
                 'phone' => 'required',
-                'site' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
+                //'site' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
             ]);
 
             $data = $request->all();
+            $data['site'] = $data['site'] ? "http://".preg_replace("/https?:\/\//", "", $data['site']) : "";
             $data['draft'] = true;
             $data['is_taxi'] = $request->has('is_taxi');
             $data['phone_numbers'] = preg_replace("/[^0-9]/", "", $request->get('phone', ""));
