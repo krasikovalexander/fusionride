@@ -712,6 +712,7 @@ var DateTimePicker = function (_Events) {
   }, {
     key: 'setTime',
     value: function setTime(time) {
+      console.log(time);
       var m = moment(time);
       var minuteAsInt = Math.round(parseInt(m.format('mm'), 10) / 5) * 5;
       m.minutes(minuteAsInt);
@@ -719,11 +720,15 @@ var DateTimePicker = function (_Events) {
       var hour = m.format('HH');
       var minutes = m.format('mm');
       var hourAsInt = parseInt(hour, 10) % 12;
-
+      
       var oldActiveHours = this.$('.js-clock-hours .' + this.options.styles.clockNum + '--active');
       var oldActiveMinutes = this.$('.js-clock-minutes .' + this.options.styles.clockNum + '--active');
 
-      this.$('.js-date-hours').innerText = hourAsInt;
+      if (hourAsInt == 0 && parseInt(minutes, 10) < 60 && this.meridiem == "pm") {
+        this.$('.js-date-hours').innerText = 12;
+      } else  {
+        this.$('.js-date-hours').innerText = hourAsInt;
+      }
       this.$('.js-date-minutes').innerText = minutes+(this.meridiem ? " "+this.meridiem.toUpperCase() : "");
 
       if (oldActiveHours) {
