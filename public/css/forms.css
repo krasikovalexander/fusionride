@@ -892,3 +892,60 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     border: none!important;
     color: black;
 }
+.noscroll {
+    position: fixed;
+    //overflow: hidden;
+    background-size: 100vw 100vh;
+}
+
+.c-datepicker__header-date__day {
+    font-size:45px;
+}
+
+.c-datepicker__toggle {
+    top: 140px;
+}
+
+.c-datepicker__clock__am-pm-toggle {
+    padding:10px;
+}
+.c-datepicker__clock::before {
+    top:40px;
+    left: 0px;
+}
+
+.c-datepicker__calendar {
+    height: 320px;
+}
+.c-datepicker__clock {
+    width:240px;
+}
+
+.c-datepicker__mask {
+    width: 127px;
+    height: 132px;
+    position: absolute;
+    top: 96px;
+    left: 56px;
+    z-index: 99;
+}
+.c-datepicker {
+    perspective: 1000px;
+}
+
+.demo img {
+  width: 100%;
+}
+
+.demo p {
+  text-align: center;
+}
+
+.demo p {
+    font-weight: bold;
+    font-size: 20px;
+}
+.demo .note {
+    font-size: 12px;
+    font-style: italic;
+}

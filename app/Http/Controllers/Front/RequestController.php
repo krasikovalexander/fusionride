@@ -247,4 +247,9 @@ class RequestController extends Controller
 
         return view("front.quote", ['track' => $track, 'request' => $track->request, 'provider' => $track->provider]);
     }
+
+    public function demo()
+    {
+        return view('front.demo');
+    }
 }
