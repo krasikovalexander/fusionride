@@ -2,6 +2,8 @@
 
 return [
 
+    'blocked_mode' => env('BLOCKED_MODE', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
